@@ -1,0 +1,22 @@
+{
+  "name": "locationsofjustice",
+  "version": "1.0.0",
+  "description": "CSR Locations of Justice map setup",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CenterForSpatialResearch/locationsofjustice.git"
+  },
+  "author": "jlh2199@columbia.edu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CenterForSpatialResearch/locationsofjustice/issues"
+  },
+  "homepage": "https://github.com/CenterForSpatialResearch/locationsofjustice#readme",
+  "dependencies": {
+    "leaflet": "^1.2.0"
+  }
+}
