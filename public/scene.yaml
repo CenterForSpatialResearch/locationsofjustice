@@ -1,0 +1,132 @@
+global:
+    ux_language: fr
+
+sources:
+    mapzen:
+        type: TopoJSON
+        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson
+        url_params:
+            api_key: mapzen-RPLAUsu
+
+    normals:
+        type: Raster
+        url: https://tile.mapzen.com/mapzen/terrain/v1/normal/{z}/{x}/{y}.png
+        url_params:
+            api_key: mapzen-RPLAUsu
+
+styles:
+    terrain-bla:
+        base: raster
+        lighting: true
+
+layers:
+    terrain:
+        data: {source: normals, layer: _default}
+        draw:
+            terrain-bla:
+                order: 0
+
+    earth:
+        data: { source: mapzen }
+        draw:
+            lines:
+                order: 3
+                color: yellow
+                width: 1px    
+            text:
+                font:
+                    weight: 200
+                    size: 18px
+                    family: sans-serif
+                    fill: red
+
+    water:
+        data: { source: mapzen }
+        draw:
+            polygons:
+                order: 1
+                color: lightblue
+
+    roads:
+        data: { source: mapzen }
+        draw:
+            lines:
+                order: 2
+                color: red
+                width: 1px
+            text:
+                text_source: 'name' #name:ar
+                font:
+                    weight: 100
+                    size: 12px
+                    family: sans-serif
+                    fill: blue
+
+    
+    boundaries:
+        data: { source: mapzen }
+        draw:
+            lines:
+                order: 3
+                color: red
+                width: 5px
+            text:
+                font:
+                    weight: 100
+                    size: 12px
+                    family: sans-serif
+                    fill: black
+
+
+    transit:
+        data: { source: mapzen }
+        draw:
+            lines:
+                order: 3
+                color: green
+                width: 1px
+
+    buildings:
+        data: { source: mapzen }
+        draw:
+            lines:
+                order: 3
+                color: blue
+                width: 1px
+            text:
+                font:
+                    weight: 100
+                    size: 12px
+                    family: sans-serif
+                    fill: green
+
+    landuse:
+        data: { source: mapzen }
+        draw:
+            lines:
+                order: 3
+                color: "#000"
+                width: 1px
+            text:
+                font:
+                    weight: 100
+                    size: 12px
+                    family: sans-serif
+                    fill: white
+                    stroke: { color: black, width: 1 }
+
+    places:
+        data: { source: mapzen }
+        draw:
+            lines:
+                order: 5
+                color: yellow
+                width: 1px
+            text:
+                font:
+                    weight: 100
+                    size: 18px
+                    family: sans-serif
+                    fill: white
+                    stroke: { color: black, width: 2 }
+
