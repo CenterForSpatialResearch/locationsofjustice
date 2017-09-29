@@ -1,0 +1,58 @@
+sources:
+    osm:
+        type: TopoJSON
+        url: https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson
+        max_zoom: 16
+        rasters: [normals]
+
+styles:
+    dots:
+        base: lines
+        dash: [1, 2]
+
+layers:
+    earth:
+        data: {source: osm}
+        filter:
+            $zoom: {min: 7, max: 20}
+        draw:
+            polygons:
+                order: 0
+                color: '#FFFFFF'
+            # lines:
+            #     order: 1
+            #     color: '#7F7F7F'
+            #     width: 1px
+    water:
+      data: {source: osm}
+      filter:
+        $zoom: {min: 7, max: 20}
+      draw:
+        polygons:
+          order: 1
+          color: '#E6E6E6'
+    roads:
+      data: {source: osm}
+      filter:
+        kind: [highway]
+        $zoom: {min: 12, max: 20}
+      draw:
+        lines:
+          order: 2
+          color: '#F2F2F2'
+          width: [[5, 1px], [7, 1.4px], [8, 2px], [9, 2.5px], [14, 4.0px], [15, 6.0px], [16, 6.5px], [17, 20m]]
+          outline:
+            color: '#B2B2B2'
+            width: [[9, 0.5px], [12, 0.5px], [16, 1px], [18, 2px]]
+    buildings:
+      data: { source: osm }
+      filter:
+        $zoom: {min: 15, max: 20}
+      draw:
+        lines:
+          order: 3
+          color: '#B2B2B2'
+          width: 1px
+        polygons:
+          order: 3
+          color: '#D8D8D8'
