@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://mapzen.com/js/mapzen.css">
     <script src="https://mapzen.com/js/mapzen.min.js"></script>
     <link rel="stylesheet" href="css/mapzenCustom.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,300i,400,400i,700" rel="stylesheet">
 </head>
 <body>
     <div id="notes">&raquo; <a href="iframe.html">iFrame</a>.</div>
@@ -18,7 +19,7 @@
       var map = L.Mapzen.map('justiceMap', {
         apiKey: 'mapzen-h1njtmE',
         center: [40.722570, -73.997099],
-        zoom: 11,
+        zoom: 12,
         minZoom: 7,
         maxZoom: 19,
         maxBounds: [[44.292059, -78.209836], [36.990458, -68.924623]],
@@ -29,9 +30,43 @@
         }
       });
 
+      var popup = L.popup();
+
+      // Add selection events
+      function onMapClick(selection) {
+        console.log('click');
+        if(selection.feature) {
+          var latlng = selection.leaflet_event.latlng;
+          // var latlng = [40.7633617, -73.9205994]
+          var label = selection.feature.properties.NAME;
+          showPopup(latlng, label);
+        }
+      }
+
+      // Add Tangram Listener
+      var scene;
+      map.on('tangramloaded', function(e) {
+        var tangramLayer = e.tangramLayer;
+        scene = tangramLayer.scene;
+        tangramLayer.setSelectionEvents({
+          click: onMapClick
+        });
+      });
+
+      function showPopup(latlng, label) {
+        popup
+          .setLatLng(latlng)
+          .setContent('<p>' + label + '</p>')
+          .openOn(map);
+      }
+
+      function onMapHover(selection){
+        document.getElementById('map').style.cursor = selection.feature ? 'pointer' : '';
+      }
+
       // Test Popup
-      L.marker([40.7633617, -73.9205994]).addTo(map)
-          .bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
+      // L.marker([40.7633617, -73.9205994]).addTo(map)
+      //     .bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
     </script>
 </body>
 </html>

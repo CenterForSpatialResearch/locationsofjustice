@@ -7,3 +7,36 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
+/*.leaflet-container a {
+  color: #7F7F7F
+}
+.leaflet-control-attribution {
+  color: #7F7F7F
+}
+.leaflet-touch .leaflet-bar {
+  border: 1px solid #7F7F7F
+}*/
+
+.leaflet-touch .leaflet-control-zoom-in {
+  font-size: 1.5em;
+}
+.leaflet-touch .leaflet-control-zoom-out {
+  font-size: 1.5em;
+}
+.leaflet-bar a, .leaflet-bar a:hover{
+  background-color: rgba(255,255,255,0.75);
+}
+.leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar {
+  border-width: 1px;
+}
+.leaflet-control-attribution {
+  color: #7F7F7F;
+  font-size: 0.9em;
+}
+.leaflet-container a{
+  color: #7F7F7F;
+}
+.leaflet-container {
+  font-family: 'Roboto Mono', monospace;
+}
