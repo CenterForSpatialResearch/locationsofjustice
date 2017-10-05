@@ -38,5 +38,19 @@ html, body {
   color: #7F7F7F;
 }
 .leaflet-container {
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Neue Haas Unica W01 Regular', monospace;
+}
+.leaflet-popup-content h1 {
+  font-family: 'Neue Haas Unica W01 Bold', monospace;
+  font-size: 1.35em;
+  margin: 5px 0;
+}
+.leaflet-popup-content p {
+  margin: 5px 0;
+}
+.leaflet-popup-content-wrapper {
+  background: white;
+  color: black;
+  border-radius: 0px;
+  box-shadow: 0 3px 14px rgba(0,0,0,0.2);
 }

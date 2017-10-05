@@ -64,7 +64,7 @@ global:
   waterLabelsColor: '#BFBFBF'
   mainCityLabelsColor: '#7F7F7F'
   secondaryCityLabelsColor: '#A6A6A6'
-  fontFamily: 'Roboto Mono'
+  regularFont: 'Neue Haas Unica W01 Regular'
 
 layers:
   earth:
@@ -100,7 +100,7 @@ layers:
                 style: italic
                 size: [[12,8px],[13,9px],[14,10px],[15,11px],[16,12px]]
                 fill: global.waterLabelsColor
-                family: global.fontFamily
+                family: global.regularFont
                 weight: 300
         water-area-labels:
           filter:
@@ -166,7 +166,7 @@ layers:
             text:
               order: global.labelsOrder
               font:
-                family: global.fontFamily
+                family: global.regularFont
                 weight: 300
                 size: [[12,8px],[13,9px],[14,10px],[15,11px],[16,12px]]
                 fill: global.secondaryCityLabelsColor
@@ -189,7 +189,7 @@ layers:
             text:
               order: global.labelsOrder
               font:
-                family: global.fontFamily
+                family: global.regularFont
                 weight: 300
                 size: [[12,8px],[13,9px],[14,10px],[15,11px],[16,12px]]
                 fill: global.secondaryCityLabelsColor
@@ -253,7 +253,7 @@ layers:
             text:
               order: global.labelsOrder
               font:
-                family: global.fontFamily
+                family: global.regularFont
                 weight: 400
                 size: [[2,8px],[6,14px],[8,16px],[12,18px],[13,0px]]
                 fill: global.mainCityLabelsColor
@@ -264,7 +264,7 @@ layers:
             text:
               order: global.labelsOrder
               font:
-                family: global.fontFamily
+                family: global.regularFont
                 weight: 300
                 size: [[5,10px],[8,12px],[10,14px],[12,16px],[13,0px]]
                 fill: global.secondaryCityLabelsColor
@@ -275,7 +275,7 @@ layers:
             text:
               order: global.labelsOrder
               font:
-                family: global.fontFamily
+                family: global.regularFont
                 weight: 300
                 size: [[6,8px],[8,10px],[10,12px],[12,14px],[13,0px]]
                 fill: global.secondaryCityLabelsColor
@@ -286,7 +286,7 @@ layers:
             text:
               order: global.labelsOrder
               font:
-                family: global.fontFamily
+                family: global.regularFont
                 weight: 300
                 size: [[6,6px],[8,8px],[10,10px],[12,12px],[13,0px]]
                 fill: global.secondaryCityLabelsColor
@@ -305,7 +305,7 @@ layers:
               fill: global.secondaryCityLabelsColor
               size: [[12,8px],[13,9px],[14,10px],[15,11px],[16,12px]]
               transform: uppercase
-              family: global.fontFamily
+              family: global.regularFont
               weight: 400
   justice_locations:
     data: {source: justiceLocations}
@@ -356,7 +356,7 @@ layers:
         #     order: 10
         #     text_source: function () {return feature.NAME;}
         #     font:
-        #       family: global.fontFamily
+        #       family: global.regularFont
         #       weight: 300
         #       fill: global.secondaryCityLabelsColor
         #       size: [[12,8px],[13,9px],[14,10px],[15,11px],[16,12px]]

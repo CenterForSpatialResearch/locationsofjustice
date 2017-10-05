@@ -9,6 +9,30 @@
     <script src="https://mapzen.com/js/mapzen.min.js"></script>
     <link rel="stylesheet" href="css/mapzenCustom.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,300i,400,400i,700" rel="stylesheet">
+    <style type="text/css">
+
+      @import url("http://fast.fonts.net/t/1.css?apiType=css&projectid=0b186070-4465-43d1-b4c2-abefd9f2ac46");
+          @font-face{
+              font-family:"Neue Haas Unica W01 Regular";
+              src:url("Fonts/0ebd7648-5847-404a-a88a-28a353c0921c.eot?#iefix");
+              src:url("Fonts/0ebd7648-5847-404a-a88a-28a353c0921c.eot?#iefix") format("eot"),url("Fonts/e0d80810-f7e3-4fea-8c57-ef8116f0465d.woff2") format("woff2"),url("Fonts/27645c8a-608b-4abf-a2f1-c4407b576723.woff") format("woff"),url("Fonts/bd3b3439-8eff-445c-80ed-87064138ca7d.ttf") format("truetype"),url("Fonts/bf3731ee-64fe-49c1-b8a6-a4edbff3c74a.svg#bf3731ee-64fe-49c1-b8a6-a4edbff3c74a") format("svg");
+          }
+          @font-face{
+              font-family:"Neue Haas Unica W01 Hea1492559";
+              src:url("Fonts/960b8d39-bee7-47a1-a258-c73f8aabab91.eot?#iefix");
+              src:url("Fonts/960b8d39-bee7-47a1-a258-c73f8aabab91.eot?#iefix") format("eot"),url("Fonts/cc589c6c-1ce4-4279-8684-c378497d1c68.woff2") format("woff2"),url("Fonts/8546c78d-5a38-4c7b-9371-5a70d803922a.woff") format("woff"),url("Fonts/cb4a00d4-9830-4ba3-914c-8eae604824b6.ttf") format("truetype"),url("Fonts/611ebee3-c884-4580-86d4-d81a6180c188.svg#611ebee3-c884-4580-86d4-d81a6180c188") format("svg");
+          }
+          @font-face{
+              font-family:"Neue Haas Unica W01 Bold";
+              src:url("Fonts/debbfa41-3ea8-466c-9174-de4e919598ed.eot?#iefix");
+              src:url("Fonts/debbfa41-3ea8-466c-9174-de4e919598ed.eot?#iefix") format("eot"),url("Fonts/39bb8fb3-84a4-4ab8-ae45-db1834f5d807.woff2") format("woff2"),url("Fonts/96fd4fb4-75db-412f-986d-d65380ee0ccf.woff") format("woff"),url("Fonts/d86863bd-a6e3-4cd0-abe7-a711edaaebc6.ttf") format("truetype"),url("Fonts/eea53212-4a22-464f-bb6f-5cd5b17467ff.svg#eea53212-4a22-464f-bb6f-5cd5b17467ff") format("svg");
+          }
+          @font-face{
+              font-family:"Neue Haas Unica W01 Bol1492557";
+              src:url("Fonts/8508cf3d-6461-49ec-a435-858f5ead2f8b.eot?#iefix");
+              src:url("Fonts/8508cf3d-6461-49ec-a435-858f5ead2f8b.eot?#iefix") format("eot"),url("Fonts/dfa9d078-533c-44d9-9dd9-deaafbff5a96.woff2") format("woff2"),url("Fonts/4142b00a-232a-49e8-803c-541f8b932fa1.woff") format("woff"),url("Fonts/cecd8354-0b61-4068-b4e6-3bb48ba2ca12.ttf") format("truetype"),url("Fonts/d12886e5-81c2-4844-99c4-e329d374da92.svg#d12886e5-81c2-4844-99c4-e329d374da92") format("svg");
+          }
+    </style>
 </head>
 <body>
     <div id="notes">&raquo; <a href="iframe.html">iFrame</a>.</div>
@@ -25,7 +49,6 @@
         maxBounds: [[44.292059, -78.209836], [36.990458, -68.924623]],
         attribution: '© <a href="http://c4sr.columbia.edu/">Center for Spatial Research</a>, <a href="http://archleague.org/">Architectural League</a>, <a href="https://www.mapzen.com/rights">Mapzen</a>, <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>, and <a href="https://www.mapzen.com/rights/#services-and-data-sources">others</a>',
         tangramOptions: {
-          // scene: L.Mapzen.BasemapStyles.Refill
           scene: 'sceneTest.yaml'
         }
       });
@@ -34,12 +57,13 @@
 
       // Add selection events
       function onMapClick(selection) {
-        console.log('click');
         if(selection.feature) {
           var latlng = selection.leaflet_event.latlng;
-          // var latlng = [40.7633617, -73.9205994]
-          var label = selection.feature.properties.NAME;
-          showPopup(latlng, label);
+          var name = selection.feature.properties.NAME;
+          var category = selection.feature.properties.CATEGORY;
+          var subcategory = selection.feature.properties.SUBCATEGORY;
+          var description = selection.feature.properties.DESCRIPTION;
+          showPopup(latlng, name, description, category, subcategory);
         }
       }
 
@@ -49,24 +73,22 @@
         var tangramLayer = e.tangramLayer;
         scene = tangramLayer.scene;
         tangramLayer.setSelectionEvents({
-          click: onMapClick
+          click: onMapClick,
+          hover: onMapHover
         });
       });
 
-      function showPopup(latlng, label) {
+      function showPopup(latlng, name, description, category, subcategory) {
         popup
           .setLatLng(latlng)
-          .setContent('<p>' + label + '</p>')
+          .setContent('<h1>' + name + '</h1><p>' + description + '</p><p>' + category.toUpperCase() + ': ' + subcategory.toUpperCase() + '</p>')
           .openOn(map);
       }
 
       function onMapHover(selection){
-        document.getElementById('map').style.cursor = selection.feature ? 'pointer' : '';
+        document.getElementById('justiceMap').style.cursor = selection.feature ? 'pointer' : '';
       }
 
-      // Test Popup
-      // L.marker([40.7633617, -73.9205994]).addTo(map)
-      //     .bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
     </script>
 </body>
 </html>
