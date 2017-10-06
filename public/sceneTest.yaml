@@ -242,15 +242,15 @@ layers:
       major-roads:
         filter:
           kind: [major_road]
-          $zoom: {min: 13, max: 20}
+          $zoom: {min: 12, max: 20}
         draw:
           lines:
             order: global.roadsOrder
             color: global.roadsColor
-            width: [[8, 0.6px], [9, 0.75px], [10, 1.5px], [13, 2.5px], [14, 4.5px], [15, 5.5px], [16, 7.0px], [19, 14m]]
+            width: [[12, 1px], [13, 2.5px], [14, 4.5px], [15, 5.5px], [16, 7.0px], [19, 14m]]
             outline:
               color: global.roadsOutlineColor
-              width: [[8, 0px], [9, 0.5px], [10, 0.5px], [12, 0.5px], [14, 1.25px], [16, 1px], [18, 2px]]
+              width: [[12, 0px], [14, 1.25px], [16, 1px], [18, 2px]]
         trunk-primary-labels:
           filter:
             kind_detail: [trunk, primary]
@@ -266,15 +266,15 @@ layers:
       highways:
         filter:
           kind: [highway]
-          $zoom: {min: 13, max: 20}
+          $zoom: {min: 11, max: 20}
         draw:
           lines:
             order: global.roadsOrder
             color: global.roadsColor
-            width: [[5, 1px], [7, 1.4px], [8, 2px], [9, 2.5px], [14, 4.0px], [15, 6.0px], [16, 6.5px], [17, 20m]]
+            width: [[11, 1px], [12, 2px], [14, 4.0px], [15, 6.0px], [16, 6.5px], [17, 20m]]
             outline:
               color: global.roadsOutlineColor
-              width: [[9, 0.5px], [12, 0.5px], [16, 1px], [18, 2px]]
+              width: [[12, 0px], [16, 1px], [18, 2px]]
         highway-labels:
           filter:
             $zoom: {min: 14}
@@ -303,7 +303,7 @@ layers:
       filter:
         all:
           kind: [national_park, protected_area, nature_reserve, forest, park]
-        $zoom: {min: 13}
+        $zoom: {min: 11}
       draw:
         polygons:
           order: global.parksOrder
@@ -403,6 +403,7 @@ layers:
   justice_locations:
     data: {source: justiceLocations}
     enforcementIcons:
+      visible: true
       filter: {CATEGORY: Enforcement}
       enforcement_1_icons:
         filter:
@@ -445,6 +446,7 @@ layers:
             collide: false
             interactive: true
     legalIcons:
+      visible: true
       filter: {CATEGORY: Legal}
       legal_1_icons:
         filter:
@@ -487,6 +489,7 @@ layers:
             collide: false
             interactive: true
     courtsIcons:
+      visible: true
       filter: {CATEGORY: Courts}
       courts_1_icons:
         filter:
@@ -529,6 +532,7 @@ layers:
             collide: false
             interactive: true
     alternativesIcons:
+      visible: true
       filter: {CATEGORY: Alternatives}
       alternatives_1_icons:
         filter:
@@ -571,6 +575,7 @@ layers:
             collide: false
             interactive: true
     confinementIcons:
+      visible: true
       filter: {CATEGORY: Confinement}
       confinement_1_icons:
         filter:
@@ -613,6 +618,7 @@ layers:
             collide: false
             interactive: true
     infrastructureIcons:
+      visible: true
       filter: {CATEGORY: Infranstrucutre}
       infrastructure_1_icons:
         filter:

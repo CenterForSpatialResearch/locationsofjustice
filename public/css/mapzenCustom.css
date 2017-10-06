@@ -54,3 +54,32 @@ html, body {
   border-radius: 0px;
   box-shadow: 0 3px 14px rgba(0,0,0,0.2);
 }
+.leaflet-top .leaflet-control {
+  margin-top: 2px;
+}
+.layer-control input {
+  cursor: pointer;
+  border-style: none;
+  font-family: 'Neue Haas Unica W01 Regular', monospace;
+  width: 80px;
+  text-align: left;
+  color: white;
+}
+#legal_toggle {
+  background: #5db323
+}
+#enforcement_toggle {
+  background: #4169ad
+}
+#courts_toggle {
+  background: #a53295;
+}
+#confinement_toggle {
+  background: #ca2016;
+}
+#alternatives_toggle {
+  background: #7bcbc2;
+}
+#infrastructure_toggle {
+  background: #fecf01;
+}

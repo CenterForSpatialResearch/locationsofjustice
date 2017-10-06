@@ -53,6 +53,190 @@
         }
       });
 
+      // Add layer toggle
+      var LegalLayerControl = L.Control.extend({
+        options: {
+          position: 'topleft'
+        },
+        onAdd: function() {
+          var container = L.DomUtil.create('div', 'layer-control');
+          container.innerHTML = '<input id="legal_toggle" type="button" value="Legal">'
+          L.DomEvent.on(container, 'click', this.toggleOnClick);
+          return container;
+        },
+        toggleOnClick: function (e) {
+          var layerStatus = scene.config.layers.justice_locations.legalIcons.visible;
+          if (scene) {
+            if (layerStatus == true){
+              document.getElementById("legal_toggle").style.background = 'rgba(93,179,35,0.25)';
+              document.getElementById("legal_toggle").style.color = '#4C4C4C';
+              layerStatus = false;
+            }
+            else {
+              document.getElementById("legal_toggle").style.background = '#5db323';
+              document.getElementById("legal_toggle").style.color = 'white';
+              layerStatus = true;
+            }
+            scene.config.layers.justice_locations.legalIcons.visible = layerStatus;
+            scene.updateConfig();
+          }
+        }
+      });
+      var EnforcementLayerControl = L.Control.extend({
+        options: {
+          position: 'topleft'
+        },
+        onAdd: function() {
+          var container = L.DomUtil.create('div', 'layer-control');
+          container.innerHTML = '<input id="enforcement_toggle" type="button" value="Enforcement">'
+          L.DomEvent.on(container, 'click', this.toggleOnClick);
+          return container;
+        },
+        toggleOnClick: function (e) {
+          var layerStatus = scene.config.layers.justice_locations.enforcementIcons.visible;
+          if (scene) {
+            if (layerStatus == true){
+              document.getElementById("enforcement_toggle").style.background = 'rgba(65,105,173,0.25)';
+              document.getElementById("enforcement_toggle").style.color = '#4C4C4C';
+              layerStatus = false;
+            }
+            else {
+              document.getElementById("enforcement_toggle").style.background = '#4169ad';
+              document.getElementById("enforcement_toggle").style.color = 'white';
+              layerStatus = true;
+            }
+            scene.config.layers.justice_locations.enforcementIcons.visible = layerStatus;
+            scene.updateConfig();
+          }
+        }
+      });
+      var CourtsLayerControl = L.Control.extend({
+        options: {
+          position: 'topleft'
+        },
+        onAdd: function() {
+          var container = L.DomUtil.create('div', 'layer-control');
+          container.innerHTML = '<input id="courts_toggle" type="button" value="Courts">'
+          L.DomEvent.on(container, 'click', this.toggleOnClick);
+          return container;
+        },
+        toggleOnClick: function (e) {
+          var layerStatus = scene.config.layers.justice_locations.courtsIcons.visible;
+          if (scene) {
+            if (layerStatus == true){
+              document.getElementById("courts_toggle").style.background = 'rgba(165,50,149,0.25)';
+              document.getElementById("courts_toggle").style.color = '#4C4C4C';
+              layerStatus = false;
+            }
+            else {
+              document.getElementById("courts_toggle").style.background = '#a53295';
+              document.getElementById("courts_toggle").style.color = 'white';
+              layerStatus = true;
+            }
+            scene.config.layers.justice_locations.courtsIcons.visible = layerStatus;
+            scene.updateConfig();
+          }
+        }
+      });
+      var ConfinementLayerControl = L.Control.extend({
+        options: {
+          position: 'topleft'
+        },
+        onAdd: function() {
+          var container = L.DomUtil.create('div', 'layer-control');
+          container.innerHTML = '<input id="confinement_toggle" type="button" value="Confinement">'
+          L.DomEvent.on(container, 'click', this.toggleOnClick);
+          return container;
+        },
+        toggleOnClick: function (e) {
+          var layerStatus = scene.config.layers.justice_locations.confinementIcons.visible;
+          if (scene) {
+            if (layerStatus == true){
+              document.getElementById("confinement_toggle").style.background = 'rgba(202,32,22,0.25)';
+              document.getElementById("confinement_toggle").style.color = '#4C4C4C';
+              layerStatus = false;
+            }
+            else {
+              document.getElementById("confinement_toggle").style.background = '#ca2016';
+              document.getElementById("confinement_toggle").style.color = 'white';
+              layerStatus = true;
+            }
+            scene.config.layers.justice_locations.confinementIcons.visible = layerStatus;
+            scene.updateConfig();
+          }
+        }
+      });
+      var AlternativesLayerControl = L.Control.extend({
+        options: {
+          position: 'topleft'
+        },
+        onAdd: function() {
+          var container = L.DomUtil.create('div', 'layer-control');
+          container.innerHTML = '<input id="alternatives_toggle" type="button" value="Alternatives">'
+          L.DomEvent.on(container, 'click', this.toggleOnClick);
+          return container;
+        },
+        toggleOnClick: function (e) {
+          var layerStatus = scene.config.layers.justice_locations.alternativesIcons.visible;
+          if (scene) {
+            if (layerStatus == true){
+              document.getElementById("alternatives_toggle").style.background = 'rgba(123,203,194,0.25)';
+              document.getElementById("alternatives_toggle").style.color = '#4C4C4C';
+              layerStatus = false;
+            }
+            else {
+              document.getElementById("alternatives_toggle").style.background = '#7bcbc2';
+              document.getElementById("alternatives_toggle").style.color = 'white';
+              layerStatus = true;
+            }
+            scene.config.layers.justice_locations.alternativesIcons.visible = layerStatus;
+            scene.updateConfig();
+          }
+        }
+      });
+      var InfrastructureLayerControl = L.Control.extend({
+        options: {
+          position: 'topleft'
+        },
+        onAdd: function() {
+          var container = L.DomUtil.create('div', 'layer-control');
+          container.innerHTML = '<input id="infrastructure_toggle" type="button" value="Infrastructure">'
+          L.DomEvent.on(container, 'click', this.toggleOnClick);
+          return container;
+        },
+        toggleOnClick: function (e) {
+          var layerStatus = scene.config.layers.justice_locations.infrastructureIcons.visible;
+          if (scene) {
+            if (layerStatus == true){
+              document.getElementById("infrastructure_toggle").style.background = 'rgba(254,207,1,0.25)';
+              document.getElementById("infrastructure_toggle").style.color = '#4C4C4C';
+              layerStatus = false;
+            }
+            else {
+              document.getElementById("infrastructure_toggle").style.background = '#fecf01';
+              document.getElementById("infrastructure_toggle").style.color = '#4C4C4C';
+              layerStatus = true;
+            }
+            scene.config.layers.justice_locations.infrastructureIcons.visible = layerStatus;
+            scene.updateConfig();
+          }
+        }
+      });
+
+      var legalToggleControl = new LegalLayerControl();
+      map.addControl(legalToggleControl);
+      var enforcementToggleControl = new EnforcementLayerControl();
+      map.addControl(enforcementToggleControl);
+      var courtsToggleControl = new CourtsLayerControl();
+      map.addControl(courtsToggleControl);
+      var confinementToggleControl = new ConfinementLayerControl();
+      map.addControl(confinementToggleControl);
+      var alternativesToggleControl = new AlternativesLayerControl();
+      map.addControl(alternativesToggleControl);
+      var infrastructureToggleControl = new InfrastructureLayerControl();
+      map.addControl(infrastructureToggleControl);
+
+      // Create the popup element
       var popup = L.popup();
 
       // Add selection events
