@@ -11,7 +11,8 @@
         attribution: '© <a href="http://c4sr.columbia.edu/">Center for Spatial Research</a>, <a href="http://archleague.org/">Architectural League</a>, <a href="https://www.mapzen.com/rights">Mapzen</a>, <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>, and <a href="https://www.mapzen.com/rights/#services-and-data-sources">others</a>',
         tangramOptions: {
           scene: 'sceneTest.yaml'
-        }
+        },
+        fullscreenControl: true
       });
 
       // Add layer toggle
@@ -26,7 +27,8 @@
           return container;
         },
         toggleOnClick: function (e) {
-          var layerStatus = scene.config.layers.justice_locations.legalIcons.visible;
+
+           var layerStatus = scene.config.layers.justice_locations.legalIcons.visible;
           if (scene) {
             if (layerStatus == true){
               document.getElementById("legal_toggle").style.background = 'rgba(93,179,35,0.25)';
@@ -54,6 +56,22 @@
           return container;
         },
         toggleOnClick: function (e) {
+
+             // add jquery here to show hide sub-categories
+            /*
+
+            Police stations
+NYCHA Patrol Command
+Police Parking
+Police Administration
+Police Special Units
+Police Logistics
+Police Training
+School Safety Unit & PEP
+            
+
+            */
+
           var layerStatus = scene.config.layers.justice_locations.enforcementIcons.visible;
           if (scene) {
             if (layerStatus == true){

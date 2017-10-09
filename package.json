@@ -18,6 +18,7 @@
   "homepage": "https://github.com/CenterForSpatialResearch/locationsofjustice#readme",
   "dependencies": {
     "leaflet": "^1.2.0",
+    "leaflet-fullscreen": "^1.0.2",
     "tangram": "^0.13.2"
   }
 }
