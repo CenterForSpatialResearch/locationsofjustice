@@ -12,7 +12,9 @@
         tangramOptions: {
           scene: 'sceneTest.yaml'
         },
-        fullscreenControl: true
+        
+        
+        
       });
 
       // Add layer toggle
@@ -202,6 +204,21 @@ School Safety Unit & PEP
         }
       });
 
+      var FullScreenToggle = L.Control.extend({
+          options: {
+              position: 'bottomleft'
+          },
+      
+      onAdd: function() {
+        var container = L.DomUtil.create('div', 'layer-control');
+        container.innerHTML = '<div class="leaflet-control-fullscreen leaflet-bar leaflet-control"><a class="leaflet-control-fullscreen-button leaflet-bar-part" href="#" title="View Fullscreen" style="outline: none;"></a></div>';
+        L.DomEvent.on(container, 'click', this.toggleOnClick);
+        return container;
+
+      },
+      toggleOnClick: function(e) { map.toggleFullscreen(); }
+      });
+
       var legalToggleControl = new LegalLayerControl();
       map.addControl(legalToggleControl);
       var enforcementToggleControl = new EnforcementLayerControl();
@@ -214,6 +231,9 @@ School Safety Unit & PEP
       map.addControl(alternativesToggleControl);
       var infrastructureToggleControl = new InfrastructureLayerControl();
       map.addControl(infrastructureToggleControl);
+
+      var fullScreenToggleControl = new FullScreenToggle();
+      map.addControl(fullScreenToggleControl);
 
       // Create the popup element
       var popup = L.popup();
