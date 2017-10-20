@@ -1,5 +1,3 @@
-
-
       // Map settings
       var map = L.Mapzen.map('justiceMap', {
         apiKey: 'mapzen-h1njtmE',
@@ -12,12 +10,9 @@
         tangramOptions: {
           scene: 'sceneTest.yaml'
         },
-        
-        
-        
       });
 
-      // Add layer toggle
+      // Legal button **********
       var LegalLayerControl = L.Control.extend({
         options: {
           position: 'topleft'
@@ -29,24 +24,67 @@
           return container;
         },
         toggleOnClick: function (e) {
-
-           var layerStatus = scene.config.layers.justice_locations.legalIcons.visible;
+          var legalLayerStatus = scene.config.layers.justice_locations.legalIcons.visible;
+          var enforcementLayerStatus = scene.config.layers.justice_locations.enforcementIcons.visible;
+          var courtsLayerStatus = scene.config.layers.justice_locations.courtsIcons.visible;
+          var confinementLayerStatus = scene.config.layers.justice_locations.confinementIcons.visible;
+          var alternativesLayerStatus = scene.config.layers.justice_locations.alternativesIcons.visible;
+          var infrastructureLayerStatus = scene.config.layers.justice_locations.infrastructureIcons.visible;
           if (scene) {
-            if (layerStatus == true){
-              document.getElementById("legal_toggle").style.background = 'rgba(93,179,35,0.25)';
-              document.getElementById("legal_toggle").style.color = '#4C4C4C';
-              layerStatus = false;
+            if (legalLayerStatus == true){
             }
             else {
               document.getElementById("legal_toggle").style.background = '#5db323';
               document.getElementById("legal_toggle").style.color = 'white';
-              layerStatus = true;
+              legalLayerStatus = true;
             }
-            scene.config.layers.justice_locations.legalIcons.visible = layerStatus;
+            scene.config.layers.justice_locations.legalIcons.visible = legalLayerStatus;
+            if (enforcementLayerStatus == true){
+              document.getElementById("enforcement_toggle").style.background = 'rgba(65,105,173,0.25)';
+              document.getElementById("enforcement_toggle").style.color = '#4C4C4C';
+              enforcementLayerStatus = false;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.enforcementIcons.visible = enforcementLayerStatus;
+            if (courtsLayerStatus == true){
+              document.getElementById("courts_toggle").style.background = 'rgba(165,50,149,0.25)';
+              document.getElementById("courts_toggle").style.color = '#4C4C4C';
+              courtsLayerStatus = false;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.courtsIcons.visible = courtsLayerStatus;
+            if (confinementLayerStatus == true){
+              document.getElementById("confinement_toggle").style.background = 'rgba(202,32,22,0.25)';
+              document.getElementById("confinement_toggle").style.color = '#4C4C4C';
+              confinementLayerStatus = false;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.confinementIcons.visible = confinementLayerStatus;
+            if (alternativesLayerStatus == true){
+              document.getElementById("alternatives_toggle").style.background = 'rgba(123,203,194,0.25)';
+              document.getElementById("alternatives_toggle").style.color = '#4C4C4C';
+              alternativesLayerStatus = false;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.alternativesIcons.visible = alternativesLayerStatus;
+            if (infrastructureLayerStatus == true){
+              document.getElementById("infrastructure_toggle").style.background = 'rgba(254,207,1,0.25)';
+              document.getElementById("infrastructure_toggle").style.color = '#4C4C4C';
+              infrastructureLayerStatus = false;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.infrastructureIcons.visible = infrastructureLayerStatus;
             scene.updateConfig();
           }
         }
       });
+
+      // Enforcement button *****************
       var EnforcementLayerControl = L.Control.extend({
         options: {
           position: 'topleft'
@@ -70,27 +108,71 @@ Police Special Units
 Police Logistics
 Police Training
 School Safety Unit & PEP
-            
+
 
             */
 
-          var layerStatus = scene.config.layers.justice_locations.enforcementIcons.visible;
-          if (scene) {
-            if (layerStatus == true){
-              document.getElementById("enforcement_toggle").style.background = 'rgba(65,105,173,0.25)';
-              document.getElementById("enforcement_toggle").style.color = '#4C4C4C';
-              layerStatus = false;
+              var legalLayerStatus = scene.config.layers.justice_locations.legalIcons.visible;
+              var enforcementLayerStatus = scene.config.layers.justice_locations.enforcementIcons.visible;
+              var courtsLayerStatus = scene.config.layers.justice_locations.courtsIcons.visible;
+              var confinementLayerStatus = scene.config.layers.justice_locations.confinementIcons.visible;
+              var alternativesLayerStatus = scene.config.layers.justice_locations.alternativesIcons.visible;
+              var infrastructureLayerStatus = scene.config.layers.justice_locations.infrastructureIcons.visible;
+              if (scene) {
+                if (legalLayerStatus == true){
+                  document.getElementById("legal_toggle").style.background = 'rgba(93,179,35,0.25)';
+                  document.getElementById("legal_toggle").style.color = '#4C4C4C';
+                  legalLayerStatus = false;
+                }
+                else {
+                }
+                scene.config.layers.justice_locations.legalIcons.visible = legalLayerStatus;
+                if (enforcementLayerStatus == true){
+                }
+                else {
+                  document.getElementById("enforcement_toggle").style.background = '#4169ad';
+                  document.getElementById("enforcement_toggle").style.color = 'white';
+                  enforcementLayerStatus = true;
+                }
+                scene.config.layers.justice_locations.enforcementIcons.visible = enforcementLayerStatus;
+                if (courtsLayerStatus == true){
+                  document.getElementById("courts_toggle").style.background = 'rgba(165,50,149,0.25)';
+                  document.getElementById("courts_toggle").style.color = '#4C4C4C';
+                  courtsLayerStatus = false;
+                }
+                else {
+                }
+                scene.config.layers.justice_locations.courtsIcons.visible = courtsLayerStatus;
+                if (confinementLayerStatus == true){
+                  document.getElementById("confinement_toggle").style.background = 'rgba(202,32,22,0.25)';
+                  document.getElementById("confinement_toggle").style.color = '#4C4C4C';
+                  confinementLayerStatus = false;
+                }
+                else {
+                }
+                scene.config.layers.justice_locations.confinementIcons.visible = confinementLayerStatus;
+                if (alternativesLayerStatus == true){
+                  document.getElementById("alternatives_toggle").style.background = 'rgba(123,203,194,0.25)';
+                  document.getElementById("alternatives_toggle").style.color = '#4C4C4C';
+                  alternativesLayerStatus = false;
+                }
+                else {
+                }
+                scene.config.layers.justice_locations.alternativesIcons.visible = alternativesLayerStatus;
+                if (infrastructureLayerStatus == true){
+                  document.getElementById("infrastructure_toggle").style.background = 'rgba(254,207,1,0.25)';
+                  document.getElementById("infrastructure_toggle").style.color = '#4C4C4C';
+                  infrastructureLayerStatus = false;
+                }
+                else {
+                }
+                scene.config.layers.justice_locations.infrastructureIcons.visible = infrastructureLayerStatus;
+                scene.updateConfig();
+              }
             }
-            else {
-              document.getElementById("enforcement_toggle").style.background = '#4169ad';
-              document.getElementById("enforcement_toggle").style.color = 'white';
-              layerStatus = true;
-            }
-            scene.config.layers.justice_locations.enforcementIcons.visible = layerStatus;
-            scene.updateConfig();
-          }
-        }
       });
+
+      // Courts button *****************
       var CourtsLayerControl = L.Control.extend({
         options: {
           position: 'topleft'
@@ -102,23 +184,67 @@ School Safety Unit & PEP
           return container;
         },
         toggleOnClick: function (e) {
-          var layerStatus = scene.config.layers.justice_locations.courtsIcons.visible;
+          var legalLayerStatus = scene.config.layers.justice_locations.legalIcons.visible;
+          var enforcementLayerStatus = scene.config.layers.justice_locations.enforcementIcons.visible;
+          var courtsLayerStatus = scene.config.layers.justice_locations.courtsIcons.visible;
+          var confinementLayerStatus = scene.config.layers.justice_locations.confinementIcons.visible;
+          var alternativesLayerStatus = scene.config.layers.justice_locations.alternativesIcons.visible;
+          var infrastructureLayerStatus = scene.config.layers.justice_locations.infrastructureIcons.visible;
           if (scene) {
-            if (layerStatus == true){
-              document.getElementById("courts_toggle").style.background = 'rgba(165,50,149,0.25)';
-              document.getElementById("courts_toggle").style.color = '#4C4C4C';
-              layerStatus = false;
+            if (legalLayerStatus == true){
+              document.getElementById("legal_toggle").style.background = 'rgba(93,179,35,0.25)';
+              document.getElementById("legal_toggle").style.color = '#4C4C4C';
+              legalLayerStatus = false;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.legalIcons.visible = legalLayerStatus;
+            if (enforcementLayerStatus == true){
+              document.getElementById("enforcement_toggle").style.background = 'rgba(65,105,173,0.25)';
+              document.getElementById("enforcement_toggle").style.color = '#4C4C4C';
+              enforcementLayerStatus = false;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.enforcementIcons.visible = enforcementLayerStatus;
+            if (courtsLayerStatus == true){
             }
             else {
               document.getElementById("courts_toggle").style.background = '#a53295';
               document.getElementById("courts_toggle").style.color = 'white';
-              layerStatus = true;
+              courtsLayerStatus = true;
             }
-            scene.config.layers.justice_locations.courtsIcons.visible = layerStatus;
+            scene.config.layers.justice_locations.courtsIcons.visible = courtsLayerStatus;
+            if (confinementLayerStatus == true){
+              document.getElementById("confinement_toggle").style.background = 'rgba(202,32,22,0.25)';
+              document.getElementById("confinement_toggle").style.color = '#4C4C4C';
+              confinementLayerStatus = false;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.confinementIcons.visible = confinementLayerStatus;
+            if (alternativesLayerStatus == true){
+              document.getElementById("alternatives_toggle").style.background = 'rgba(123,203,194,0.25)';
+              document.getElementById("alternatives_toggle").style.color = '#4C4C4C';
+              alternativesLayerStatus = false;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.alternativesIcons.visible = alternativesLayerStatus;
+            if (infrastructureLayerStatus == true){
+              document.getElementById("infrastructure_toggle").style.background = 'rgba(254,207,1,0.25)';
+              document.getElementById("infrastructure_toggle").style.color = '#4C4C4C';
+              infrastructureLayerStatus = false;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.infrastructureIcons.visible = infrastructureLayerStatus;
             scene.updateConfig();
           }
         }
       });
+
+      // Confinement button **********
       var ConfinementLayerControl = L.Control.extend({
         options: {
           position: 'topleft'
@@ -130,23 +256,67 @@ School Safety Unit & PEP
           return container;
         },
         toggleOnClick: function (e) {
-          var layerStatus = scene.config.layers.justice_locations.confinementIcons.visible;
+          var legalLayerStatus = scene.config.layers.justice_locations.legalIcons.visible;
+          var enforcementLayerStatus = scene.config.layers.justice_locations.enforcementIcons.visible;
+          var courtsLayerStatus = scene.config.layers.justice_locations.courtsIcons.visible;
+          var confinementLayerStatus = scene.config.layers.justice_locations.confinementIcons.visible;
+          var alternativesLayerStatus = scene.config.layers.justice_locations.alternativesIcons.visible;
+          var infrastructureLayerStatus = scene.config.layers.justice_locations.infrastructureIcons.visible;
           if (scene) {
-            if (layerStatus == true){
-              document.getElementById("confinement_toggle").style.background = 'rgba(202,32,22,0.25)';
-              document.getElementById("confinement_toggle").style.color = '#4C4C4C';
-              layerStatus = false;
+            if (legalLayerStatus == true){
+              document.getElementById("legal_toggle").style.background = 'rgba(93,179,35,0.25)';
+              document.getElementById("legal_toggle").style.color = '#4C4C4C';
+              legalLayerStatus = false;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.legalIcons.visible = legalLayerStatus;
+            if (enforcementLayerStatus == true){
+              document.getElementById("enforcement_toggle").style.background = 'rgba(65,105,173,0.25)';
+              document.getElementById("enforcement_toggle").style.color = '#4C4C4C';
+              enforcementLayerStatus = false;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.enforcementIcons.visible = enforcementLayerStatus;
+            if (courtsLayerStatus == true){
+              document.getElementById("courts_toggle").style.background = 'rgba(165,50,149,0.25)';
+              document.getElementById("courts_toggle").style.color = '#4C4C4C';
+              courtsLayerStatus = false;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.courtsIcons.visible = courtsLayerStatus;
+            if (confinementLayerStatus == true){
             }
             else {
               document.getElementById("confinement_toggle").style.background = '#ca2016';
               document.getElementById("confinement_toggle").style.color = 'white';
-              layerStatus = true;
+              confinementLayerStatus = true;
             }
-            scene.config.layers.justice_locations.confinementIcons.visible = layerStatus;
+            scene.config.layers.justice_locations.confinementIcons.visible = confinementLayerStatus;
+            if (alternativesLayerStatus == true){
+              document.getElementById("alternatives_toggle").style.background = 'rgba(123,203,194,0.25)';
+              document.getElementById("alternatives_toggle").style.color = '#4C4C4C';
+              alternativesLayerStatus = false;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.alternativesIcons.visible = alternativesLayerStatus;
+            if (infrastructureLayerStatus == true){
+              document.getElementById("infrastructure_toggle").style.background = 'rgba(254,207,1,0.25)';
+              document.getElementById("infrastructure_toggle").style.color = '#4C4C4C';
+              infrastructureLayerStatus = false;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.infrastructureIcons.visible = infrastructureLayerStatus;
             scene.updateConfig();
           }
         }
       });
+
+      // Alternatives button ****************
       var AlternativesLayerControl = L.Control.extend({
         options: {
           position: 'topleft'
@@ -158,23 +328,67 @@ School Safety Unit & PEP
           return container;
         },
         toggleOnClick: function (e) {
-          var layerStatus = scene.config.layers.justice_locations.alternativesIcons.visible;
+          var legalLayerStatus = scene.config.layers.justice_locations.legalIcons.visible;
+          var enforcementLayerStatus = scene.config.layers.justice_locations.enforcementIcons.visible;
+          var courtsLayerStatus = scene.config.layers.justice_locations.courtsIcons.visible;
+          var confinementLayerStatus = scene.config.layers.justice_locations.confinementIcons.visible;
+          var alternativesLayerStatus = scene.config.layers.justice_locations.alternativesIcons.visible;
+          var infrastructureLayerStatus = scene.config.layers.justice_locations.infrastructureIcons.visible;
           if (scene) {
-            if (layerStatus == true){
-              document.getElementById("alternatives_toggle").style.background = 'rgba(123,203,194,0.25)';
-              document.getElementById("alternatives_toggle").style.color = '#4C4C4C';
-              layerStatus = false;
+            if (legalLayerStatus == true){
+              document.getElementById("legal_toggle").style.background = 'rgba(93,179,35,0.25)';
+              document.getElementById("legal_toggle").style.color = '#4C4C4C';
+              legalLayerStatus = false;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.legalIcons.visible = legalLayerStatus;
+            if (enforcementLayerStatus == true){
+              document.getElementById("enforcement_toggle").style.background = 'rgba(65,105,173,0.25)';
+              document.getElementById("enforcement_toggle").style.color = '#4C4C4C';
+              enforcementLayerStatus = false;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.enforcementIcons.visible = enforcementLayerStatus;
+            if (courtsLayerStatus == true){
+              document.getElementById("courts_toggle").style.background = 'rgba(165,50,149,0.25)';
+              document.getElementById("courts_toggle").style.color = '#4C4C4C';
+              courtsLayerStatus = false;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.courtsIcons.visible = courtsLayerStatus;
+            if (confinementLayerStatus == true){
+              document.getElementById("confinement_toggle").style.background = 'rgba(202,32,22,0.25)';
+              document.getElementById("confinement_toggle").style.color = '#4C4C4C';
+              confinementLayerStatus = false;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.confinementIcons.visible = confinementLayerStatus;
+            if (alternativesLayerStatus == true){
             }
             else {
               document.getElementById("alternatives_toggle").style.background = '#7bcbc2';
               document.getElementById("alternatives_toggle").style.color = 'white';
-              layerStatus = true;
+              alternativesLayerStatus = true;
             }
-            scene.config.layers.justice_locations.alternativesIcons.visible = layerStatus;
+            scene.config.layers.justice_locations.alternativesIcons.visible = alternativesLayerStatus;
+            if (infrastructureLayerStatus == true){
+              document.getElementById("infrastructure_toggle").style.background = 'rgba(254,207,1,0.25)';
+              document.getElementById("infrastructure_toggle").style.color = '#4C4C4C';
+              infrastructureLayerStatus = false;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.infrastructureIcons.visible = infrastructureLayerStatus;
             scene.updateConfig();
           }
         }
       });
+
+      // Infrastructure button ***************
       var InfrastructureLayerControl = L.Control.extend({
         options: {
           position: 'topleft'
@@ -186,35 +400,148 @@ School Safety Unit & PEP
           return container;
         },
         toggleOnClick: function (e) {
-          var layerStatus = scene.config.layers.justice_locations.infrastructureIcons.visible;
+          var legalLayerStatus = scene.config.layers.justice_locations.legalIcons.visible;
+          var enforcementLayerStatus = scene.config.layers.justice_locations.enforcementIcons.visible;
+          var courtsLayerStatus = scene.config.layers.justice_locations.courtsIcons.visible;
+          var confinementLayerStatus = scene.config.layers.justice_locations.confinementIcons.visible;
+          var alternativesLayerStatus = scene.config.layers.justice_locations.alternativesIcons.visible;
+          var infrastructureLayerStatus = scene.config.layers.justice_locations.infrastructureIcons.visible;
           if (scene) {
-            if (layerStatus == true){
-              document.getElementById("infrastructure_toggle").style.background = 'rgba(254,207,1,0.25)';
-              document.getElementById("infrastructure_toggle").style.color = '#4C4C4C';
-              layerStatus = false;
+            if (legalLayerStatus == true){
+              document.getElementById("legal_toggle").style.background = 'rgba(93,179,35,0.25)';
+              document.getElementById("legal_toggle").style.color = '#4C4C4C';
+              legalLayerStatus = false;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.legalIcons.visible = legalLayerStatus;
+            if (enforcementLayerStatus == true){
+              document.getElementById("enforcement_toggle").style.background = 'rgba(65,105,173,0.25)';
+              document.getElementById("enforcement_toggle").style.color = '#4C4C4C';
+              enforcementLayerStatus = false;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.enforcementIcons.visible = enforcementLayerStatus;
+            if (courtsLayerStatus == true){
+              document.getElementById("courts_toggle").style.background = 'rgba(165,50,149,0.25)';
+              document.getElementById("courts_toggle").style.color = '#4C4C4C';
+              courtsLayerStatus = false;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.courtsIcons.visible = courtsLayerStatus;
+            if (confinementLayerStatus == true){
+              document.getElementById("confinement_toggle").style.background = 'rgba(202,32,22,0.25)';
+              document.getElementById("confinement_toggle").style.color = '#4C4C4C';
+              confinementLayerStatus = false;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.confinementIcons.visible = confinementLayerStatus;
+            if (alternativesLayerStatus == true){
+              document.getElementById("alternatives_toggle").style.background = 'rgba(123,203,194,0.25)';
+              document.getElementById("alternatives_toggle").style.color = '#4C4C4C';
+              alternativesLayerStatus = false;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.alternativesIcons.visible = alternativesLayerStatus;
+            if (infrastructureLayerStatus == true){
             }
             else {
               document.getElementById("infrastructure_toggle").style.background = '#fecf01';
               document.getElementById("infrastructure_toggle").style.color = '#4C4C4C';
-              layerStatus = true;
+              infrastructureLayerStatus = true;
             }
-            scene.config.layers.justice_locations.infrastructureIcons.visible = layerStatus;
+            scene.config.layers.justice_locations.infrastructureIcons.visible = infrastructureLayerStatus;
             scene.updateConfig();
           }
         }
       });
 
+      // All layers button ***************
+      var AllLayersLayerControl = L.Control.extend({
+        options: {
+          position: 'topleft'
+        },
+        onAdd: function() {
+          var container = L.DomUtil.create('div', 'layer-control');
+          container.innerHTML = '<input id="allLayers_toggle" type="button" value="All Layers">'
+          L.DomEvent.on(container, 'click', this.toggleOnClick);
+          return container;
+        },
+        toggleOnClick: function (e) {
+          var legalLayerStatus = scene.config.layers.justice_locations.legalIcons.visible;
+          var enforcementLayerStatus = scene.config.layers.justice_locations.enforcementIcons.visible;
+          var courtsLayerStatus = scene.config.layers.justice_locations.courtsIcons.visible;
+          var confinementLayerStatus = scene.config.layers.justice_locations.confinementIcons.visible;
+          var alternativesLayerStatus = scene.config.layers.justice_locations.alternativesIcons.visible;
+          var infrastructureLayerStatus = scene.config.layers.justice_locations.infrastructureIcons.visible;
+          if (scene) {
+            if (legalLayerStatus == false){
+              document.getElementById("legal_toggle").style.background = '#5db323';
+              document.getElementById("legal_toggle").style.color = 'white';
+              legalLayerStatus = true;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.legalIcons.visible = legalLayerStatus;
+            if (enforcementLayerStatus == false){
+              document.getElementById("enforcement_toggle").style.background = '#4169ad';
+              document.getElementById("enforcement_toggle").style.color = 'white';
+              enforcementLayerStatus = true;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.enforcementIcons.visible = enforcementLayerStatus;
+            if (courtsLayerStatus == false){
+              document.getElementById("courts_toggle").style.background = '#a53295';
+              document.getElementById("courts_toggle").style.color = 'white';
+              courtsLayerStatus = true;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.courtsIcons.visible = courtsLayerStatus;
+            if (confinementLayerStatus == false){
+              document.getElementById("confinement_toggle").style.background = '#ca2016';
+              document.getElementById("confinement_toggle").style.color = 'white';
+              confinementLayerStatus = true;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.confinementIcons.visible = confinementLayerStatus;
+            if (alternativesLayerStatus == false){
+              document.getElementById("alternatives_toggle").style.background = '#7bcbc2';
+              document.getElementById("alternatives_toggle").style.color = 'white';
+              alternativesLayerStatus = true;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.alternativesIcons.visible = alternativesLayerStatus;
+            if (infrastructureLayerStatus == false){
+              document.getElementById("infrastructure_toggle").style.background = '#fecf01';
+              document.getElementById("infrastructure_toggle").style.color = '#4C4C4C';
+              infrastructureLayerStatus = true;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.infrastructureIcons.visible = infrastructureLayerStatus;
+            scene.updateConfig();
+          }
+        }
+      });
+
+
       var FullScreenToggle = L.Control.extend({
           options: {
               position: 'bottomleft'
           },
-      
       onAdd: function() {
         var container = L.DomUtil.create('div', 'layer-control');
         container.innerHTML = '<div class="leaflet-control-fullscreen leaflet-bar leaflet-control"><a class="leaflet-control-fullscreen-button leaflet-bar-part" href="#" title="View Fullscreen" style="outline: none;"></a></div>';
         L.DomEvent.on(container, 'click', this.toggleOnClick);
         return container;
-
       },
       toggleOnClick: function(e) { map.toggleFullscreen(); }
       });
@@ -231,7 +558,8 @@ School Safety Unit & PEP
       map.addControl(alternativesToggleControl);
       var infrastructureToggleControl = new InfrastructureLayerControl();
       map.addControl(infrastructureToggleControl);
-
+      var allLayersToggleControl = new AllLayersLayerControl();
+      map.addControl(allLayersToggleControl);
       var fullScreenToggleControl = new FullScreenToggle();
       map.addControl(fullScreenToggleControl);
 
@@ -267,10 +595,10 @@ School Safety Unit & PEP
           .setContent('<h1>' + name + '</h1><p>' + description + '</p><p>' + category.toUpperCase() + ': ' + subcategory.toUpperCase() + '</p>')
           .openOn(map);
       }
-
       function onMapHover(selection){
         document.getElementById('justiceMap').style.cursor = selection.feature ? 'pointer' : '';
       }
+<<<<<<< HEAD
 
 
 $(document).ready(function() {
@@ -295,3 +623,5 @@ $(document).ready(function() {
 
       });
 });
+=======
+>>>>>>> 68c99e029ca0c42ff416c04d633545badc59ac4f
