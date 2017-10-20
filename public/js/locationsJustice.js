@@ -271,3 +271,27 @@ School Safety Unit & PEP
       function onMapHover(selection){
         document.getElementById('justiceMap').style.cursor = selection.feature ? 'pointer' : '';
       }
+
+
+$(document).ready(function() {
+
+    console.log("jquery ready");
+
+    $.getJSON( "data/TestLocations.geojson", function( data ) {
+
+        console.dir(data.features);
+
+        
+        var items = [];
+
+
+        $.each( data, function( key, val ) {
+          items.push( "<li id='" + key + "'>" + val + "</li>" );
+        });
+
+        console.log("got items");
+        console.dir(items);
+
+
+      });
+});
