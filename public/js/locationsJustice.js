@@ -598,30 +598,16 @@ School Safety Unit & PEP
       function onMapHover(selection){
         document.getElementById('justiceMap').style.cursor = selection.feature ? 'pointer' : '';
       }
-<<<<<<< HEAD
 
 
-$(document).ready(function() {
-
-    console.log("jquery ready");
-
-    $.getJSON( "data/TestLocations.geojson", function( data ) {
-
-        console.dir(data.features);
-
+      function buildLegend(data) {
+        console.log("building legend");
+        console.log(data);
         
-        var items = [];
+      }
 
+      d3.request("data/TestLocations.geojson")
+        .mimeType("application/json")
+        .response(function(xhr) { return JSON.parse(xhr.responseText); })
+        .get(buildLegend);
 
-        $.each( data, function( key, val ) {
-          items.push( "<li id='" + key + "'>" + val + "</li>" );
-        });
-
-        console.log("got items");
-        console.dir(items);
-
-
-      });
-});
-=======
->>>>>>> 68c99e029ca0c42ff416c04d633545badc59ac4f
