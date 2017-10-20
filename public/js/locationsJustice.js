@@ -91,26 +91,95 @@
         },
         onAdd: function() {
           var container = L.DomUtil.create('div', 'layer-control');
-          container.innerHTML = '<input id="enforcement_toggle" type="button" value="Enforcement">'
+          container.innerHTML = '<div id="enforcement"><input id="enforcement_toggle" type="button" value="Enforcement"><div class="enforcement-legend"></div>'
           L.DomEvent.on(container, 'click', this.toggleOnClick);
+          L.DomUtil.addClass(container, "legend");
+          L.DomUtil.addClass(container, "enforcement");
+          
+          // get data from d3
+          d3.request("data/TestLocations.geojson")
+            .mimeType("application/json")
+            .response(function(xhr) { return JSON.parse(xhr.responseText); })
+            .get(function(data) {
+
+              d3.select(".enforcement-legend").transition()
+                .style('max-width', function() { return '100px';})
+                .style('background', function() { return 'white';})
+                .style('margin', function() { return '2px';})
+                .style('padding', function() { return '2px';})
+                .style('overflow', function() { return 'scroll'})
+                //.style('display', function() { return 'none'});
+            
+
+                // calculate legend dynamically based on data
+                var subLegend = {};
+                    subLegend.itemsTotal = 0;
+                    subLegend.subcategories = [];
+
+                data.features.forEach(function(d) {
+                  if (d.properties.CATEGORY == 'Enforcement') {
+                    subLegend.itemsTotal += 1;
+                    var sub = {};
+                        sub.name = d.properties.SUBCATEGORY;
+                    
+                        // add it to subcategories or increment
+                    var found = false;
+                    subLegend.subcategories.forEach(function(s) {
+                      if (s.name == sub.name) {
+                        s.count += 1;
+                        s.gravity += d.properties.GRAVITY;  
+                        found = true;
+                      }
+                    });
+
+                    if (!found) {
+                      // add it
+                      sub.count = 0;
+                      sub.gravity = d.properties.GRAVITY;
+                      subLegend.subcategories.push(sub);
+                    }
+                  }
+                });
+
+                // build d3 color scale for background color based on range
+                var color = d3.scaleLinear()
+                  .domain([1, subLegend.itemsTotal])
+                  .range(["#4169ad", "#ffffff"]);
+                  //console.log('color20', color(20)); // "#9a3439"
+    
+                // get percentages now that all the items have been examined and 
+                // insert DOM elements inline (cant use d3 since it cant operate on dynamic leaflet DOM elements)
+                subLegend.subcategories.forEach(function(s) {
+                  s.percent = s.count / subLegend.itemsTotal;
+                  
+                  // use DOM fragment for performance
+                  var fragment = document.createDocumentFragment();
+                  var el = document.createElement('div');
+                      el.innerText = s.name + " (" + s.count + ")";
+                      // from color scale
+                      el.style['background-color'] = color(s.count);
+                      el.style['color'] = 'white';
+                      
+                      if (s.percent > 0.5) {
+                        el.style['color'] = 'black';
+                      }
+                
+                      el.style['padding'] = '2px 2px 2px 5px';
+                      el.style['margin'] = '2px';
+                      el.style['border-radius'] = '5px';
+                    fragment.appendChild(el);
+                    document.querySelector(".enforcement-legend").appendChild(fragment);
+                });              
+              }); // done with d3.data
+
+
           return container;
         },
         toggleOnClick: function (e) {
 
-             // add jquery here to show hide sub-categories
-            /*
-
-            Police stations
-NYCHA Patrol Command
-Police Parking
-Police Administration
-Police Special Units
-Police Logistics
-Police Training
-School Safety Unit & PEP
-
-
-            */
+          // maybe show hide the sublegend
+          //d3.select(".enforcement-legend").transition()
+            //.style('display', function() { return 'inline';});
 
               var legalLayerStatus = scene.config.layers.justice_locations.legalIcons.visible;
               var enforcementLayerStatus = scene.config.layers.justice_locations.enforcementIcons.visible;
@@ -598,16 +667,3 @@ School Safety Unit & PEP
       function onMapHover(selection){
         document.getElementById('justiceMap').style.cursor = selection.feature ? 'pointer' : '';
       }
-
-
-      function buildLegend(data) {
-        console.log("building legend");
-        console.log(data);
-        
-      }
-
-      d3.request("data/TestLocations.geojson")
-        .mimeType("application/json")
-        .response(function(xhr) { return JSON.parse(xhr.responseText); })
-        .get(buildLegend);
-
