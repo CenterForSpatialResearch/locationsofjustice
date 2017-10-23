@@ -120,7 +120,8 @@
                   if (d.properties.CATEGORY == 'Enforcement') {
                     subLegend.itemsTotal += 1;
                     var sub = {};
-                        sub.name = d.properties.SUBCATEGORY;
+                        // swap for type
+                        sub.name = d.properties.TYPE;
                     
                         // add it to subcategories or increment
                     var found = false;
@@ -142,27 +143,31 @@
                 });
 
                 // build d3 color scale for background color based on range
+                // ignore this mapping on count for now
+                /*
                 var color = d3.scaleLinear()
                   .domain([1, subLegend.itemsTotal])
                   .range(["#4169ad", "#ffffff"]);
+                */
                   //console.log('color20', color(20)); // "#9a3439"
     
                 // get percentages now that all the items have been examined and 
                 // insert DOM elements inline (cant use d3 since it cant operate on dynamic leaflet DOM elements)
                 subLegend.subcategories.forEach(function(s) {
-                  s.percent = s.count / subLegend.itemsTotal;
+                  //s.percent = s.count / subLegend.itemsTotal;
                   
                   // use DOM fragment for performance
                   var fragment = document.createDocumentFragment();
                   var el = document.createElement('div');
-                      el.innerText = s.name + " (" + s.count + ")";
+                      el.innerText = s.name; // + " (" + s.count + ")";
                       // from color scale
-                      el.style['background-color'] = color(s.count);
+                      el.style['background-color'] = 'black';
                       el.style['color'] = 'white';
                       
-                      if (s.percent > 0.5) {
+                      /*(if (s.percent > 0.5) {
                         el.style['color'] = 'black';
                       }
+                      */
                 
                       el.style['padding'] = '2px 2px 2px 5px';
                       el.style['margin'] = '2px';
