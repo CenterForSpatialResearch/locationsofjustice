@@ -39,6 +39,14 @@ function buildLegend() {
 
 }
 
+function fadeLegendExceptTarget(eventTarget) {
+    // fade all 
+    $('.type-item').css('opacity', '0.5');
+    // but not the target
+    eventTarget.parentElement.style.opacity = 1;
+
+}
+
 function buildElements(data) {
 
     console.log("building legend elements");

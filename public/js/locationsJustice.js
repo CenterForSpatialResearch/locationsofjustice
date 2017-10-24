@@ -141,6 +141,7 @@
 
         toggleTypeInfo: function (e) {
           if (e.target.value) {
+            fadeLegendExceptTarget(e.target);
             updateItemDetail('enforcement', e.target.value);
           }
 
