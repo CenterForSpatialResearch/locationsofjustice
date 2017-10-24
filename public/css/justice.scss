@@ -18,3 +18,46 @@
     }
 }
 
+.about-control {
+    width: 50px;
+    color: #666;
+    background: white;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 2px;
+    padding: 2px;
+    
+}
+
+#aboutPopup {
+    display: none;
+    position: absolute;
+    z-index: 1009;
+    width: 70%;
+    height: 60%;
+    margin: auto;
+    padding: 5%;
+    background-color: white;
+    /* text-align: center; */
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    box-shadow: 3px 4px 9px rgba(0,0,0,0.5);
+
+    .aboutClose {
+        float: right;
+        margin-bottom: 10px;
+        clear: both;
+        /* border-bottom: 1px solid red; */
+        width: 100%;
+        text-align: right;
+        font-size: large;
+        font-weight: bold;
+        opacity: 0.5;
+    }
+
+}
+
+
+
+

@@ -16,4 +16,11 @@ function buildElements(data) {
 
        
 
+
 }
+
+
+function closeAbout() {
+    document.querySelector("#aboutPopup").style.display = 'none';
+}
+

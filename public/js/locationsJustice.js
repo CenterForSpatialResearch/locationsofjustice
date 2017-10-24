@@ -606,7 +606,6 @@
         }
       });
 
-
       var FullScreenToggle = L.Control.extend({
           options: {
               position: 'bottomleft'
@@ -619,6 +618,32 @@
       },
       toggleOnClick: function(e) { map.toggleFullscreen(); }
       });
+
+      // About button **********
+      var AboutMapControl = L.Control.extend({
+        options: {
+          position: 'bottomleft'
+        },
+        onAdd: function() {
+          var container = L.DomUtil.create('div', 'about-control');
+          container.innerHTML = 'About this Map'
+          L.DomEvent.on(container, 'click', this.toggleOnClick);
+          return container;
+        },
+        toggleOnClick: function (e) {
+          
+            var visibility = document.querySelector("#aboutPopup").style.display;
+            if (visibility == 'none') {
+              document.querySelector("#aboutPopup").style.display = 'inline';
+            } else {
+              document.querySelector("#aboutPopup").style.display = 'none';
+            }
+          }
+
+        });
+
+      
+
 
       var legalToggleControl = new LegalLayerControl();
       map.addControl(legalToggleControl);
@@ -634,6 +659,8 @@
       map.addControl(infrastructureToggleControl);
       var allLayersToggleControl = new AllLayersLayerControl();
       map.addControl(allLayersToggleControl);
+      var aboutMapControl= new AboutMapControl();
+      map.addControl(aboutMapControl);
       var fullScreenToggleControl = new FullScreenToggle();
       map.addControl(fullScreenToggleControl);
 
@@ -670,5 +697,6 @@
           .openOn(map);
       }
       function onMapHover(selection){
+        
         document.getElementById('justiceMap').style.cursor = selection.feature ? 'pointer' : '';
       }
