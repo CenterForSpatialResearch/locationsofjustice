@@ -113,29 +113,29 @@
 
           // create all elements inside this
           var typeItem = L.DomUtil.create('div', 'type-item');
-          typeItem.innerHTML = '<input class="enforcement-type" value="Tow Pound" type="button" style="color: black">';
+          typeItem.innerHTML = '<input class="enforcement-type" value="Tow Pound" type="button">';
           L.DomEvent.on(typeItem, 'click', this.toggleTypeInfo);
           innerWrapper.appendChild(typeItem);
 
           var typeItem = L.DomUtil.create('div', 'type-item');
-          typeItem.innerHTML = '<input class="enforcement-type" value="Logistics" type="button" style="color: black">';
+          typeItem.innerHTML = '<input class="enforcement-type" value="Logistics" type="button">';
           L.DomEvent.on(typeItem, 'click', this.toggleTypeInfo);
           innerWrapper.appendChild(typeItem);
 
           var typeItem = L.DomUtil.create('div', 'type-item');
-          typeItem.innerHTML = '<input class="enforcement-type" value="Offices & Posts" type="button" style="color: black">';
+          typeItem.innerHTML = '<input class="enforcement-type" value="Offices & Posts" type="button">';
           L.DomEvent.on(typeItem, 'click', this.toggleTypeInfo);
           innerWrapper.appendChild(typeItem);
 
           var typeItem = L.DomUtil.create('div', 'type-item');
-          typeItem.innerHTML = '<input class="enforcement-type" value="Police Station" type="button" style="color: black">';
+          typeItem.innerHTML = '<input class="enforcement-type" value="Police Station" type="button">';
           L.DomEvent.on(typeItem, 'click', this.toggleTypeInfo);
           innerWrapper.appendChild(typeItem);
 
 
 
           var typeInfo = L.DomUtil.create('div', 'type-info');
-          typeInfo.innerHTML = '';
+          typeInfo.innerHTML = 'Some starting copy? Maybe the text for the very first item and have that highlighted? Lorem ipsum...';
           
           innerWrapper.appendChild(typeInfo);
 

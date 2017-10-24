@@ -21,6 +21,16 @@
   display: none;
   background: white; }
 
+.type-item {
+  background: #4169ad;
+  width: 48%;
+  float: left;
+  margin: 1px; }
+  .type-item input {
+    background: none;
+    color: white;
+    width: initial; }
+
 .type-info {
   font-size: 90%; }
 

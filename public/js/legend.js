@@ -30,6 +30,9 @@ function updateItemDetail(category, itemType) {
                         var desc = items[item]['type-description'];
                         var className = '.' + category;
                         $(className).find('.type-info').html(desc);
+
+
+
                     }
                 }
             }
