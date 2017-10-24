@@ -103,11 +103,11 @@
             .get(function(data) {
 
               d3.select(".enforcement-legend").transition()
-                .style('max-width', function() { return '100px';})
+                .style('max-width', function() { return '210px';})
                 .style('background', function() { return 'white';})
-                .style('margin', function() { return '2px';})
-                .style('padding', function() { return '2px';})
-                .style('overflow', function() { return 'scroll'})
+                .style('margin', function() { return '1px';})
+                .style('padding', function() { return '1px';})
+                .style('overflow', function() { return 'hidden'})
                 //.style('display', function() { return 'none'});
             
 
@@ -159,19 +159,12 @@
                   // use DOM fragment for performance
                   var fragment = document.createDocumentFragment();
                   var el = document.createElement('div');
-                      el.innerText = s.name; // + " (" + s.count + ")";
-                      // from color scale
-                      el.style['background-color'] = 'black';
-                      el.style['color'] = 'white';
                       
-                      /*(if (s.percent > 0.5) {
-                        el.style['color'] = 'black';
-                      }
-                      */
-                
-                      el.style['padding'] = '2px 2px 2px 5px';
-                      el.style['margin'] = '2px';
-                      el.style['border-radius'] = '5px';
+
+                      el.innerText = s.name; // + " (" + s.count + ")";
+                      el.className = 'type-element';
+                      // removed: set color from color scale
+
                     fragment.appendChild(el);
                     document.querySelector(".enforcement-legend").appendChild(fragment);
                 });              

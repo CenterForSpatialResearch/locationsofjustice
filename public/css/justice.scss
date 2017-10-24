@@ -18,6 +18,26 @@
     }
 }
 
+.enforcement-legend {
+    font-size: 80%;
+    
+
+
+    .type-element {
+        background: blue;
+        color: white;
+        float: left;
+        margin: 2px;
+        padding: 1px;
+        border: 1px solid black;
+        display: inline;
+        max-width: 60px;
+        clear: inherit;
+        vertical-align: middle;
+        
+    }
+}
+
 .about-control {
     width: 50px;
     color: #666;
