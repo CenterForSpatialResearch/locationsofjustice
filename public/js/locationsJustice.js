@@ -98,41 +98,35 @@
           L.DomUtil.addClass(container, "legend");
           L.DomUtil.addClass(container, "enforcement");
           
-
-          // create the subtypes here
-          // add domelements using the util
-          // set style
-          // set an on click function
-
           // create container to hold the entire menu for show/hide
           var innerWrapper = L.DomUtil.create('div', 'type-wrapper');
           L.DomEvent.on(innerWrapper, 'click', this.toggleTypeInfo);
-
           container.appendChild(innerWrapper);
 
-
           // create all elements inside this
-          var typeItem = L.DomUtil.create('div', 'type-item');
-          typeItem.innerHTML = '<input class="enforcement-type" value="Tow Pound" type="button">';
-          L.DomEvent.on(typeItem, 'click', this.toggleTypeInfo);
-          innerWrapper.appendChild(typeItem);
+          // no jquery loaded yet to static DOM is best for this
 
-          var typeItem = L.DomUtil.create('div', 'type-item');
-          typeItem.innerHTML = '<input class="enforcement-type" value="Logistics" type="button">';
-          L.DomEvent.on(typeItem, 'click', this.toggleTypeInfo);
-          innerWrapper.appendChild(typeItem);
+          var types = [
+            "Tow Pound",
+            "Logistics",
+            "Offices & Posts",
+            "Police Station",
+            "Police Service Area Command",
+            "NYPD Division of School Safety",
+            "Parks Police",
+            "State Law Enforcement",
+            "Federal Law Enforcement",
+            "Headquarters",
+            "Parking",
+            "Training"
+          ];
 
-          var typeItem = L.DomUtil.create('div', 'type-item');
-          typeItem.innerHTML = '<input class="enforcement-type" value="Offices & Posts" type="button">';
-          L.DomEvent.on(typeItem, 'click', this.toggleTypeInfo);
-          innerWrapper.appendChild(typeItem);
-
-          var typeItem = L.DomUtil.create('div', 'type-item');
-          typeItem.innerHTML = '<input class="enforcement-type" value="Police Station" type="button">';
-          L.DomEvent.on(typeItem, 'click', this.toggleTypeInfo);
-          innerWrapper.appendChild(typeItem);
-
-
+          for (type in types) {
+            var typeItem = L.DomUtil.create('div', 'type-item');
+            typeItem.innerHTML = '<input class="enforcement-type" value="' + types[type] + '" type="button">';
+            L.DomEvent.on(typeItem, 'click', this.toggleTypeInfo);
+            innerWrapper.appendChild(typeItem);
+          }
 
           var typeInfo = L.DomUtil.create('div', 'type-info');
           typeInfo.innerHTML = 'Some starting copy? Maybe the text for the very first item and have that highlighted? Lorem ipsum...';

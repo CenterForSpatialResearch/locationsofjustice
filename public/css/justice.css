@@ -32,7 +32,10 @@
     width: initial; }
 
 .type-info {
-  font-size: 90%; }
+  font-size: 90%;
+  border: 5px solid white;
+  clear: both;
+  padding-top: 5px; }
 
 .layer-control.legend {
   max-width: 220px; }

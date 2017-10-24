@@ -7,6 +7,36 @@ function buildLegend() {
         .response(function(xhr) { return JSON.parse(xhr.responseText); })
         .get(buildElements);
     */
+
+    d3.request("data/TestLocations.geojson")
+        .mimeType("application/json")
+        .response(function(xhr) { return JSON.parse(xhr.responseText); })
+        .get(function(data) {
+
+            // just print it for ref
+            console.log(data);
+            // enforcement
+            var types = [];
+            data.features.forEach(function(d) {
+
+                
+
+                if (d.properties.CATEGORY == 'Enforcement') {
+                    var type = d.properties.TYPE;
+
+                    if (types.indexOf(type) < 0) {
+                        types.push(type);
+                    }
+
+                    
+                }
+
+            });
+
+            console.dir(types);
+        });
+
+
 }
 
 function buildElements(data) {
