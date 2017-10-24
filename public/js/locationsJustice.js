@@ -89,95 +89,83 @@
         options: {
           position: 'topleft'
         },
+
+
         onAdd: function() {
           var container = L.DomUtil.create('div', 'layer-control');
-          container.innerHTML = '<div id="enforcement"><input id="enforcement_toggle" type="button" value="Enforcement"><div class="enforcement-legend"></div>'
+          container.innerHTML = '<div id="enforcement"><input id="enforcement_toggle" type="button" value="Enforcement"></div>'
           L.DomEvent.on(container, 'click', this.toggleOnClick);
           L.DomUtil.addClass(container, "legend");
           L.DomUtil.addClass(container, "enforcement");
           
-          // get data from d3
-          d3.request("data/TestLocations.geojson")
-            .mimeType("application/json")
-            .response(function(xhr) { return JSON.parse(xhr.responseText); })
-            .get(function(data) {
 
-              d3.select(".enforcement-legend").transition()
-                .style('max-width', function() { return '210px';})
-                .style('background', function() { return 'white';})
-                .style('margin', function() { return '1px';})
-                .style('padding', function() { return '1px';})
-                .style('overflow', function() { return 'hidden'})
-                //.style('display', function() { return 'none'});
-            
+          // create the subtypes here
+          // add domelements using the util
+          // set style
+          // set an on click function
 
-                // calculate legend dynamically based on data
-                var subLegend = {};
-                    subLegend.itemsTotal = 0;
-                    subLegend.subcategories = [];
+          // create container to hold the entire menu for show/hide
+          var innerWrapper = L.DomUtil.create('div', 'type-wrapper');
+          L.DomEvent.on(innerWrapper, 'click', this.toggleTypeInfo);
 
-                data.features.forEach(function(d) {
-                  if (d.properties.CATEGORY == 'Enforcement') {
-                    subLegend.itemsTotal += 1;
-                    var sub = {};
-                        // swap for type
-                        sub.name = d.properties.TYPE;
-                    
-                        // add it to subcategories or increment
-                    var found = false;
-                    subLegend.subcategories.forEach(function(s) {
-                      if (s.name == sub.name) {
-                        s.count += 1;
-                        s.gravity += d.properties.GRAVITY;  
-                        found = true;
-                      }
-                    });
+          container.appendChild(innerWrapper);
 
-                    if (!found) {
-                      // add it
-                      sub.count = 0;
-                      sub.gravity = d.properties.GRAVITY;
-                      subLegend.subcategories.push(sub);
-                    }
-                  }
-                });
 
-                // build d3 color scale for background color based on range
-                // ignore this mapping on count for now
-                /*
-                var color = d3.scaleLinear()
-                  .domain([1, subLegend.itemsTotal])
-                  .range(["#4169ad", "#ffffff"]);
-                */
-                  //console.log('color20', color(20)); // "#9a3439"
-    
-                // get percentages now that all the items have been examined and 
-                // insert DOM elements inline (cant use d3 since it cant operate on dynamic leaflet DOM elements)
-                subLegend.subcategories.forEach(function(s) {
-                  //s.percent = s.count / subLegend.itemsTotal;
-                  
-                  // use DOM fragment for performance
-                  var fragment = document.createDocumentFragment();
-                  var el = document.createElement('div');
-                      
+          // create all elements inside this
+          var typeItem = L.DomUtil.create('div', 'type-item');
+          typeItem.innerHTML = '<input class="enforcement-type" value="Tow Pound" type="button" style="color: black">';
+          L.DomEvent.on(typeItem, 'click', this.toggleTypeInfo);
+          innerWrapper.appendChild(typeItem);
 
-                      el.innerText = s.name; // + " (" + s.count + ")";
-                      el.className = 'type-element';
-                      // removed: set color from color scale
+          var typeItem = L.DomUtil.create('div', 'type-item');
+          typeItem.innerHTML = '<input class="enforcement-type" value="Logistics" type="button" style="color: black">';
+          L.DomEvent.on(typeItem, 'click', this.toggleTypeInfo);
+          innerWrapper.appendChild(typeItem);
 
-                    fragment.appendChild(el);
-                    document.querySelector(".enforcement-legend").appendChild(fragment);
-                });              
-              }); // done with d3.data
+          var typeItem = L.DomUtil.create('div', 'type-item');
+          typeItem.innerHTML = '<input class="enforcement-type" value="Offices & Posts" type="button" style="color: black">';
+          L.DomEvent.on(typeItem, 'click', this.toggleTypeInfo);
+          innerWrapper.appendChild(typeItem);
+
+          var typeItem = L.DomUtil.create('div', 'type-item');
+          typeItem.innerHTML = '<input class="enforcement-type" value="Police Station" type="button" style="color: black">';
+          L.DomEvent.on(typeItem, 'click', this.toggleTypeInfo);
+          innerWrapper.appendChild(typeItem);
+
+
+
+          var typeInfo = L.DomUtil.create('div', 'type-info');
+          typeInfo.innerHTML = '';
+          
+          innerWrapper.appendChild(typeInfo);
+
+              
 
 
           return container;
         },
+
+        toggleTypeInfo: function (e) {
+          if (e.target.value) {
+            updateItemDetail('enforcement', e.target.value);
+          }
+
+        },
+
+
+
         toggleOnClick: function (e) {
 
           // maybe show hide the sublegend
           //d3.select(".enforcement-legend").transition()
             //.style('display', function() { return 'inline';});
+
+            //d3.select(".enforcement-legend").transition()
+            //.style('display', function() { return 'inline';});
+            toggleLegend(e, 'enforcement');
+            
+            
+
 
               var legalLayerStatus = scene.config.layers.justice_locations.legalIcons.visible;
               var enforcementLayerStatus = scene.config.layers.justice_locations.enforcementIcons.visible;
@@ -693,3 +681,24 @@
         
         document.getElementById('justiceMap').style.cursor = selection.feature ? 'pointer' : '';
       }
+
+
+// jquery 
+$(document).ready(function() {
+  console.log("jquery ready");
+
+    // load texts via json
+    var copyReady = false;
+    copyData = null;
+    
+    $.getJSON('data/siteCopy.json', function(data) {
+      copyReady = true;
+      console.log(data);
+      copyData = data;
+
+      console.log('set copyData to ', copyData);
+    });
+
+
+  });
+

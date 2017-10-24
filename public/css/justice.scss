@@ -20,22 +20,22 @@
 
 .enforcement-legend {
     font-size: 80%;
-    
+}
+
+.type-wrapper {
+    // style for subtypes
+    display: none;
+    background: white;
 
 
-    .type-element {
-        background: blue;
-        color: white;
-        float: left;
-        margin: 2px;
-        padding: 1px;
-        border: 1px solid black;
-        display: inline;
-        max-width: 60px;
-        clear: inherit;
-        vertical-align: middle;
-        
-    }
+}
+
+.type-info {
+    font-size: 90%;
+}
+
+.layer-control.legend {
+    max-width: 220px;
 }
 
 .about-control {
