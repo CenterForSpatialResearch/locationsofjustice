@@ -5,10 +5,10 @@
         zoom: 12,
         minZoom: 7,
         maxZoom: 19,
-        maxBounds: [[44.292059, -78.209836], [36.990458, -68.924623]],
+        maxBounds: [[45, -80], [40, -70]],
         attribution: '© <a href="http://c4sr.columbia.edu/">Center for Spatial Research</a> Columbia University, <a href="http://archleague.org/">Architectural League</a>, <a href="https://www.mapzen.com/rights">Mapzen</a>, <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>, and <a href="https://www.mapzen.com/rights/#services-and-data-sources">others</a>',
         tangramOptions: {
-          scene: 'sceneTest.yaml'
+          scene: 'scene.yaml'
         },
       });
 
@@ -29,7 +29,7 @@
           var courtsLayerStatus = scene.config.layers.justice_locations.courtsIcons.visible;
           var confinementLayerStatus = scene.config.layers.justice_locations.confinementIcons.visible;
           var alternativesLayerStatus = scene.config.layers.justice_locations.alternativesIcons.visible;
-          var infrastructureLayerStatus = scene.config.layers.justice_locations.infrastructureIcons.visible;
+          var supportLayerStatus = scene.config.layers.justice_locations.supportIcons.visible;
           if (scene) {
             if (legalLayerStatus == true){
             }
@@ -71,14 +71,14 @@
             else {
             }
             scene.config.layers.justice_locations.alternativesIcons.visible = alternativesLayerStatus;
-            if (infrastructureLayerStatus == true){
-              document.getElementById("infrastructure_toggle").style.background = 'rgba(254,207,1,0.25)';
-              document.getElementById("infrastructure_toggle").style.color = '#4C4C4C';
-              infrastructureLayerStatus = false;
+            if (supportLayerStatus == true){
+              document.getElementById("support_toggle").style.background = 'rgba(254,207,1,0.25)';
+              document.getElementById("support_toggle").style.color = '#4C4C4C';
+              supportLayerStatus = false;
             }
             else {
             }
-            scene.config.layers.justice_locations.infrastructureIcons.visible = infrastructureLayerStatus;
+            scene.config.layers.justice_locations.supportIcons.visible = supportLayerStatus;
             scene.updateConfig();
           }
         }
@@ -97,7 +97,7 @@
           L.DomEvent.on(container, 'click', this.toggleOnClick);
           L.DomUtil.addClass(container, "legend");
           L.DomUtil.addClass(container, "enforcement");
-          
+
           // create container to hold the entire menu for show/hide
           var innerWrapper = L.DomUtil.create('div', 'type-wrapper');
           L.DomEvent.on(innerWrapper, 'click', this.toggleTypeInfo);
@@ -130,10 +130,10 @@
 
           var typeInfo = L.DomUtil.create('div', 'type-info');
           typeInfo.innerHTML = 'Some starting copy? Maybe the text for the very first item and have that highlighted? Lorem ipsum...';
-          
+
           innerWrapper.appendChild(typeInfo);
 
-              
+
 
 
           return container;
@@ -158,8 +158,8 @@
             //d3.select(".enforcement-legend").transition()
             //.style('display', function() { return 'inline';});
             toggleLegend(e, 'enforcement');
-            
-            
+
+
 
 
               var legalLayerStatus = scene.config.layers.justice_locations.legalIcons.visible;
@@ -167,7 +167,7 @@
               var courtsLayerStatus = scene.config.layers.justice_locations.courtsIcons.visible;
               var confinementLayerStatus = scene.config.layers.justice_locations.confinementIcons.visible;
               var alternativesLayerStatus = scene.config.layers.justice_locations.alternativesIcons.visible;
-              var infrastructureLayerStatus = scene.config.layers.justice_locations.infrastructureIcons.visible;
+              var supportLayerStatus = scene.config.layers.justice_locations.supportIcons.visible;
               if (scene) {
                 if (legalLayerStatus == true){
                   document.getElementById("legal_toggle").style.background = 'rgba(93,179,35,0.25)';
@@ -209,14 +209,14 @@
                 else {
                 }
                 scene.config.layers.justice_locations.alternativesIcons.visible = alternativesLayerStatus;
-                if (infrastructureLayerStatus == true){
-                  document.getElementById("infrastructure_toggle").style.background = 'rgba(254,207,1,0.25)';
-                  document.getElementById("infrastructure_toggle").style.color = '#4C4C4C';
-                  infrastructureLayerStatus = false;
+                if (supportLayerStatus == true){
+                  document.getElementById("support_toggle").style.background = 'rgba(254,207,1,0.25)';
+                  document.getElementById("support_toggle").style.color = '#4C4C4C';
+                  supportLayerStatus = false;
                 }
                 else {
                 }
-                scene.config.layers.justice_locations.infrastructureIcons.visible = infrastructureLayerStatus;
+                scene.config.layers.justice_locations.supportIcons.visible = supportLayerStatus;
                 scene.updateConfig();
               }
             }
@@ -239,7 +239,7 @@
           var courtsLayerStatus = scene.config.layers.justice_locations.courtsIcons.visible;
           var confinementLayerStatus = scene.config.layers.justice_locations.confinementIcons.visible;
           var alternativesLayerStatus = scene.config.layers.justice_locations.alternativesIcons.visible;
-          var infrastructureLayerStatus = scene.config.layers.justice_locations.infrastructureIcons.visible;
+          var supportLayerStatus = scene.config.layers.justice_locations.supportIcons.visible;
           if (scene) {
             if (legalLayerStatus == true){
               document.getElementById("legal_toggle").style.background = 'rgba(93,179,35,0.25)';
@@ -281,14 +281,14 @@
             else {
             }
             scene.config.layers.justice_locations.alternativesIcons.visible = alternativesLayerStatus;
-            if (infrastructureLayerStatus == true){
-              document.getElementById("infrastructure_toggle").style.background = 'rgba(254,207,1,0.25)';
-              document.getElementById("infrastructure_toggle").style.color = '#4C4C4C';
-              infrastructureLayerStatus = false;
+            if (supportLayerStatus == true){
+              document.getElementById("support_toggle").style.background = 'rgba(254,207,1,0.25)';
+              document.getElementById("support_toggle").style.color = '#4C4C4C';
+              supportLayerStatus = false;
             }
             else {
             }
-            scene.config.layers.justice_locations.infrastructureIcons.visible = infrastructureLayerStatus;
+            scene.config.layers.justice_locations.supportIcons.visible = supportLayerStatus;
             scene.updateConfig();
           }
         }
@@ -311,7 +311,7 @@
           var courtsLayerStatus = scene.config.layers.justice_locations.courtsIcons.visible;
           var confinementLayerStatus = scene.config.layers.justice_locations.confinementIcons.visible;
           var alternativesLayerStatus = scene.config.layers.justice_locations.alternativesIcons.visible;
-          var infrastructureLayerStatus = scene.config.layers.justice_locations.infrastructureIcons.visible;
+          var supportLayerStatus = scene.config.layers.justice_locations.supportIcons.visible;
           if (scene) {
             if (legalLayerStatus == true){
               document.getElementById("legal_toggle").style.background = 'rgba(93,179,35,0.25)';
@@ -353,14 +353,14 @@
             else {
             }
             scene.config.layers.justice_locations.alternativesIcons.visible = alternativesLayerStatus;
-            if (infrastructureLayerStatus == true){
-              document.getElementById("infrastructure_toggle").style.background = 'rgba(254,207,1,0.25)';
-              document.getElementById("infrastructure_toggle").style.color = '#4C4C4C';
-              infrastructureLayerStatus = false;
+            if (supportLayerStatus == true){
+              document.getElementById("support_toggle").style.background = 'rgba(254,207,1,0.25)';
+              document.getElementById("support_toggle").style.color = '#4C4C4C';
+              supportLayerStatus = false;
             }
             else {
             }
-            scene.config.layers.justice_locations.infrastructureIcons.visible = infrastructureLayerStatus;
+            scene.config.layers.justice_locations.supportIcons.visible = supportLayerStatus;
             scene.updateConfig();
           }
         }
@@ -383,7 +383,7 @@
           var courtsLayerStatus = scene.config.layers.justice_locations.courtsIcons.visible;
           var confinementLayerStatus = scene.config.layers.justice_locations.confinementIcons.visible;
           var alternativesLayerStatus = scene.config.layers.justice_locations.alternativesIcons.visible;
-          var infrastructureLayerStatus = scene.config.layers.justice_locations.infrastructureIcons.visible;
+          var supportLayerStatus = scene.config.layers.justice_locations.supportIcons.visible;
           if (scene) {
             if (legalLayerStatus == true){
               document.getElementById("legal_toggle").style.background = 'rgba(93,179,35,0.25)';
@@ -425,27 +425,27 @@
               alternativesLayerStatus = true;
             }
             scene.config.layers.justice_locations.alternativesIcons.visible = alternativesLayerStatus;
-            if (infrastructureLayerStatus == true){
-              document.getElementById("infrastructure_toggle").style.background = 'rgba(254,207,1,0.25)';
-              document.getElementById("infrastructure_toggle").style.color = '#4C4C4C';
-              infrastructureLayerStatus = false;
+            if (supportLayerStatus == true){
+              document.getElementById("support_toggle").style.background = 'rgba(254,207,1,0.25)';
+              document.getElementById("support_toggle").style.color = '#4C4C4C';
+              supportLayerStatus = false;
             }
             else {
             }
-            scene.config.layers.justice_locations.infrastructureIcons.visible = infrastructureLayerStatus;
+            scene.config.layers.justice_locations.supportIcons.visible = supportLayerStatus;
             scene.updateConfig();
           }
         }
       });
 
-      // Infrastructure button ***************
-      var InfrastructureLayerControl = L.Control.extend({
+      // Support button ***************
+      var SupportLayerControl = L.Control.extend({
         options: {
           position: 'topleft'
         },
         onAdd: function() {
           var container = L.DomUtil.create('div', 'layer-control');
-          container.innerHTML = '<input id="infrastructure_toggle" type="button" value="Infrastructure">'
+          container.innerHTML = '<input id="support_toggle" type="button" value="Support">'
           L.DomEvent.on(container, 'click', this.toggleOnClick);
           return container;
         },
@@ -455,7 +455,7 @@
           var courtsLayerStatus = scene.config.layers.justice_locations.courtsIcons.visible;
           var confinementLayerStatus = scene.config.layers.justice_locations.confinementIcons.visible;
           var alternativesLayerStatus = scene.config.layers.justice_locations.alternativesIcons.visible;
-          var infrastructureLayerStatus = scene.config.layers.justice_locations.infrastructureIcons.visible;
+          var supportLayerStatus = scene.config.layers.justice_locations.supportIcons.visible;
           if (scene) {
             if (legalLayerStatus == true){
               document.getElementById("legal_toggle").style.background = 'rgba(93,179,35,0.25)';
@@ -497,14 +497,14 @@
             else {
             }
             scene.config.layers.justice_locations.alternativesIcons.visible = alternativesLayerStatus;
-            if (infrastructureLayerStatus == true){
+            if (supportLayerStatus == true){
             }
             else {
-              document.getElementById("infrastructure_toggle").style.background = '#fecf01';
-              document.getElementById("infrastructure_toggle").style.color = '#4C4C4C';
-              infrastructureLayerStatus = true;
+              document.getElementById("support_toggle").style.background = '#fecf01';
+              document.getElementById("support_toggle").style.color = '#4C4C4C';
+              supportLayerStatus = true;
             }
-            scene.config.layers.justice_locations.infrastructureIcons.visible = infrastructureLayerStatus;
+            scene.config.layers.justice_locations.supportIcons.visible = supportLayerStatus;
             scene.updateConfig();
           }
         }
@@ -527,7 +527,7 @@
           var courtsLayerStatus = scene.config.layers.justice_locations.courtsIcons.visible;
           var confinementLayerStatus = scene.config.layers.justice_locations.confinementIcons.visible;
           var alternativesLayerStatus = scene.config.layers.justice_locations.alternativesIcons.visible;
-          var infrastructureLayerStatus = scene.config.layers.justice_locations.infrastructureIcons.visible;
+          var supportLayerStatus = scene.config.layers.justice_locations.supportIcons.visible;
           if (scene) {
             if (legalLayerStatus == false){
               document.getElementById("legal_toggle").style.background = '#5db323';
@@ -569,14 +569,14 @@
             else {
             }
             scene.config.layers.justice_locations.alternativesIcons.visible = alternativesLayerStatus;
-            if (infrastructureLayerStatus == false){
-              document.getElementById("infrastructure_toggle").style.background = '#fecf01';
-              document.getElementById("infrastructure_toggle").style.color = '#4C4C4C';
-              infrastructureLayerStatus = true;
+            if (supportLayerStatus == false){
+              document.getElementById("support_toggle").style.background = '#fecf01';
+              document.getElementById("support_toggle").style.color = '#4C4C4C';
+              supportLayerStatus = true;
             }
             else {
             }
-            scene.config.layers.justice_locations.infrastructureIcons.visible = infrastructureLayerStatus;
+            scene.config.layers.justice_locations.supportIcons.visible = supportLayerStatus;
             scene.updateConfig();
           }
         }
@@ -607,7 +607,7 @@
           return container;
         },
         toggleOnClick: function (e) {
-          
+
             var visibility = document.querySelector("#aboutPopup").style.display;
             if (visibility == 'none') {
               document.querySelector("#aboutPopup").style.display = 'inline';
@@ -618,7 +618,7 @@
 
         });
 
-      
+
 
 
       var legalToggleControl = new LegalLayerControl();
@@ -631,8 +631,8 @@
       map.addControl(confinementToggleControl);
       var alternativesToggleControl = new AlternativesLayerControl();
       map.addControl(alternativesToggleControl);
-      var infrastructureToggleControl = new InfrastructureLayerControl();
-      map.addControl(infrastructureToggleControl);
+      var supportToggleControl = new SupportLayerControl();
+      map.addControl(supportToggleControl);
       var allLayersToggleControl = new AllLayersLayerControl();
       map.addControl(allLayersToggleControl);
       var aboutMapControl= new AboutMapControl();
@@ -649,9 +649,9 @@
           var latlng = selection.leaflet_event.latlng;
           var name = selection.feature.properties.NAME;
           var category = selection.feature.properties.CATEGORY;
-          var subcategory = selection.feature.properties.SUBCATEGORY;
+          var locationType = selection.feature.properties.TYPE;
           var description = selection.feature.properties.DESCRIPTION;
-          showPopup(latlng, name, description, category, subcategory);
+          showPopup(latlng, name, description, category, locationType);
         }
       }
 
@@ -666,26 +666,26 @@
         });
       });
 
-      function showPopup(latlng, name, description, category, subcategory) {
+      function showPopup(latlng, name, description, category, locationType) {
         popup
           .setLatLng(latlng)
-          .setContent('<h1>' + name + '</h1><p>' + description + '</p><p>' + category.toUpperCase() + ': ' + subcategory.toUpperCase() + '</p>')
+          .setContent('<h1>' + name + '</h1><p>' + category.toUpperCase() + ': ' + locationType.toUpperCase() + '</p><p>' + description + '</p>')
           .openOn(map);
       }
       function onMapHover(selection){
-        
+
         document.getElementById('justiceMap').style.cursor = selection.feature ? 'pointer' : '';
       }
 
 
-// jquery 
+// jquery
 $(document).ready(function() {
   console.log("jquery ready");
 
     // load texts via json
     var copyReady = false;
     copyData = null;
-    
+
     $.getJSON('data/siteCopy.json', function(data) {
       copyReady = true;
       console.log(data);
@@ -696,4 +696,3 @@ $(document).ready(function() {
 
 
   });
-
