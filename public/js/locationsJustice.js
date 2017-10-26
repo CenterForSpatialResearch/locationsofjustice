@@ -30,6 +30,10 @@
           var confinementLayerStatus = scene.config.layers.justice_locations.confinementIcons.visible;
           var alternativesLayerStatus = scene.config.layers.justice_locations.alternativesIcons.visible;
           var supportLayerStatus = scene.config.layers.justice_locations.supportIcons.visible;
+
+
+          console.log("legal click, enforcementLayerStatus is ", enforcementLayerStatus);
+
           if (scene) {
             if (legalLayerStatus == true){
             }
@@ -39,6 +43,8 @@
               legalLayerStatus = true;
             }
             scene.config.layers.justice_locations.legalIcons.visible = legalLayerStatus;
+
+            
             if (enforcementLayerStatus == true){
               document.getElementById("enforcement_toggle").style.background = 'rgba(65,105,173,0.25)';
               document.getElementById("enforcement_toggle").style.color = '#4C4C4C';
@@ -141,8 +147,19 @@
 
         toggleTypeInfo: function (e) {
           if (e.target.value) {
+            console.log("click on subitem in enforcement menu with value", e.target.value);
+            
             fadeLegendExceptTarget(e.target);
             updateItemDetail('enforcement', e.target.value);
+
+
+
+            // hide all enforcement items except for the one selected
+            // this is not working... not sure why
+            scene.config.layers.justice_locations.enforcementIcons.visible = false;
+
+            
+            
           }
 
         },
@@ -151,13 +168,7 @@
 
         toggleOnClick: function (e) {
 
-          // maybe show hide the sublegend
-          //d3.select(".enforcement-legend").transition()
-            //.style('display', function() { return 'inline';});
-
-            //d3.select(".enforcement-legend").transition()
-            //.style('display', function() { return 'inline';});
-            toggleLegend(e, 'enforcement');
+          toggleLegend(e, 'enforcement');
 
 
 
