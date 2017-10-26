@@ -32,14 +32,15 @@
 
 .type-item {
     background: #4169ad;
-    width: 48%;
+    width: 100%;
     float: left;
     margin: 1px;
+    border-radius: 3px;
     
     input {
         background: none;
         color: white;
-        width: initial;
+        width: 100%;
 
     }
 }
@@ -52,7 +53,7 @@
 }
 
 .layer-control.legend {
-    max-width: 220px;
+    max-width: 180px;
 }
 
 .about-control {

@@ -126,21 +126,21 @@
 
 
 
-          /*for (type in types) {
+          for (type in types) {
             var typeItem = L.DomUtil.create('div', 'type-item');
             typeItem.innerHTML = '<input class="enforcement-type" value="' + types[type] + '" type="button">';
             L.DomEvent.on(typeItem, 'click', this.toggleTypeInfo);
             innerWrapper.appendChild(typeItem);
           }
-          */
+          
 
-
+          /* hiding the info for each subtype for now
 
           var typeInfo = L.DomUtil.create('div', 'type-info');
           typeInfo.innerHTML = 'Some starting copy? Maybe the text for the very first item and have that highlighted? Lorem ipsum...';
 
           innerWrapper.appendChild(typeInfo);
-
+          */
 
 
 
@@ -152,14 +152,66 @@
             console.log("click on subitem in enforcement menu with value", e.target.value);
             
             fadeLegendExceptTarget(e.target);
-            updateItemDetail('enforcement', e.target.value);
+            // to add later when we add text - updateItemDetail('enforcement', e.target.value);
+            
+            // turn off all sublayers
+            scene.config.layers.justice_locations.enforcementIcons.lawEnforcement.visible = false;
+            scene.config.layers.justice_locations.enforcementIcons.NYPDAdmin.visible = false;
+            scene.config.layers.justice_locations.enforcementIcons.NYPDSchoolSafety.visible = false;
+            scene.config.layers.justice_locations.enforcementIcons.NYPDHeadquarters.visible = false;
+            scene.config.layers.justice_locations.enforcementIcons.NYPDLogistics.visible = false;
+            scene.config.layers.justice_locations.enforcementIcons.NYPDServiceArea.visible = false;
+            scene.config.layers.justice_locations.enforcementIcons.NYPDStationhouse.visible = false;
+            scene.config.layers.justice_locations.enforcementIcons.TowPound.visible = false;
+            scene.config.layers.justice_locations.enforcementIcons.Parking.visible = false;
+            scene.config.layers.justice_locations.enforcementIcons.Parks.visible = false;
+            scene.config.layers.justice_locations.enforcementIcons.StateLaw.visible = false;
+            scene.config.layers.justice_locations.enforcementIcons.Training.visible = false;
+
+            if (scene) {
+              switch(e.target.value) {
 
 
-            // toggling statuses here has no effect...
-            
-            
-            
-            
+                case "Tow Pound":
+                  scene.config.layers.justice_locations.enforcementIcons.TowPound.visible = true;
+                  break;
+                case "Logistics": 
+                  scene.config.layers.justice_locations.enforcementIcons.NYPDLogistics.visible = true;
+                  break;
+                case "Offices & Posts":
+                  scene.config.layers.justice_locations.enforcementIcons.NYPDAdmin.visible = true;
+                  break;
+                case "Police Station":
+                  scene.config.layers.justice_locations.enforcementIcons.NYPDStationhouse.visible = true;
+                  break;
+                case "Police Service Area Command":
+                  scene.config.layers.justice_locations.enforcementIcons.NYPDServiceArea.visible = true;
+                  break;
+                case "NYPD Division of School Safety":
+                  scene.config.layers.justice_locations.enforcementIcons.NYPDSchoolSafety.visible = true;
+                  break;
+                case "Parks Police":
+                  scene.config.layers.justice_locations.enforcementIcons.Parks.visible = true;
+                  break;
+                case "State Law Enforcement":
+                  scene.config.layers.justice_locations.enforcementIcons.StateLaw.visible = true;
+                  break;
+                case "Federal Law Enforcement":
+                  scene.config.layers.justice_locations.enforcementIcons.lawEnforcement.visible = true;
+                  break;
+                case "Headquarters":
+                  scene.config.layers.justice_locations.enforcementIcons.NYPDHeadquarters.visible = true;
+                  break;
+                case "Parking":
+                  scene.config.layers.justice_locations.enforcementIcons.Parking.visible = true;
+                  break;
+                case "Training":
+                  scene.config.layers.justice_locations.enforcementIcons.Training.visible = true;
+                  break;
+                  
+                }
+                scene.updateConfig();
+              }
           }
 
         },
@@ -167,13 +219,8 @@
 
 
         toggleOnClick: function (e) {
-          console.log(" ------- toggleOnCLick called for input of parent item, updating layer statuses");
-          //toggleLegend(e, 'enforcement');
+          toggleLegend(e, 'enforcement');
           
-
-
-
-
 
               var legalLayerStatus = scene.config.layers.justice_locations.legalIcons.visible;
               var enforcementLayerStatus = scene.config.layers.justice_locations.enforcementIcons.visible;
@@ -181,16 +228,6 @@
               var confinementLayerStatus = scene.config.layers.justice_locations.confinementIcons.visible;
               var alternativesLayerStatus = scene.config.layers.justice_locations.alternativesIcons.visible;
               var supportLayerStatus = scene.config.layers.justice_locations.supportIcons.visible;
-
-              var enf_NYPDAdmin = scene.config.layers.justice_locations.enforcementIcons.NYPDAdmin.visible;
-              var enf_NYPDSchoolSafety = scene.config.layers.justice_locations.enforcementIcons.NYPDSchoolSafety.visible;
-              var enf_NYPDHQ = scene.config.layers.justice_locations.enforcementIcons.NYPDHeadquarters.visible;
-              var enf_NYPDLogistics = scene.config.layers.justice_locations.enforcementIcons.NYPDLogistics.visible;
-              var enf_NYPDServiceArea = scene.config.layers.justice_locations.enforcementIcons.NYPDServiceArea.visible;
-              
-              //console.dir(scene.config.layers.justice_locations.enforcementIcons);
-
-
 
 
               if (scene) {
@@ -203,35 +240,11 @@
                 }
                 scene.config.layers.justice_locations.legalIcons.visible = legalLayerStatus;
                 if (enforcementLayerStatus == true){
-
-
-                  // adding a new control now also doesnt work because it cant add it to the map after Tangram 
-                  // has initialized
-                  
-                  // if i do this it hides everything
-                  //enforcementLayerStatus = false;
-                  
-                  // however toggling these doesn't have any effects
-                  enf_NYPDAdmin = false;
-                  enf_NYPDSchoolSafety = false;
-                  enf_NYPDHQ = false;
-                  scene.updateConfig();
-                  // etc...
-
-                  
                 }
                 else {
                   document.getElementById("enforcement_toggle").style.background = '#4169ad';
                   document.getElementById("enforcement_toggle").style.color = 'white';
-                  
                   enforcementLayerStatus = true;
-
-
-                  
-                  
-      
-
-
 
                 }
                 scene.config.layers.justice_locations.enforcementIcons.visible = enforcementLayerStatus;
@@ -634,96 +647,6 @@
         }
       });
 
-      // All layers button ***************
-      var NewControl = L.Control.extend({
-        options: {
-          position: 'topleft'
-        },
-        onAdd: function() {
-          var container = L.DomUtil.create('div', 'layer-control');
-          container.innerHTML = '<input id="allLayers_toggle" type="button" value="TestControl">'
-          L.DomEvent.on(container, 'click', this.toggleOnClick);
-          return container;
-        },
-        toggleOnClick: function (e) {
-          var legalLayerStatus = scene.config.layers.justice_locations.legalIcons.visible;
-          var enforcementLayerStatus = scene.config.layers.justice_locations.enforcementIcons.visible;
-          var courtsLayerStatus = scene.config.layers.justice_locations.courtsIcons.visible;
-          var confinementLayerStatus = scene.config.layers.justice_locations.confinementIcons.visible;
-          var alternativesLayerStatus = scene.config.layers.justice_locations.alternativesIcons.visible;
-          var supportLayerStatus = scene.config.layers.justice_locations.supportIcons.visible;
-          var lawEnforcement = scene.config.layers.justice_locations.enforcementIcons.lawEnforcement.visible;
-          var nypdAdmin = scene.config.layers.justice_locations.enforcementIcons.NYPDAdmin.visible;
-
-          if (scene) {
-            if (lawEnforcement == true){
-              document.getElementById("legal_toggle").style.background = '#5db323';
-              document.getElementById("legal_toggle").style.color = 'white';
-              lawEnforcement = false;
-            }
-            else {
-            }
-            if (nypdAdmin == true){
-              document.getElementById("legal_toggle").style.background = '#5db323';
-              document.getElementById("legal_toggle").style.color = 'white';
-              scene.config.layers.justice_locations.enforcementIcons.NYPDAdmin.visible = false;
-              // nypdAdmin = false;
-              console.log(scene.config.layers.justice_locations.enforcementIcons.NYPDAdmin.visible);
-            }
-            else {
-            }
-            if (legalLayerStatus == true){
-              document.getElementById("legal_toggle").style.background = '#5db323';
-              document.getElementById("legal_toggle").style.color = 'white';
-              legalLayerStatus = false;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.legalIcons.visible = legalLayerStatus;
-            if (enforcementLayerStatus == true){
-              document.getElementById("enforcement_toggle").style.background = '#4169ad';
-              document.getElementById("enforcement_toggle").style.color = 'white';
-              enforcementLayerStatus = true;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.enforcementIcons.visible = enforcementLayerStatus;
-            if (courtsLayerStatus == true){
-              document.getElementById("courts_toggle").style.background = '#a53295';
-              document.getElementById("courts_toggle").style.color = 'white';
-              courtsLayerStatus = false;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.courtsIcons.visible = courtsLayerStatus;
-            if (confinementLayerStatus == true){
-              document.getElementById("confinement_toggle").style.background = '#ca2016';
-              document.getElementById("confinement_toggle").style.color = 'white';
-              confinementLayerStatus = false;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.confinementIcons.visible = confinementLayerStatus;
-            if (alternativesLayerStatus == true){
-              document.getElementById("alternatives_toggle").style.background = '#7bcbc2';
-              document.getElementById("alternatives_toggle").style.color = 'white';
-              alternativesLayerStatus = false;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.alternativesIcons.visible = alternativesLayerStatus;
-            if (supportLayerStatus == true){
-              document.getElementById("support_toggle").style.background = '#fecf01';
-              document.getElementById("support_toggle").style.color = '#4C4C4C';
-              supportLayerStatus = false;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.supportIcons.visible = supportLayerStatus;
-            scene.updateConfig();
-          }
-        }
-      });
 
       var FullScreenToggle = L.Control.extend({
           options: {
@@ -779,10 +702,7 @@
       map.addControl(aboutMapControl);
       var fullScreenToggleControl = new FullScreenToggle();
       map.addControl(fullScreenToggleControl);
-      var newControl= new NewControl();
-      map.addControl(newControl);
-
-
+      
       
 
 
