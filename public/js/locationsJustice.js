@@ -582,6 +582,97 @@
         }
       });
 
+      // All layers button ***************
+      var NewControl = L.Control.extend({
+        options: {
+          position: 'topleft'
+        },
+        onAdd: function() {
+          var container = L.DomUtil.create('div', 'layer-control');
+          container.innerHTML = '<input id="allLayers_toggle" type="button" value="TestControl">'
+          L.DomEvent.on(container, 'click', this.toggleOnClick);
+          return container;
+        },
+        toggleOnClick: function (e) {
+          var legalLayerStatus = scene.config.layers.justice_locations.legalIcons.visible;
+          var enforcementLayerStatus = scene.config.layers.justice_locations.enforcementIcons.visible;
+          var courtsLayerStatus = scene.config.layers.justice_locations.courtsIcons.visible;
+          var confinementLayerStatus = scene.config.layers.justice_locations.confinementIcons.visible;
+          var alternativesLayerStatus = scene.config.layers.justice_locations.alternativesIcons.visible;
+          var supportLayerStatus = scene.config.layers.justice_locations.supportIcons.visible;
+          var lawEnforcement = scene.config.layers.justice_locations.enforcementIcons.lawEnforcement.visible;
+          var nypdAdmin = scene.config.layers.justice_locations.enforcementIcons.NYPDAdmin.visible;
+
+          if (scene) {
+            if (lawEnforcement == true){
+              document.getElementById("legal_toggle").style.background = '#5db323';
+              document.getElementById("legal_toggle").style.color = 'white';
+              lawEnforcement = false;
+            }
+            else {
+            }
+            if (nypdAdmin == true){
+              document.getElementById("legal_toggle").style.background = '#5db323';
+              document.getElementById("legal_toggle").style.color = 'white';
+              scene.config.layers.justice_locations.enforcementIcons.NYPDAdmin.visible = false;
+              // nypdAdmin = false;
+              console.log(scene.config.layers.justice_locations.enforcementIcons.NYPDAdmin.visible);
+            }
+            else {
+            }
+            if (legalLayerStatus == true){
+              document.getElementById("legal_toggle").style.background = '#5db323';
+              document.getElementById("legal_toggle").style.color = 'white';
+              legalLayerStatus = false;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.legalIcons.visible = legalLayerStatus;
+            if (enforcementLayerStatus == true){
+              document.getElementById("enforcement_toggle").style.background = '#4169ad';
+              document.getElementById("enforcement_toggle").style.color = 'white';
+              enforcementLayerStatus = true;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.enforcementIcons.visible = enforcementLayerStatus;
+            if (courtsLayerStatus == true){
+              document.getElementById("courts_toggle").style.background = '#a53295';
+              document.getElementById("courts_toggle").style.color = 'white';
+              courtsLayerStatus = false;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.courtsIcons.visible = courtsLayerStatus;
+            if (confinementLayerStatus == true){
+              document.getElementById("confinement_toggle").style.background = '#ca2016';
+              document.getElementById("confinement_toggle").style.color = 'white';
+              confinementLayerStatus = false;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.confinementIcons.visible = confinementLayerStatus;
+            if (alternativesLayerStatus == true){
+              document.getElementById("alternatives_toggle").style.background = '#7bcbc2';
+              document.getElementById("alternatives_toggle").style.color = 'white';
+              alternativesLayerStatus = false;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.alternativesIcons.visible = alternativesLayerStatus;
+            if (supportLayerStatus == true){
+              document.getElementById("support_toggle").style.background = '#fecf01';
+              document.getElementById("support_toggle").style.color = '#4C4C4C';
+              supportLayerStatus = false;
+            }
+            else {
+            }
+            scene.config.layers.justice_locations.supportIcons.visible = supportLayerStatus;
+            scene.updateConfig();
+          }
+        }
+      });
+
       var FullScreenToggle = L.Control.extend({
           options: {
               position: 'bottomleft'
@@ -618,9 +709,6 @@
 
         });
 
-
-
-
       var legalToggleControl = new LegalLayerControl();
       map.addControl(legalToggleControl);
       var enforcementToggleControl = new EnforcementLayerControl();
@@ -639,6 +727,8 @@
       map.addControl(aboutMapControl);
       var fullScreenToggleControl = new FullScreenToggle();
       map.addControl(fullScreenToggleControl);
+      var newControl= new NewControl();
+      map.addControl(newControl);
 
       // Create the popup element
       var popup = L.popup();
