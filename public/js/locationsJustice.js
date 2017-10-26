@@ -12,6 +12,60 @@
         },
       });
 
+      
+
+      function hideLayersExcept(layerToIgnore) {
+        if (scene) {
+          for (i in scene.config.layers.justice_locations) {
+            if ((i !== 'data') && (i !== layerToIgnore)) {
+              scene.config.layers.justice_locations[i].visible = false;
+            } else {
+              scene.config.layers.justice_locations[i].visible = true;
+            }
+          }
+          scene.updateConfig();
+        }
+      }
+
+      function hideSublayers(parentLayerName, sublayerToShow) {
+        console.log("hideSubLayers", parentLayerName, 'sublayerToShow', sublayerToShow);
+        if (scene) {
+        for (i in scene.config.layers.justice_locations) {
+            if (i == parentLayerName) {
+              for (j in scene.config.layers.justice_locations[parentLayerName]) {
+                if ((j !== 'visible') && (j !== 'filter')) {
+                  if (j !== sublayerToShow) {
+                    scene.config.layers.justice_locations[parentLayerName][j].visible = false;
+                  } else {
+                    scene.config.layers.justice_locations[parentLayerName][j].visible = true;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      /* get tangram layer name for legend name */
+      function getTangramName(subtypeName) {
+        switch(subtypeName) {
+          case "Tow Pound": return 'TowPound';
+          case "Logistics": return 'NYPDLogistics';
+          case "Offices & Posts": return 'NYPDAdmin';
+          case "Police Station": return 'NYPDStationhouse';
+          case "Police Service Area Command": return 'NYPDServiceArea';
+          case "NYPD Division of School Safety": return 'NYPDSchoolSafety';
+          case "Parks Police": return 'Parks';
+          case "State Law Enforcement": return 'StateLaw';
+          case "Federal Law Enforcement": return 'lawEnforcement';
+          case "Headquarters": return 'NYPDHeadquarters';
+          case "Parking": return 'Parking';
+          case "Training": return 'Training';
+
+
+        }
+      }
+
       // Legal button **********
       var LegalLayerControl = L.Control.extend({
         options: {
@@ -24,107 +78,67 @@
           return container;
         },
         toggleOnClick: function (e) {
-          var legalLayerStatus = scene.config.layers.justice_locations.legalIcons.visible;
-          var enforcementLayerStatus = scene.config.layers.justice_locations.enforcementIcons.visible;
-          var courtsLayerStatus = scene.config.layers.justice_locations.courtsIcons.visible;
-          var confinementLayerStatus = scene.config.layers.justice_locations.confinementIcons.visible;
-          var alternativesLayerStatus = scene.config.layers.justice_locations.alternativesIcons.visible;
-          var supportLayerStatus = scene.config.layers.justice_locations.supportIcons.visible;
-
-
           if (scene) {
-            if (legalLayerStatus == true){
-            }
-            else {
-              document.getElementById("legal_toggle").style.background = '#5db323';
-              document.getElementById("legal_toggle").style.color = 'white';
-              legalLayerStatus = true;
-            }
-            scene.config.layers.justice_locations.legalIcons.visible = legalLayerStatus;
-
-            
-            if (enforcementLayerStatus == true){
-              document.getElementById("enforcement_toggle").style.background = 'rgba(65,105,173,0.25)';
-              document.getElementById("enforcement_toggle").style.color = '#4C4C4C';
-              enforcementLayerStatus = false;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.enforcementIcons.visible = enforcementLayerStatus;
-            if (courtsLayerStatus == true){
-              document.getElementById("courts_toggle").style.background = 'rgba(165,50,149,0.25)';
-              document.getElementById("courts_toggle").style.color = '#4C4C4C';
-              courtsLayerStatus = false;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.courtsIcons.visible = courtsLayerStatus;
-            if (confinementLayerStatus == true){
-              document.getElementById("confinement_toggle").style.background = 'rgba(202,32,22,0.25)';
-              document.getElementById("confinement_toggle").style.color = '#4C4C4C';
-              confinementLayerStatus = false;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.confinementIcons.visible = confinementLayerStatus;
-            if (alternativesLayerStatus == true){
-              document.getElementById("alternatives_toggle").style.background = 'rgba(123,203,194,0.25)';
-              document.getElementById("alternatives_toggle").style.color = '#4C4C4C';
-              alternativesLayerStatus = false;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.alternativesIcons.visible = alternativesLayerStatus;
-            if (supportLayerStatus == true){
-              document.getElementById("support_toggle").style.background = 'rgba(254,207,1,0.25)';
-              document.getElementById("support_toggle").style.color = '#4C4C4C';
-              supportLayerStatus = false;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.supportIcons.visible = supportLayerStatus;
-            scene.updateConfig();
+            hideLayersExcept('legalIcons');
+            document.getElementById("legal_toggle").style.background = '#5db323';
+            document.getElementById("legal_toggle").style.color = 'white';
           }
         }
       });
+
+      function prepareLegendContainer(el, category) {
+        L.DomUtil.addClass(el, "legend");
+        L.DomUtil.addClass(el, category);
+
+        var innerWrapper = L.DomUtil.create('div', 'type-wrapper');
+        el.appendChild(innerWrapper);
+        
+        // create all elements inside this
+        var types = [
+          "Tow Pound",
+          "Logistics",
+          "Offices & Posts",
+          "Police Station",
+          "Police Service Area Command",
+          "NYPD Division of School Safety",
+          "Parks Police",
+          "State Law Enforcement",
+          "Federal Law Enforcement",
+          "Headquarters",
+          "Parking",
+          "Training"
+        ];
+
+        for (type in types) {
+          var typeItem = L.DomUtil.create('div', 'type-item');
+          typeItem.innerHTML = '<input class="enforcement-type" value="' + types[type] + '" type="button">';
+          L.DomEvent.on(typeItem, 'click', this.toggleTypeInfo);
+          innerWrapper.appendChild(typeItem);
+        }
+        return el;
+      }
 
       // Enforcement button *****************
       var EnforcementLayerControl = L.Control.extend({
         options: {
           position: 'topleft'
         },
-        
-
         onAdd: function() {
           var container = L.DomUtil.create('div', 'layer-control');
           container.innerHTML = '<div id="enforcement"><input id="enforcement_toggle" type="button" value="Enforcement"></div>'
           L.DomEvent.on(container, 'click', this.toggleOnClick);
+          
+          // build legend for subtypes
           L.DomUtil.addClass(container, "legend");
           L.DomUtil.addClass(container, "enforcement");
 
-          // create container to hold the entire menu for show/hide
           var innerWrapper = L.DomUtil.create('div', 'type-wrapper');
           container.appendChild(innerWrapper);
-
-          // create all elements inside this
-          // no jquery loaded yet to static DOM is best for this
-
           var types = [
-            "Tow Pound",
-            "Logistics",
-            "Offices & Posts",
-            "Police Station",
-            "Police Service Area Command",
-            "NYPD Division of School Safety",
-            "Parks Police",
-            "State Law Enforcement",
-            "Federal Law Enforcement",
-            "Headquarters",
-            "Parking",
-            "Training"
+            "Tow Pound", "Logistics", "Offices & Posts", "Police Station", "Police Service Area Command",
+            "NYPD Division of School Safety", "Parks Police", "State Law Enforcement", "Federal Law Enforcement",
+            "Headquarters", "Parking", "Training"
           ];
-
-
 
           for (type in types) {
             var typeItem = L.DomUtil.create('div', 'type-item');
@@ -133,156 +147,28 @@
             innerWrapper.appendChild(typeItem);
           }
           
-
-          /* hiding the info for each subtype for now
-
-          var typeInfo = L.DomUtil.create('div', 'type-info');
-          typeInfo.innerHTML = 'Some starting copy? Maybe the text for the very first item and have that highlighted? Lorem ipsum...';
-
-          innerWrapper.appendChild(typeInfo);
+          /* hiding the info for each subtype for now since we dont have copy
+            var typeInfo = L.DomUtil.create('div', 'type-info');
+            typeInfo.innerHTML = 'Some starting copy? Maybe the text for the very first item and have that highlighted? Lorem ipsum...';
+            innerWrapper.appendChild(typeInfo);
           */
-
-
-
           return container;
         },
-
         toggleTypeInfo: function (e) {
           if (e.target.value) {
-            console.log("click on subitem in enforcement menu with value", e.target.value);
-            
             fadeLegendExceptTarget(e.target);
-            // to add later when we add text - updateItemDetail('enforcement', e.target.value);
-            
-            // turn off all sublayers
-            scene.config.layers.justice_locations.enforcementIcons.lawEnforcement.visible = false;
-            scene.config.layers.justice_locations.enforcementIcons.NYPDAdmin.visible = false;
-            scene.config.layers.justice_locations.enforcementIcons.NYPDSchoolSafety.visible = false;
-            scene.config.layers.justice_locations.enforcementIcons.NYPDHeadquarters.visible = false;
-            scene.config.layers.justice_locations.enforcementIcons.NYPDLogistics.visible = false;
-            scene.config.layers.justice_locations.enforcementIcons.NYPDServiceArea.visible = false;
-            scene.config.layers.justice_locations.enforcementIcons.NYPDStationhouse.visible = false;
-            scene.config.layers.justice_locations.enforcementIcons.TowPound.visible = false;
-            scene.config.layers.justice_locations.enforcementIcons.Parking.visible = false;
-            scene.config.layers.justice_locations.enforcementIcons.Parks.visible = false;
-            scene.config.layers.justice_locations.enforcementIcons.StateLaw.visible = false;
-            scene.config.layers.justice_locations.enforcementIcons.Training.visible = false;
-
-            if (scene) {
-              switch(e.target.value) {
-
-
-                case "Tow Pound":
-                  scene.config.layers.justice_locations.enforcementIcons.TowPound.visible = true;
-                  break;
-                case "Logistics": 
-                  scene.config.layers.justice_locations.enforcementIcons.NYPDLogistics.visible = true;
-                  break;
-                case "Offices & Posts":
-                  scene.config.layers.justice_locations.enforcementIcons.NYPDAdmin.visible = true;
-                  break;
-                case "Police Station":
-                  scene.config.layers.justice_locations.enforcementIcons.NYPDStationhouse.visible = true;
-                  break;
-                case "Police Service Area Command":
-                  scene.config.layers.justice_locations.enforcementIcons.NYPDServiceArea.visible = true;
-                  break;
-                case "NYPD Division of School Safety":
-                  scene.config.layers.justice_locations.enforcementIcons.NYPDSchoolSafety.visible = true;
-                  break;
-                case "Parks Police":
-                  scene.config.layers.justice_locations.enforcementIcons.Parks.visible = true;
-                  break;
-                case "State Law Enforcement":
-                  scene.config.layers.justice_locations.enforcementIcons.StateLaw.visible = true;
-                  break;
-                case "Federal Law Enforcement":
-                  scene.config.layers.justice_locations.enforcementIcons.lawEnforcement.visible = true;
-                  break;
-                case "Headquarters":
-                  scene.config.layers.justice_locations.enforcementIcons.NYPDHeadquarters.visible = true;
-                  break;
-                case "Parking":
-                  scene.config.layers.justice_locations.enforcementIcons.Parking.visible = true;
-                  break;
-                case "Training":
-                  scene.config.layers.justice_locations.enforcementIcons.Training.visible = true;
-                  break;
-                  
-                }
-                scene.updateConfig();
-              }
+            // to add later when we have copy for the types -> updateItemDetail('enforcement', e.target.value);
+            hideSublayers('enforcementIcons', getTangramName(e.target.value));
           }
-
         },
-
-
-
         toggleOnClick: function (e) {
           toggleLegend(e, 'enforcement');
-          
-
-              var legalLayerStatus = scene.config.layers.justice_locations.legalIcons.visible;
-              var enforcementLayerStatus = scene.config.layers.justice_locations.enforcementIcons.visible;
-              var courtsLayerStatus = scene.config.layers.justice_locations.courtsIcons.visible;
-              var confinementLayerStatus = scene.config.layers.justice_locations.confinementIcons.visible;
-              var alternativesLayerStatus = scene.config.layers.justice_locations.alternativesIcons.visible;
-              var supportLayerStatus = scene.config.layers.justice_locations.supportIcons.visible;
-
-
-              if (scene) {
-                if (legalLayerStatus == true){
-                  document.getElementById("legal_toggle").style.background = 'rgba(93,179,35,0.25)';
-                  document.getElementById("legal_toggle").style.color = '#4C4C4C';
-                  legalLayerStatus = false;
-                }
-                else {
-                }
-                scene.config.layers.justice_locations.legalIcons.visible = legalLayerStatus;
-                if (enforcementLayerStatus == true){
-                }
-                else {
-                  document.getElementById("enforcement_toggle").style.background = '#4169ad';
-                  document.getElementById("enforcement_toggle").style.color = 'white';
-                  enforcementLayerStatus = true;
-
-                }
-                scene.config.layers.justice_locations.enforcementIcons.visible = enforcementLayerStatus;
-                if (courtsLayerStatus == true){
-                  document.getElementById("courts_toggle").style.background = 'rgba(165,50,149,0.25)';
-                  document.getElementById("courts_toggle").style.color = '#4C4C4C';
-                  courtsLayerStatus = false;
-                }
-                else {
-                }
-                scene.config.layers.justice_locations.courtsIcons.visible = courtsLayerStatus;
-                if (confinementLayerStatus == true){
-                  document.getElementById("confinement_toggle").style.background = 'rgba(202,32,22,0.25)';
-                  document.getElementById("confinement_toggle").style.color = '#4C4C4C';
-                  confinementLayerStatus = false;
-                }
-                else {
-                }
-                scene.config.layers.justice_locations.confinementIcons.visible = confinementLayerStatus;
-                if (alternativesLayerStatus == true){
-                  document.getElementById("alternatives_toggle").style.background = 'rgba(123,203,194,0.25)';
-                  document.getElementById("alternatives_toggle").style.color = '#4C4C4C';
-                  alternativesLayerStatus = false;
-                }
-                else {
-                }
-                scene.config.layers.justice_locations.alternativesIcons.visible = alternativesLayerStatus;
-                if (supportLayerStatus == true){
-                  document.getElementById("support_toggle").style.background = 'rgba(254,207,1,0.25)';
-                  document.getElementById("support_toggle").style.color = '#4C4C4C';
-                  supportLayerStatus = false;
-                }
-                else {
-                }
-                scene.config.layers.justice_locations.supportIcons.visible = supportLayerStatus;
-                scene.updateConfig();
-              }
-            }
+          if (scene) {
+            hideLayersExcept('enforcementIcons');
+            document.getElementById("legal_toggle").style.background = '#5db323';
+            document.getElementById("legal_toggle").style.color = 'white';
+          }
+        }
       });
 
 
@@ -299,62 +185,10 @@
           return container;
         },
         toggleOnClick: function (e) {
-          var legalLayerStatus = scene.config.layers.justice_locations.legalIcons.visible;
-          var enforcementLayerStatus = scene.config.layers.justice_locations.enforcementIcons.visible;
-          var courtsLayerStatus = scene.config.layers.justice_locations.courtsIcons.visible;
-          var confinementLayerStatus = scene.config.layers.justice_locations.confinementIcons.visible;
-          var alternativesLayerStatus = scene.config.layers.justice_locations.alternativesIcons.visible;
-          var supportLayerStatus = scene.config.layers.justice_locations.supportIcons.visible;
           if (scene) {
-            if (legalLayerStatus == true){
-              document.getElementById("legal_toggle").style.background = 'rgba(93,179,35,0.25)';
-              document.getElementById("legal_toggle").style.color = '#4C4C4C';
-              legalLayerStatus = false;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.legalIcons.visible = legalLayerStatus;
-            if (enforcementLayerStatus == true){
-              document.getElementById("enforcement_toggle").style.background = 'rgba(65,105,173,0.25)';
-              document.getElementById("enforcement_toggle").style.color = '#4C4C4C';
-              enforcementLayerStatus = false;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.enforcementIcons.visible = enforcementLayerStatus;
-            if (courtsLayerStatus == true){
-            }
-            else {
-              document.getElementById("courts_toggle").style.background = '#a53295';
-              document.getElementById("courts_toggle").style.color = 'white';
-              courtsLayerStatus = true;
-            }
-            scene.config.layers.justice_locations.courtsIcons.visible = courtsLayerStatus;
-            if (confinementLayerStatus == true){
-              document.getElementById("confinement_toggle").style.background = 'rgba(202,32,22,0.25)';
-              document.getElementById("confinement_toggle").style.color = '#4C4C4C';
-              confinementLayerStatus = false;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.confinementIcons.visible = confinementLayerStatus;
-            if (alternativesLayerStatus == true){
-              document.getElementById("alternatives_toggle").style.background = 'rgba(123,203,194,0.25)';
-              document.getElementById("alternatives_toggle").style.color = '#4C4C4C';
-              alternativesLayerStatus = false;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.alternativesIcons.visible = alternativesLayerStatus;
-            if (supportLayerStatus == true){
-              document.getElementById("support_toggle").style.background = 'rgba(254,207,1,0.25)';
-              document.getElementById("support_toggle").style.color = '#4C4C4C';
-              supportLayerStatus = false;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.supportIcons.visible = supportLayerStatus;
-            scene.updateConfig();
+            hideLayersExcept('courtsIcons');
+            document.getElementById("legal_toggle").style.background = '#5db323';
+            document.getElementById("legal_toggle").style.color = 'white';
           }
         }
       });
@@ -371,62 +205,10 @@
           return container;
         },
         toggleOnClick: function (e) {
-          var legalLayerStatus = scene.config.layers.justice_locations.legalIcons.visible;
-          var enforcementLayerStatus = scene.config.layers.justice_locations.enforcementIcons.visible;
-          var courtsLayerStatus = scene.config.layers.justice_locations.courtsIcons.visible;
-          var confinementLayerStatus = scene.config.layers.justice_locations.confinementIcons.visible;
-          var alternativesLayerStatus = scene.config.layers.justice_locations.alternativesIcons.visible;
-          var supportLayerStatus = scene.config.layers.justice_locations.supportIcons.visible;
           if (scene) {
-            if (legalLayerStatus == true){
-              document.getElementById("legal_toggle").style.background = 'rgba(93,179,35,0.25)';
-              document.getElementById("legal_toggle").style.color = '#4C4C4C';
-              legalLayerStatus = false;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.legalIcons.visible = legalLayerStatus;
-            if (enforcementLayerStatus == true){
-              document.getElementById("enforcement_toggle").style.background = 'rgba(65,105,173,0.25)';
-              document.getElementById("enforcement_toggle").style.color = '#4C4C4C';
-              enforcementLayerStatus = false;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.enforcementIcons.visible = enforcementLayerStatus;
-            if (courtsLayerStatus == true){
-              document.getElementById("courts_toggle").style.background = 'rgba(165,50,149,0.25)';
-              document.getElementById("courts_toggle").style.color = '#4C4C4C';
-              courtsLayerStatus = false;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.courtsIcons.visible = courtsLayerStatus;
-            if (confinementLayerStatus == true){
-            }
-            else {
-              document.getElementById("confinement_toggle").style.background = '#ca2016';
-              document.getElementById("confinement_toggle").style.color = 'white';
-              confinementLayerStatus = true;
-            }
-            scene.config.layers.justice_locations.confinementIcons.visible = confinementLayerStatus;
-            if (alternativesLayerStatus == true){
-              document.getElementById("alternatives_toggle").style.background = 'rgba(123,203,194,0.25)';
-              document.getElementById("alternatives_toggle").style.color = '#4C4C4C';
-              alternativesLayerStatus = false;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.alternativesIcons.visible = alternativesLayerStatus;
-            if (supportLayerStatus == true){
-              document.getElementById("support_toggle").style.background = 'rgba(254,207,1,0.25)';
-              document.getElementById("support_toggle").style.color = '#4C4C4C';
-              supportLayerStatus = false;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.supportIcons.visible = supportLayerStatus;
-            scene.updateConfig();
+            hideLayersExcept('confinementIcons');
+            document.getElementById("legal_toggle").style.background = '#5db323';
+            document.getElementById("legal_toggle").style.color = 'white';
           }
         }
       });
@@ -443,62 +225,10 @@
           return container;
         },
         toggleOnClick: function (e) {
-          var legalLayerStatus = scene.config.layers.justice_locations.legalIcons.visible;
-          var enforcementLayerStatus = scene.config.layers.justice_locations.enforcementIcons.visible;
-          var courtsLayerStatus = scene.config.layers.justice_locations.courtsIcons.visible;
-          var confinementLayerStatus = scene.config.layers.justice_locations.confinementIcons.visible;
-          var alternativesLayerStatus = scene.config.layers.justice_locations.alternativesIcons.visible;
-          var supportLayerStatus = scene.config.layers.justice_locations.supportIcons.visible;
           if (scene) {
-            if (legalLayerStatus == true){
-              document.getElementById("legal_toggle").style.background = 'rgba(93,179,35,0.25)';
-              document.getElementById("legal_toggle").style.color = '#4C4C4C';
-              legalLayerStatus = false;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.legalIcons.visible = legalLayerStatus;
-            if (enforcementLayerStatus == true){
-              document.getElementById("enforcement_toggle").style.background = 'rgba(65,105,173,0.25)';
-              document.getElementById("enforcement_toggle").style.color = '#4C4C4C';
-              enforcementLayerStatus = false;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.enforcementIcons.visible = enforcementLayerStatus;
-            if (courtsLayerStatus == true){
-              document.getElementById("courts_toggle").style.background = 'rgba(165,50,149,0.25)';
-              document.getElementById("courts_toggle").style.color = '#4C4C4C';
-              courtsLayerStatus = false;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.courtsIcons.visible = courtsLayerStatus;
-            if (confinementLayerStatus == true){
-              document.getElementById("confinement_toggle").style.background = 'rgba(202,32,22,0.25)';
-              document.getElementById("confinement_toggle").style.color = '#4C4C4C';
-              confinementLayerStatus = false;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.confinementIcons.visible = confinementLayerStatus;
-            if (alternativesLayerStatus == true){
-            }
-            else {
-              document.getElementById("alternatives_toggle").style.background = '#7bcbc2';
-              document.getElementById("alternatives_toggle").style.color = 'white';
-              alternativesLayerStatus = true;
-            }
-            scene.config.layers.justice_locations.alternativesIcons.visible = alternativesLayerStatus;
-            if (supportLayerStatus == true){
-              document.getElementById("support_toggle").style.background = 'rgba(254,207,1,0.25)';
-              document.getElementById("support_toggle").style.color = '#4C4C4C';
-              supportLayerStatus = false;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.supportIcons.visible = supportLayerStatus;
-            scene.updateConfig();
+            hideLayersExcept('alternativesIcons');
+            document.getElementById("legal_toggle").style.background = '#5db323';
+            document.getElementById("legal_toggle").style.color = 'white';
           }
         }
       });
@@ -515,62 +245,10 @@
           return container;
         },
         toggleOnClick: function (e) {
-          var legalLayerStatus = scene.config.layers.justice_locations.legalIcons.visible;
-          var enforcementLayerStatus = scene.config.layers.justice_locations.enforcementIcons.visible;
-          var courtsLayerStatus = scene.config.layers.justice_locations.courtsIcons.visible;
-          var confinementLayerStatus = scene.config.layers.justice_locations.confinementIcons.visible;
-          var alternativesLayerStatus = scene.config.layers.justice_locations.alternativesIcons.visible;
-          var supportLayerStatus = scene.config.layers.justice_locations.supportIcons.visible;
           if (scene) {
-            if (legalLayerStatus == true){
-              document.getElementById("legal_toggle").style.background = 'rgba(93,179,35,0.25)';
-              document.getElementById("legal_toggle").style.color = '#4C4C4C';
-              legalLayerStatus = false;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.legalIcons.visible = legalLayerStatus;
-            if (enforcementLayerStatus == true){
-              document.getElementById("enforcement_toggle").style.background = 'rgba(65,105,173,0.25)';
-              document.getElementById("enforcement_toggle").style.color = '#4C4C4C';
-              enforcementLayerStatus = false;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.enforcementIcons.visible = enforcementLayerStatus;
-            if (courtsLayerStatus == true){
-              document.getElementById("courts_toggle").style.background = 'rgba(165,50,149,0.25)';
-              document.getElementById("courts_toggle").style.color = '#4C4C4C';
-              courtsLayerStatus = false;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.courtsIcons.visible = courtsLayerStatus;
-            if (confinementLayerStatus == true){
-              document.getElementById("confinement_toggle").style.background = 'rgba(202,32,22,0.25)';
-              document.getElementById("confinement_toggle").style.color = '#4C4C4C';
-              confinementLayerStatus = false;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.confinementIcons.visible = confinementLayerStatus;
-            if (alternativesLayerStatus == true){
-              document.getElementById("alternatives_toggle").style.background = 'rgba(123,203,194,0.25)';
-              document.getElementById("alternatives_toggle").style.color = '#4C4C4C';
-              alternativesLayerStatus = false;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.alternativesIcons.visible = alternativesLayerStatus;
-            if (supportLayerStatus == true){
-            }
-            else {
-              document.getElementById("support_toggle").style.background = '#fecf01';
-              document.getElementById("support_toggle").style.color = '#4C4C4C';
-              supportLayerStatus = true;
-            }
-            scene.config.layers.justice_locations.supportIcons.visible = supportLayerStatus;
-            scene.updateConfig();
+            hideLayersExcept('supportIcons');
+            document.getElementById("legal_toggle").style.background = '#5db323';
+            document.getElementById("legal_toggle").style.color = 'white';
           }
         }
       });
@@ -587,62 +265,10 @@
           return container;
         },
         toggleOnClick: function (e) {
-          var legalLayerStatus = scene.config.layers.justice_locations.legalIcons.visible;
-          var enforcementLayerStatus = scene.config.layers.justice_locations.enforcementIcons.visible;
-          var courtsLayerStatus = scene.config.layers.justice_locations.courtsIcons.visible;
-          var confinementLayerStatus = scene.config.layers.justice_locations.confinementIcons.visible;
-          var alternativesLayerStatus = scene.config.layers.justice_locations.alternativesIcons.visible;
-          var supportLayerStatus = scene.config.layers.justice_locations.supportIcons.visible;
           if (scene) {
-            if (legalLayerStatus == false){
-              document.getElementById("legal_toggle").style.background = '#5db323';
-              document.getElementById("legal_toggle").style.color = 'white';
-              legalLayerStatus = true;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.legalIcons.visible = legalLayerStatus;
-            if (enforcementLayerStatus == false){
-              document.getElementById("enforcement_toggle").style.background = '#4169ad';
-              document.getElementById("enforcement_toggle").style.color = 'white';
-              enforcementLayerStatus = true;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.enforcementIcons.visible = enforcementLayerStatus;
-            if (courtsLayerStatus == false){
-              document.getElementById("courts_toggle").style.background = '#a53295';
-              document.getElementById("courts_toggle").style.color = 'white';
-              courtsLayerStatus = true;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.courtsIcons.visible = courtsLayerStatus;
-            if (confinementLayerStatus == false){
-              document.getElementById("confinement_toggle").style.background = '#ca2016';
-              document.getElementById("confinement_toggle").style.color = 'white';
-              confinementLayerStatus = true;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.confinementIcons.visible = confinementLayerStatus;
-            if (alternativesLayerStatus == false){
-              document.getElementById("alternatives_toggle").style.background = '#7bcbc2';
-              document.getElementById("alternatives_toggle").style.color = 'white';
-              alternativesLayerStatus = true;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.alternativesIcons.visible = alternativesLayerStatus;
-            if (supportLayerStatus == false){
-              document.getElementById("support_toggle").style.background = '#fecf01';
-              document.getElementById("support_toggle").style.color = '#4C4C4C';
-              supportLayerStatus = true;
-            }
-            else {
-            }
-            scene.config.layers.justice_locations.supportIcons.visible = supportLayerStatus;
-            scene.updateConfig();
+            hideLayersExcept(null);
+            document.getElementById("legal_toggle").style.background = '#5db323';
+            document.getElementById("legal_toggle").style.color = 'white';
           }
         }
       });
