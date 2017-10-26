@@ -64,6 +64,7 @@ html, body {
   width: 80px;
   text-align: left;
   color: white;
+  width: 100px;
 }
 .leaflet-top {
   top: 10px;

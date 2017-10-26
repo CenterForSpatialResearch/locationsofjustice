@@ -32,8 +32,6 @@
           var supportLayerStatus = scene.config.layers.justice_locations.supportIcons.visible;
 
 
-          console.log("legal click, enforcementLayerStatus is ", enforcementLayerStatus);
-
           if (scene) {
             if (legalLayerStatus == true){
             }
@@ -95,7 +93,7 @@
         options: {
           position: 'topleft'
         },
-
+        
 
         onAdd: function() {
           var container = L.DomUtil.create('div', 'layer-control');
@@ -106,7 +104,6 @@
 
           // create container to hold the entire menu for show/hide
           var innerWrapper = L.DomUtil.create('div', 'type-wrapper');
-          L.DomEvent.on(innerWrapper, 'click', this.toggleTypeInfo);
           container.appendChild(innerWrapper);
 
           // create all elements inside this
@@ -127,12 +124,17 @@
             "Training"
           ];
 
-          for (type in types) {
+
+
+          /*for (type in types) {
             var typeItem = L.DomUtil.create('div', 'type-item');
             typeItem.innerHTML = '<input class="enforcement-type" value="' + types[type] + '" type="button">';
             L.DomEvent.on(typeItem, 'click', this.toggleTypeInfo);
             innerWrapper.appendChild(typeItem);
           }
+          */
+
+
 
           var typeInfo = L.DomUtil.create('div', 'type-info');
           typeInfo.innerHTML = 'Some starting copy? Maybe the text for the very first item and have that highlighted? Lorem ipsum...';
@@ -153,11 +155,9 @@
             updateItemDetail('enforcement', e.target.value);
 
 
-
-            // hide all enforcement items except for the one selected
-            // this is not working... not sure why
-            scene.config.layers.justice_locations.enforcementIcons.visible = false;
-
+            // toggling statuses here has no effect...
+            
+            
             
             
           }
@@ -167,8 +167,10 @@
 
 
         toggleOnClick: function (e) {
+          console.log(" ------- toggleOnCLick called for input of parent item, updating layer statuses");
+          //toggleLegend(e, 'enforcement');
+          
 
-          toggleLegend(e, 'enforcement');
 
 
 
@@ -179,6 +181,18 @@
               var confinementLayerStatus = scene.config.layers.justice_locations.confinementIcons.visible;
               var alternativesLayerStatus = scene.config.layers.justice_locations.alternativesIcons.visible;
               var supportLayerStatus = scene.config.layers.justice_locations.supportIcons.visible;
+
+              var enf_NYPDAdmin = scene.config.layers.justice_locations.enforcementIcons.NYPDAdmin.visible;
+              var enf_NYPDSchoolSafety = scene.config.layers.justice_locations.enforcementIcons.NYPDSchoolSafety.visible;
+              var enf_NYPDHQ = scene.config.layers.justice_locations.enforcementIcons.NYPDHeadquarters.visible;
+              var enf_NYPDLogistics = scene.config.layers.justice_locations.enforcementIcons.NYPDLogistics.visible;
+              var enf_NYPDServiceArea = scene.config.layers.justice_locations.enforcementIcons.NYPDServiceArea.visible;
+              
+              //console.dir(scene.config.layers.justice_locations.enforcementIcons);
+
+
+
+
               if (scene) {
                 if (legalLayerStatus == true){
                   document.getElementById("legal_toggle").style.background = 'rgba(93,179,35,0.25)';
@@ -189,11 +203,36 @@
                 }
                 scene.config.layers.justice_locations.legalIcons.visible = legalLayerStatus;
                 if (enforcementLayerStatus == true){
+
+
+                  // adding a new control now also doesnt work because it cant add it to the map after Tangram 
+                  // has initialized
+                  
+                  // if i do this it hides everything
+                  //enforcementLayerStatus = false;
+                  
+                  // however toggling these doesn't have any effects
+                  enf_NYPDAdmin = false;
+                  enf_NYPDSchoolSafety = false;
+                  enf_NYPDHQ = false;
+                  scene.updateConfig();
+                  // etc...
+
+                  
                 }
                 else {
                   document.getElementById("enforcement_toggle").style.background = '#4169ad';
                   document.getElementById("enforcement_toggle").style.color = 'white';
+                  
                   enforcementLayerStatus = true;
+
+
+                  
+                  
+      
+
+
+
                 }
                 scene.config.layers.justice_locations.enforcementIcons.visible = enforcementLayerStatus;
                 if (courtsLayerStatus == true){
@@ -232,6 +271,8 @@
               }
             }
       });
+
+
 
       // Courts button *****************
       var CourtsLayerControl = L.Control.extend({
@@ -650,6 +691,10 @@
       map.addControl(aboutMapControl);
       var fullScreenToggleControl = new FullScreenToggle();
       map.addControl(fullScreenToggleControl);
+
+
+      
+
 
       // Create the popup element
       var popup = L.popup();
