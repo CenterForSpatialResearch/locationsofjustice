@@ -38,20 +38,21 @@
 </head>
 <body onload="buildLegend()">
 
-
     <div id="justiceMap" style="width: 1024px; height: 576px;">
-        
-        <div id="aboutPopup" style="display: none"><div class="aboutClose" onclick="closeAbout()">X</div>
-        <h3>About this map</h3>
+
+      <div id="aboutPopup" style="display: none">
+        <div class="aboutClose" onclick="closeAbout()">X</div>
+        <h3>About This Map</h3>
         <p>Where is “justice” located in New York City? Or more concretely, where can we locate — and what sites do we include in — the city’s “criminal justice system”? This map attempts to answer that question, drawing on publically-available information to chart the breadth and locations of the institutions and agencies involved. You can sort the points by function (for example, enforcement, confinement, or courts) and by the type of site (for example, jail, criminal court, or probation office). Click on a point to find out more about the site.</p>
-    <p>This map is a collaborative project between Urban Omnibus and the Center for Spatial Research at Columbia Graduate School of Architecture, Planning and Preservation. It is a work in progress, and does not claim to be comprehensive or objective — like all maps, it has a point of view. But it does seek to be accurate; if you spot an error or think something else ought to be included, please be in touch [hyperlink mailto:schwob@archleague.org].</p>
-       <h3>Intensity</h3>
-       <p>We’ve coded the sites on this map by relative intensity of their power within the city's criminal justice system.</p>
-       <p>DIRECT: At these sites, people are detained and confined against their will, and executive actors make decisions limiting the lives and mobility of thousands of people.</p>
-       <p>INDIRECT: Here, people’s lives are limited in less direct ways, such as through fines and surveillance, or through mandatory participation in various rehabilitation and diversion programs.</p>
-       <p>SUPPORT: These sites provide logistical, administrative, and infrastructural support to the primary systems of enforcement, adjudication, and confinement.</p>
-    </div></div>
-    
+        <p>This map is a collaborative project between Urban Omnibus and the Center for Spatial Research at Columbia Graduate School of Architecture, Planning and Preservation. It is a work in progress, and does not claim to be comprehensive or objective — like all maps, it has a point of view. But it does seek to be accurate; if you spot an error or think something else ought to be included, please be in touch <a href="mailto:schwob@archleague.org">here</a>.</p>
+        <h3>Intensity</h3>
+        <p>We’ve coded the sites on this map by relative intensity of their power within the city's criminal justice system.</p>
+        <p>DIRECT: At these sites, people are detained and confined against their will, and executive actors make decisions limiting the lives and mobility of thousands of people.</p>
+        <p>INDIRECT: Here, people’s lives are limited in less direct ways, such as through fines and surveillance, or through mandatory participation in various rehabilitation and diversion programs.</p>
+        <p>SUPPORT: These sites provide logistical, administrative, and infrastructural support to the primary systems of enforcement, adjudication, and confinement.</p>
+      </div>
+    </div>
+
     <script
         src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -61,7 +62,6 @@
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="js/locationsJustice.js"></script>
     <script src="js/legend.js"></script>
-
 
 </body>
 </html>

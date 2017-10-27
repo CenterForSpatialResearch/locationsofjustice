@@ -359,7 +359,7 @@ layers:
       filter: {CATEGORY: Enforcement}
       lawEnforcement:
         visible: true
-        filter: {TYPE: Federal Law Enforcement}
+        filter: {SUBMENU: Federal Law Enforcement}
         enforcement_1_icons:
           filter:
             RANK: 1
@@ -386,7 +386,7 @@ layers:
               interactive: true
       NYPDAdmin:
         visible: true
-        filter: {TYPE: NYPD Administration & Special Units}
+        filter: {SUBMENU: NYPD Administration & Special Units}
         enforcement_1_icons:
           filter:
             RANK: 1
@@ -413,7 +413,7 @@ layers:
               interactive: true
       NYPDSchoolSafety:
         visible: true
-        filter: {TYPE: NYPD Division of School Safety}
+        filter: {SUBMENU: NYPD Division of School Safety}
         enforcement_1_icons:
           filter:
             RANK: 1
@@ -440,7 +440,7 @@ layers:
               interactive: true
       NYPDHeadquarters:
         visible: true
-        filter: {TYPE: NYPD Headquarters}
+        filter: {SUBMENU: NYPD Headquarters}
         enforcement_1_icons:
           filter:
             RANK: 1
@@ -467,7 +467,7 @@ layers:
               interactive: true
       NYPDLogistics:
         visible: true
-        filter: {TYPE: NYPD Logistics}
+        filter: {SUBMENU: NYPD Logistics}
         enforcement_1_icons:
           filter:
             RANK: 1
@@ -494,7 +494,7 @@ layers:
               interactive: true
       NYPDServiceArea:
         visible: true
-        filter: {TYPE: NYPD Police Service Area Command}
+        filter: {SUBMENU: NYPD Police Service Area Command}
         enforcement_1_icons:
           filter:
             RANK: 1
@@ -521,7 +521,7 @@ layers:
               interactive: true
       NYPDStationhouse:
         visible: true
-        filter: {TYPE: NYPD Precinct Stationhouse}
+        filter: {SUBMENU: NYPD Precinct Stationhouse}
         enforcement_1_icons:
           filter:
             RANK: 1
@@ -548,7 +548,7 @@ layers:
               interactive: true
       TowPound:
         visible: true
-        filter: {TYPE: NYPD Tow Pound}
+        filter: {SUBMENU: NYPD Tow Pound}
         enforcement_1_icons:
           filter:
             RANK: 1
@@ -575,7 +575,7 @@ layers:
               interactive: true
       Parking:
         visible: true
-        filter: {TYPE: Parking}
+        filter: {SUBMENU: Parking}
         enforcement_1_icons:
           filter:
             RANK: 1
@@ -602,7 +602,7 @@ layers:
               interactive: true
       Parks:
         visible: true
-        filter: {TYPE: Parks Police}
+        filter: {SUBMENU: Parks Police}
         enforcement_1_icons:
           filter:
             RANK: 1
@@ -629,7 +629,7 @@ layers:
               interactive: true
       StateLaw:
         visible: true
-        filter: {TYPE: State Law Enforcement}
+        filter: {SUBMENU: State Law Enforcement}
         enforcement_1_icons:
           filter:
             RANK: 1
@@ -656,7 +656,7 @@ layers:
               interactive: true
       Training:
         visible: true
-        filter: {TYPE: Training}
+        filter: {SUBMENU: Training}
         enforcement_1_icons:
           filter:
             RANK: 1
@@ -684,135 +684,744 @@ layers:
     legalIcons:
       visible: true
       filter: {CATEGORY: Legal}
-      legal_1_icons:
-        filter:
-          RANK: 1
-        draw:
-          legalStyle_1:
-            size: global.iconSize
-            collide: false
-            interactive: true
-      legal_3_icons:
-        filter:
-          RANK: 3
-        draw:
-          legalStyle_3:
-            size: global.iconSize
-            collide: false
-            interactive: true
-      legal_5_icons:
-        filter:
-          RANK: 5
-        draw:
-          legalStyle_5:
-            size: global.iconSize
-            collide: false
-            interactive: true
+      Grievance:
+        visible: true
+        filter: {SUBMENU: Attorney Conduct Grievance Committee}
+        legal_1_icons:
+          filter:
+            RANK: 1
+          draw:
+            legalStyle_1:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        legal_3_icons:
+          filter:
+            RANK: 3
+          draw:
+            legalStyle_3:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        legal_5_icons:
+          filter:
+            RANK: 5
+          draw:
+            legalStyle_5:
+              size: global.iconSize
+              collide: false
+              interactive: true
+      FederalProsecutor:
+        visible: true
+        filter: {SUBMENU: Fedral Prosecutor}
+        legal_1_icons:
+          filter:
+            RANK: 1
+          draw:
+            legalStyle_1:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        legal_3_icons:
+          filter:
+            RANK: 3
+          draw:
+            legalStyle_3:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        legal_5_icons:
+          filter:
+            RANK: 5
+          draw:
+            legalStyle_5:
+              size: global.iconSize
+              collide: false
+              interactive: true
+      MentalHygiene:
+        visible: true
+        filter: {SUBMENU: Mental Hygiene Legal Services}
+        legal_1_icons:
+          filter:
+            RANK: 1
+          draw:
+            legalStyle_1:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        legal_3_icons:
+          filter:
+            RANK: 3
+          draw:
+            legalStyle_3:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        legal_5_icons:
+          filter:
+            RANK: 5
+          draw:
+            legalStyle_5:
+              size: global.iconSize
+              collide: false
+              interactive: true
+      PublicAppellate:
+        visible: true
+        filter: {SUBMENU: Public Appellate Representation}
+        legal_1_icons:
+          filter:
+            RANK: 1
+          draw:
+            legalStyle_1:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        legal_3_icons:
+          filter:
+            RANK: 3
+          draw:
+            legalStyle_3:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        legal_5_icons:
+          filter:
+            RANK: 5
+          draw:
+            legalStyle_5:
+              size: global.iconSize
+              collide: false
+              interactive: true
+      PublicDefender:
+        visible: true
+        filter: {SUBMENU: Public Defender}
+        legal_1_icons:
+          filter:
+            RANK: 1
+          draw:
+            legalStyle_1:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        legal_3_icons:
+          filter:
+            RANK: 3
+          draw:
+            legalStyle_3:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        legal_5_icons:
+          filter:
+            RANK: 5
+          draw:
+            legalStyle_5:
+              size: global.iconSize
+              collide: false
+              interactive: true
+      PublicFamily:
+        visible: true
+        filter: {SUBMENU: Public Family Court Representation}
+        legal_1_icons:
+          filter:
+            RANK: 1
+          draw:
+            legalStyle_1:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        legal_3_icons:
+          filter:
+            RANK: 3
+          draw:
+            legalStyle_3:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        legal_5_icons:
+          filter:
+            RANK: 5
+          draw:
+            legalStyle_5:
+              size: global.iconSize
+              collide: false
+              interactive: true
+      StateProsecutor:
+        visible: true
+        filter: {SUBMENU: State Prosecutor}
+        legal_1_icons:
+          filter:
+            RANK: 1
+          draw:
+            legalStyle_1:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        legal_3_icons:
+          filter:
+            RANK: 3
+          draw:
+            legalStyle_3:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        legal_5_icons:
+          filter:
+            RANK: 5
+          draw:
+            legalStyle_5:
+              size: global.iconSize
+              collide: false
+              interactive: true
     courtsIcons:
       visible: true
       filter: {CATEGORY: Courts}
-      courts_1_icons:
-        filter:
-          RANK: 1
-        draw:
-          courtsStyle_1:
-            size: global.iconSize
-            collide: false
-            interactive: true
-      courts_3_icons:
-        filter:
-          RANK: 3
-        draw:
-          courtsStyle_3:
-            size: global.iconSize
-            collide: false
-            interactive: true
-      courts_5_icons:
-        filter:
-          RANK: 5
-        draw:
-          courtsStyle_5:
-            size: global.iconSize
-            collide: false
-            interactive: true
+      AlternativeCourt:
+        visible: true
+        filter: {SUBMENU: Alternative Court}
+        courts_1_icons:
+          filter:
+            RANK: 1
+          draw:
+            courtsStyle_1:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        courts_3_icons:
+          filter:
+            RANK: 3
+          draw:
+            courtsStyle_3:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        courts_5_icons:
+          filter:
+            RANK: 5
+          draw:
+            courtsStyle_5:
+              size: global.iconSize
+              collide: false
+              interactive: true
+      AppealsCourt:
+        visible: true
+        filter: {SUBMENU: Appeals Court}
+        courts_1_icons:
+          filter:
+            RANK: 1
+          draw:
+            courtsStyle_1:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        courts_3_icons:
+          filter:
+            RANK: 3
+          draw:
+            courtsStyle_3:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        courts_5_icons:
+          filter:
+            RANK: 5
+          draw:
+            courtsStyle_5:
+              size: global.iconSize
+              collide: false
+              interactive: true
+      CivilCriminalCourt:
+        visible: true
+        filter: {SUBMENU: Civil & Criminal Court}
+        courts_1_icons:
+          filter:
+            RANK: 1
+          draw:
+            courtsStyle_1:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        courts_3_icons:
+          filter:
+            RANK: 3
+          draw:
+            courtsStyle_3:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        courts_5_icons:
+          filter:
+            RANK: 5
+          draw:
+            courtsStyle_5:
+              size: global.iconSize
+              collide: false
+              interactive: true
+      CivilCourt:
+        visible: true
+        filter: {SUBMENU: Civil Court}
+        courts_1_icons:
+          filter:
+            RANK: 1
+          draw:
+            courtsStyle_1:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        courts_3_icons:
+          filter:
+            RANK: 3
+          draw:
+            courtsStyle_3:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        courts_5_icons:
+          filter:
+            RANK: 5
+          draw:
+            courtsStyle_5:
+              size: global.iconSize
+              collide: false
+              interactive: true
+      CriminalCourt:
+        visible: true
+        filter: {SUBMENU: Criminal Court}
+        courts_1_icons:
+          filter:
+            RANK: 1
+          draw:
+            courtsStyle_1:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        courts_3_icons:
+          filter:
+            RANK: 3
+          draw:
+            courtsStyle_3:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        courts_5_icons:
+          filter:
+            RANK: 5
+          draw:
+            courtsStyle_5:
+              size: global.iconSize
+              collide: false
+              interactive: true
+      FamilyCourt:
+        visible: true
+        filter: {SUBMENU: Family Court}
+        courts_1_icons:
+          filter:
+            RANK: 1
+          draw:
+            courtsStyle_1:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        courts_3_icons:
+          filter:
+            RANK: 3
+          draw:
+            courtsStyle_3:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        courts_5_icons:
+          filter:
+            RANK: 5
+          draw:
+            courtsStyle_5:
+              size: global.iconSize
+              collide: false
+              interactive: true
+      Immigration:
+        visible: true
+        filter: {SUBMENU: Immigration Court}
+        courts_1_icons:
+          filter:
+            RANK: 1
+          draw:
+            courtsStyle_1:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        courts_3_icons:
+          filter:
+            RANK: 3
+          draw:
+            courtsStyle_3:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        courts_5_icons:
+          filter:
+            RANK: 5
+          draw:
+            courtsStyle_5:
+              size: global.iconSize
+              collide: false
+              interactive: true
     alternativesIcons:
       visible: true
       filter: {CATEGORY: Alternatives}
-      alternatives_1_icons:
-        filter:
-          RANK: 1
-        draw:
-          alternativesStyle_1:
-            size: global.iconSize
-            collide: false
-            interactive: true
-      alternatives_3_icons:
-        filter:
-          RANK: 3
-        draw:
-          alternativesStyle_3:
-            size: global.iconSize
-            collide: false
-            interactive: true
-      alternatives_5_icons:
-        filter:
-          RANK: 5
-        draw:
-          alternativesStyle_5:
-            size: global.iconSize
-            collide: false
-            interactive: true
+      FederalProbation:
+        visible: true
+        filter: {SUBMENU: Federal Probation Office}
+        alternatives_1_icons:
+          filter:
+            RANK: 1
+          draw:
+            alternativesStyle_1:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        alternatives_3_icons:
+          filter:
+            RANK: 3
+          draw:
+            alternativesStyle_3:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        alternatives_5_icons:
+          filter:
+            RANK: 5
+          draw:
+            alternativesStyle_5:
+              size: global.iconSize
+              collide: false
+              interactive: true
+      JuvenileProbation:
+        visible: true
+        filter: {SUBMENU: Juvenile Probation}
+        alternatives_1_icons:
+          filter:
+            RANK: 1
+          draw:
+            alternativesStyle_1:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        alternatives_3_icons:
+          filter:
+            RANK: 3
+          draw:
+            alternativesStyle_3:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        alternatives_5_icons:
+          filter:
+            RANK: 5
+          draw:
+            alternativesStyle_5:
+              size: global.iconSize
+              collide: false
+              interactive: true
+      Neon:
+        visible: true
+        filter: {SUBMENU: Neighborhood Opportuity Network (NeON)}
+        alternatives_1_icons:
+          filter:
+            RANK: 1
+          draw:
+            alternativesStyle_1:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        alternatives_3_icons:
+          filter:
+            RANK: 3
+          draw:
+            alternativesStyle_3:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        alternatives_5_icons:
+          filter:
+            RANK: 5
+          draw:
+            alternativesStyle_5:
+              size: global.iconSize
+              collide: false
+              interactive: true
+      ParoleOffice:
+        visible: true
+        filter: {SUBMENU: Parole office}
+        alternatives_1_icons:
+          filter:
+            RANK: 1
+          draw:
+            alternativesStyle_1:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        alternatives_3_icons:
+          filter:
+            RANK: 3
+          draw:
+            alternativesStyle_3:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        alternatives_5_icons:
+          filter:
+            RANK: 5
+          draw:
+            alternativesStyle_5:
+              size: global.iconSize
+              collide: false
+              interactive: true
+      ProbationOffice:
+        visible: true
+        filter: {SUBMENU: Probation Office}
+        alternatives_1_icons:
+          filter:
+            RANK: 1
+          draw:
+            alternativesStyle_1:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        alternatives_3_icons:
+          filter:
+            RANK: 3
+          draw:
+            alternativesStyle_3:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        alternatives_5_icons:
+          filter:
+            RANK: 5
+          draw:
+            alternativesStyle_5:
+              size: global.iconSize
+              collide: false
+              interactive: true
     confinementIcons:
       visible: true
       filter: {CATEGORY: Confinement}
-      confinement_1_icons:
-        filter:
-          RANK: 1
-        draw:
-          confinementStyle_1:
-            size: global.iconSize
-            collide: false
-            interactive: true
-      confinement_3_icons:
-        filter:
-          RANK: 3
-        draw:
-          confinementStyle_3:
-            size: global.iconSize
-            collide: false
-            interactive: true
-      confinement_5_icons:
-        filter:
-          RANK: 5
-        draw:
-          confinementStyle_5:
-            size: global.iconSize
-            collide: false
-            interactive: true
+      Felony:
+        visible: true
+        filter: {SUBMENU: Felony}
+        confinement_1_icons:
+          filter:
+            RANK: 1
+          draw:
+            confinementStyle_1:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        confinement_3_icons:
+          filter:
+            RANK: 3
+          draw:
+            confinementStyle_3:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        confinement_5_icons:
+          filter:
+            RANK: 5
+          draw:
+            confinementStyle_5:
+              size: global.iconSize
+              collide: false
+              interactive: true
+      ImmigrationDetention:
+        visible: true
+        filter: {SUBMENU: Immigration Detention}
+        confinement_1_icons:
+          filter:
+            RANK: 1
+          draw:
+            confinementStyle_1:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        confinement_3_icons:
+          filter:
+            RANK: 3
+          draw:
+            confinementStyle_3:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        confinement_5_icons:
+          filter:
+            RANK: 5
+          draw:
+            confinementStyle_5:
+              size: global.iconSize
+              collide: false
+              interactive: true
+      Juvenile:
+        visible: true
+        filter: {SUBMENU: Juvenile}
+        confinement_1_icons:
+          filter:
+            RANK: 1
+          draw:
+            confinementStyle_1:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        confinement_3_icons:
+          filter:
+            RANK: 3
+          draw:
+            confinementStyle_3:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        confinement_5_icons:
+          filter:
+            RANK: 5
+          draw:
+            confinementStyle_5:
+              size: global.iconSize
+              collide: false
+              interactive: true
+      Medical:
+        visible: true
+        filter: {SUBMENU: Medical & Psychiatric}
+        confinement_1_icons:
+          filter:
+            RANK: 1
+          draw:
+            confinementStyle_1:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        confinement_3_icons:
+          filter:
+            RANK: 3
+          draw:
+            confinementStyle_3:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        confinement_5_icons:
+          filter:
+            RANK: 5
+          draw:
+            confinementStyle_5:
+              size: global.iconSize
+              collide: false
+              interactive: true
+      Pretrial:
+        visible: true
+        filter: {SUBMENU: Pretrial & Misdemeanor}
+        confinement_1_icons:
+          filter:
+            RANK: 1
+          draw:
+            confinementStyle_1:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        confinement_3_icons:
+          filter:
+            RANK: 3
+          draw:
+            confinementStyle_3:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        confinement_5_icons:
+          filter:
+            RANK: 5
+          draw:
+            confinementStyle_5:
+              size: global.iconSize
+              collide: false
+              interactive: true
     supportIcons:
       visible: true
       filter: {CATEGORY: Support}
-      support_1_icons:
-        filter:
-          RANK: 1
-        draw:
-          supportStyle_1:
-            size: global.iconSize
-            collide: false
-            interactive: true
-      support_3_icons:
-        filter:
-          RANK: 3
-        draw:
-          supportStyle_3:
-            size: global.iconSize
-            collide: false
-            interactive: true
-      support_5_icons:
-        filter:
-          RANK: 5
-        draw:
-          supportStyle_5:
-            size: global.iconSize
-            collide: false
-            interactive: true
+      Administration:
+        visible: true
+        filter: {SUBMENU: Administration}
+        support_1_icons:
+          filter:
+            RANK: 1
+          draw:
+            supportStyle_1:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        support_3_icons:
+          filter:
+            RANK: 3
+          draw:
+            supportStyle_3:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        support_5_icons:
+          filter:
+            RANK: 5
+          draw:
+            supportStyle_5:
+              size: global.iconSize
+              collide: false
+              interactive: true
+      Infrastructure:
+        visible: true
+        filter: {SUBMENU: Infrastructure}
+        support_1_icons:
+          filter:
+            RANK: 1
+          draw:
+            supportStyle_1:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        support_3_icons:
+          filter:
+            RANK: 3
+          draw:
+            supportStyle_3:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        support_5_icons:
+          filter:
+            RANK: 5
+          draw:
+            supportStyle_5:
+              size: global.iconSize
+              collide: false
+              interactive: true
+      PrivateBusiness:
+        visible: true
+        filter: {SUBMENU: Private Business}
+        support_1_icons:
+          filter:
+            RANK: 1
+          draw:
+            supportStyle_1:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        support_3_icons:
+          filter:
+            RANK: 3
+          draw:
+            supportStyle_3:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        support_5_icons:
+          filter:
+            RANK: 5
+          draw:
+            supportStyle_5:
+              size: global.iconSize
+              collide: false
+              interactive: true
