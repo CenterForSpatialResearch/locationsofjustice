@@ -8,7 +8,7 @@ function buildLegend() {
         .get(buildElements);
     */
 
-    d3.request("data/TestLocations.geojson")
+    d3.request("data/locations.geojson")
         .mimeType("application/json")
         .response(function(xhr) { return JSON.parse(xhr.responseText); })
         .get(function(data) {
@@ -17,21 +17,23 @@ function buildLegend() {
             console.log(data);
             // enforcement
             var types = [];
+            var categories = [];
             data.features.forEach(function(d) {
 
-                
+                var cat = d.properties.CATEGORY;
+                if (categories.indexOf(cat) < 0) {
+                    categories.push(cat);
+                    console.log("Added ", cat);
+                }
 
-                if (d.properties.CATEGORY == 'Enforcement') {
-                    var type = d.properties.TYPE;
-
-                    if (types.indexOf(type) < 0) {
-                        types.push(type);
-                    }
-
-                    
+                var type = d.properties.TYPE;
+                if (types.indexOf(type) < 0) {
+                    // 
+                    if (cat == "Courts") types.push(type);
                 }
 
             });
+            console.dir(categories);
 
             console.dir(types);
         });
@@ -68,9 +70,6 @@ function updateItemDetail(category, itemType) {
                         var desc = items[item]['type-description'];
                         var className = '.' + category;
                         $(className).find('.type-info').html(desc);
-
-
-
                     }
                 }
             }
@@ -86,44 +85,8 @@ function closeAbout() {
 }
 
 function toggleLegend(ev, legendType) {
-    console.log('toggleLegend');
-
-    // show legend or info about child
-    var item = $(ev.target);
-    var itemId = item.attr('id');
-    
-    if (itemId == 'enforcement_toggle') {
-        
-        if (legendType) {
-            switch (legendType) {
-                case 'enforcement':
-                    
-                    
-                    $('.enforcement .type-wrapper').toggle(200);
-                    break;
-            }
-        }
-
-    } 
-
-}
-function toggleChildren(e) {
-    console.log("going through children for element", e);
-    
-
-    $('.enforcement').children().each(function(key, value) {
-        
-        if (key > 0) {
-            var display = this.style.display;
-            if (display) {
-                if (display == 'inline') this.style.display = 'none';
-                if (display == 'none') this.style.display = 'inline';
-            } else {
-                // not defined so show it
-                this.style.display = 'inline';
-            }
-        }
-        
-        
-    });
+    // show legend or info about child item
+    //var item = $(ev.target);
+    //var itemId = item.attr('id');
+    if (legendType) $('.' + legendType + ' .type-wrapper').toggle(200);
 }

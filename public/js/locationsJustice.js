@@ -49,6 +49,17 @@
       /* get tangram layer name for legend name */
       function getTangramName(subtypeName) {
         switch(subtypeName) {
+          // legal
+          /*case "State Prosecutor":
+          case "Federal Prosecutor":
+          case "Public Appellate Representation":
+          case "Public Defender":
+          case "Public Family Court Representation":
+          case "Mental Hygiene Legal Services":
+          case "Attorney Conduct Grievance Committee":
+          */
+          
+          // enforcement
           case "Tow Pound": return 'TowPound';
           case "Logistics": return 'NYPDLogistics';
           case "Offices & Posts": return 'NYPDAdmin';
@@ -61,6 +72,8 @@
           case "Headquarters": return 'NYPDHeadquarters';
           case "Parking": return 'Parking';
           case "Training": return 'Training';
+          
+          // 
 
 
         }
@@ -75,9 +88,35 @@
           var container = L.DomUtil.create('div', 'layer-control');
           container.innerHTML = '<input id="legal_toggle" type="button" value="Legal">'
           L.DomEvent.on(container, 'click', this.toggleOnClick);
+
+          // build legend for subtypes
+          L.DomUtil.addClass(container, "legend");
+          L.DomUtil.addClass(container, "legal");
+
+          var innerWrapper = L.DomUtil.create('div', 'type-wrapper');
+          container.appendChild(innerWrapper);
+          var types = [
+            "State Prosecutor", "Federal Prosecutor", "Public Appellate Representation", "Public Defender", "Public Family Court Representation", "Mental Hygiene Legal Services", "Attorney Conduct Grievance Committee"
+          ];
+
+          for (type in types) {
+            var typeItem = L.DomUtil.create('div', 'type-item');
+            typeItem.innerHTML = '<input class="legal-type" value="' + types[type] + '" type="button">';
+            L.DomEvent.on(typeItem, 'click', this.toggleTypeInfo);
+            innerWrapper.appendChild(typeItem);
+          }
+
           return container;
         },
+        toggleTypeInfo: function (e) {
+          if (e.target.value) {
+            fadeLegendExceptTarget(e.target);
+            // to add later when we have copy for the types -> updateItemDetail('enforcement', e.target.value);
+            hideSublayers('legalIcons', getTangramName(e.target.value));
+          }
+        },
         toggleOnClick: function (e) {
+          toggleLegend(e, 'legal');
           if (scene) {
             hideLayersExcept('legalIcons');
             document.getElementById("legal_toggle").style.background = '#5db323';
@@ -85,38 +124,6 @@
           }
         }
       });
-
-      function prepareLegendContainer(el, category) {
-        L.DomUtil.addClass(el, "legend");
-        L.DomUtil.addClass(el, category);
-
-        var innerWrapper = L.DomUtil.create('div', 'type-wrapper');
-        el.appendChild(innerWrapper);
-        
-        // create all elements inside this
-        var types = [
-          "Tow Pound",
-          "Logistics",
-          "Offices & Posts",
-          "Police Station",
-          "Police Service Area Command",
-          "NYPD Division of School Safety",
-          "Parks Police",
-          "State Law Enforcement",
-          "Federal Law Enforcement",
-          "Headquarters",
-          "Parking",
-          "Training"
-        ];
-
-        for (type in types) {
-          var typeItem = L.DomUtil.create('div', 'type-item');
-          typeItem.innerHTML = '<input class="enforcement-type" value="' + types[type] + '" type="button">';
-          L.DomEvent.on(typeItem, 'click', this.toggleTypeInfo);
-          innerWrapper.appendChild(typeItem);
-        }
-        return el;
-      }
 
       // Enforcement button *****************
       var EnforcementLayerControl = L.Control.extend({
@@ -147,17 +154,11 @@
             innerWrapper.appendChild(typeItem);
           }
           
-          /* hiding the info for each subtype for now since we dont have copy
-            var typeInfo = L.DomUtil.create('div', 'type-info');
-            typeInfo.innerHTML = 'Some starting copy? Maybe the text for the very first item and have that highlighted? Lorem ipsum...';
-            innerWrapper.appendChild(typeInfo);
-          */
           return container;
         },
         toggleTypeInfo: function (e) {
           if (e.target.value) {
             fadeLegendExceptTarget(e.target);
-            // to add later when we have copy for the types -> updateItemDetail('enforcement', e.target.value);
             hideSublayers('enforcementIcons', getTangramName(e.target.value));
           }
         },
@@ -182,6 +183,26 @@
           var container = L.DomUtil.create('div', 'layer-control');
           container.innerHTML = '<input id="courts_toggle" type="button" value="Courts">'
           L.DomEvent.on(container, 'click', this.toggleOnClick);
+
+
+          var types = [
+            "Civil and Housing Court",
+            "Community Court",
+            "Lower Criminal Court",
+            "Criminal Summons Court",
+            "Family Court",
+            "Drug Treatment Court",
+            "Federal Court",
+            "Federal Court of Appeals",
+            "Federal Immigration Court",
+            "Intermediate court of appeals (Appellate Division)",
+            "Lower court of appeals (Appellate Term)",
+            "Mental Health Court",
+            "State Supreme Court",
+            "State Supreme Court "];
+            
+
+
           return container;
         },
         toggleOnClick: function (e) {
