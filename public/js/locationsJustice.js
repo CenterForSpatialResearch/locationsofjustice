@@ -242,7 +242,40 @@
           container.appendChild(innerWrapper);
           
           var types = [
-            "Confinement 1", "Confinement 2"
+            "Intake facility and Jail",
+            "Jail",
+            "Federal jail",
+            "Medical ward",
+            "Jail and medical facilities",
+            "Closed jail",
+            "Private jail",
+            "Minimum Securtiy Drug Treatment",
+            "Medium Security Prison",
+            "Maximum Security Prison",
+            "Minimum Security Prison",
+            "Supermaximum Security Prison",
+            "Medium Security Federal Prison",
+            "Minimum Security and Work Release Prison",
+            "Juvenile Jail",
+            "Juvenile Jail and Medical Facilities",
+            "Juvenile Reception Center",
+            "Juvenile Limited-Secure Placement",
+            "Juvenile Non-Secure Detention",
+            "Juvenile Non-Secure Placement",
+            "Juvenile Non-Secure Placement (Specialized)",
+            "Juvenile Justice East River Academy Site",
+            "Juvenile Justice Passages Academy Site",
+            "Juvenile Justice ReStart Academy Program Site",
+            "Juvenile Secure Detention",
+            "Juvenile Limited-Secure Placement (Specialized)",
+            "Medical and Psychiatric Facility",
+            "Medical Facility",
+            "Forensic Psychiatric Detention Facility",
+            "Civil Forensic Psychiatric Facility",
+            "Juvenile Civil Forensic Psychiatric Facility",
+            "Minimum Security Drug Treatment Facility",
+            "Immigration Detention Center"
+            
           ]
 
           for (type in types) {
@@ -279,13 +312,46 @@
           var container = L.DomUtil.create('div', 'layer-control');
           container.innerHTML = '<input id="alternatives_toggle" type="button" value="Alternatives">'
           L.DomEvent.on(container, 'click', this.toggleOnClick);
+
+           // build legend for subtypes
+           L.DomUtil.addClass(container, "legend");
+           L.DomUtil.addClass(container, "alternatives");
+ 
+           var innerWrapper = L.DomUtil.create('div', 'type-wrapper');
+           container.appendChild(innerWrapper);
+           
+           var types = [
+            "Parole office", 
+            "Federal Probation Office", 
+            "Juvenile Probation", 
+            "Neighborhood Opportuity Network (NeON)", 
+            "Probation Office"
+            
+
+
+           ]
+ 
+           for (type in types) {
+             var typeItem = L.DomUtil.create('div', 'type-item');
+                 typeItem.innerHTML = '<input class="alternatives-type" value="' + types[type] + '" type="button">';
+               L.DomEvent.on(typeItem, 'click', this.toggleTypeInfo);
+               innerWrapper.appendChild(typeItem);
+           }
+
           return container;
         },
+        toggleTypeInfo: function (e) {
+          if (e.target.value) {
+            fadeLegendExceptTarget(e.target);
+            hideSublayers('confinementIcons', getTangramName(e.target.value));
+          }
+        },
         toggleOnClick: function (e) {
+          toggleLegend(e, 'alternatives');
           if (scene) {
             hideLayersExcept('alternativesIcons');
-            document.getElementById("legal_toggle").style.background = '#5db323';
-            document.getElementById("legal_toggle").style.color = 'white';
+            document.getElementById("alternatives_toggle").style.background = '#7bcbc2';
+            document.getElementById("alternatives_toggle").style.color = 'white';
           }
         }
       });
@@ -299,13 +365,53 @@
           var container = L.DomUtil.create('div', 'layer-control');
           container.innerHTML = '<input id="support_toggle" type="button" value="Support">'
           L.DomEvent.on(container, 'click', this.toggleOnClick);
+          
+          // build legend for subtypes
+          L.DomUtil.addClass(container, "legend");
+          L.DomUtil.addClass(container, "support");
+
+          var innerWrapper = L.DomUtil.create('div', 'type-wrapper');
+          container.appendChild(innerWrapper);
+          
+          var types = [
+            "Cemetery",
+            "Chief Medical Examiner",
+            "Court Administration",
+            "Court Clerk",
+            "Criminal Justice Agency",
+            "DOC Administration",
+            "Department of Correction Headquarters",
+            "Department of Probation Headquarters",
+            "Transportation",
+            "Special Offices & Posts",
+            "Parking",
+            "DOC Visitation Site",
+            "Video Visitation Site",
+            "DOC Logistics"
+          ]
+
+          for (type in types) {
+            var typeItem = L.DomUtil.create('div', 'type-item');
+                typeItem.innerHTML = '<input class="support-type" value="' + types[type] + '" type="button">';
+              L.DomEvent.on(typeItem, 'click', this.toggleTypeInfo);
+              innerWrapper.appendChild(typeItem);
+          }
+          
+
           return container;
         },
+        toggleTypeInfo: function (e) {
+          if (e.target.value) {
+            fadeLegendExceptTarget(e.target);
+            hideSublayers('confinementIcons', getTangramName(e.target.value));
+          }
+        },
         toggleOnClick: function (e) {
+          toggleLegend(e, 'support');
           if (scene) {
             hideLayersExcept('supportIcons');
-            document.getElementById("legal_toggle").style.background = '#5db323';
-            document.getElementById("legal_toggle").style.color = 'white';
+            document.getElementById("support_toggle").style.background = '#fecf01';
+            document.getElementById("support_toggle").style.color = 'white';
           }
         }
       });
@@ -324,8 +430,8 @@
         toggleOnClick: function (e) {
           if (scene) {
             hideLayersExcept(null);
-            document.getElementById("legal_toggle").style.background = '#5db323';
-            document.getElementById("legal_toggle").style.color = 'white';
+            document.getElementById("alllayers_toggle").style.background = '#5db323';
+            document.getElementById("alllayers_toggle").style.color = 'white';
           }
         }
       });

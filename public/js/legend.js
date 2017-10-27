@@ -29,7 +29,7 @@ function buildLegend() {
                 var type = d.properties.TYPE;
                 if (types.indexOf(type) < 0) {
                     // 
-                    if (cat == "Courts") types.push(type);
+                    if (cat == "Support") types.push(type);
                 }
 
             });
@@ -59,6 +59,28 @@ function buildElements(data) {
 
 }
 
+
+function closeAbout() {
+    document.querySelector("#aboutPopup").style.display = 'none';
+}
+
+function toggleLegend(ev, legendType) {
+    console.log('toggleLegend', legendType);
+
+    // show legend or info about child		
+    var item = $(ev.target);
+    var itemId = item.attr('id');
+    console.log("itemId", itemId);
+    //
+    if (itemId == legendType + '_toggle') {
+        if (legendType) $('.' + legendType + ' .type-wrapper').toggle(200);		
+    }
+}
+
+
+/* not used - was for displaying category information about each subtype
+
+
 function updateItemDetail(category, itemType) {
     console.log("updateItemDetail with category and type", category, itemType);
     if (copyData) {
@@ -79,20 +101,4 @@ function updateItemDetail(category, itemType) {
     
 
 }
-
-function closeAbout() {
-    document.querySelector("#aboutPopup").style.display = 'none';
-}
-
-function toggleLegend(ev, legendType) {
-    console.log('toggleLegend', legendType);
-
-    // show legend or info about child		
-    var item = $(ev.target);
-    var itemId = item.attr('id');
-    console.log("itemId", itemId);
-    //
-    if (itemId == legendType + '_toggle') {
-        if (legendType) $('.' + legendType + ' .type-wrapper').toggle(200);		
-    }
-}
+*/
