@@ -218,7 +218,7 @@
           toggleLegend(e, 'courts');
           if (scene) {
             hideLayersExcept('courtsIcons');
-            document.getElementById("courts_toggle").style.background = '#5db323';
+            document.getElementById("courts_toggle").style.background = '#a53295';
             document.getElementById("courts_toggle").style.color = 'white';
           }
         }
@@ -264,7 +264,7 @@
           toggleLegend(e, 'confinement');
           if (scene) {
             hideLayersExcept('confinementIcons');
-            document.getElementById("confinement_toggle").style.background = '#5db323';
+            document.getElementById("confinement_toggle").style.background = '#ca2016';
             document.getElementById("confinement_toggle").style.color = 'white';
           }
         }
