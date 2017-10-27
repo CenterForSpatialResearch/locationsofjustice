@@ -85,8 +85,14 @@ function closeAbout() {
 }
 
 function toggleLegend(ev, legendType) {
-    // show legend or info about child item
-    //var item = $(ev.target);
-    //var itemId = item.attr('id');
-    if (legendType) $('.' + legendType + ' .type-wrapper').toggle(200);
+    console.log('toggleLegend', legendType);
+
+    // show legend or info about child		
+    var item = $(ev.target);
+    var itemId = item.attr('id');
+    console.log("itemId", itemId);
+    //
+    if (itemId == legendType + '_toggle') {
+        if (legendType) $('.' + legendType + ' .type-wrapper').toggle(200);		
+    }
 }

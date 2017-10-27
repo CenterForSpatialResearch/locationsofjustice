@@ -31,19 +31,45 @@
 }
 
 .type-item {
-    background: #4169ad;
+    background:red;
     width: 100%;
     float: left;
     margin: 1px;
     border-radius: 3px;
-    
     input {
         background: none;
         color: white;
         width: 100%;
-
     }
 }
+
+.enforcement {
+    .type-item {
+        background: #4169ad;
+    }
+}
+
+.legal {
+    .type-item {
+        background: #5db323;
+    }
+}
+
+
+.courts {
+    .type-item {
+        background: #5db323;
+    }
+}
+
+.confinement {
+    .type-item {
+        background: #ca2016;
+    }
+}
+
+
+
 
 .type-info {
     font-size: 90%;

@@ -184,32 +184,42 @@
           container.innerHTML = '<input id="courts_toggle" type="button" value="Courts">'
           L.DomEvent.on(container, 'click', this.toggleOnClick);
 
+          // build legend for subtypes
+          L.DomUtil.addClass(container, "legend");
+          L.DomUtil.addClass(container, "courts");
 
+          var innerWrapper = L.DomUtil.create('div', 'type-wrapper');
+          container.appendChild(innerWrapper);
+          
           var types = [
-            "Civil and Housing Court",
-            "Community Court",
-            "Lower Criminal Court",
-            "Criminal Summons Court",
-            "Family Court",
-            "Drug Treatment Court",
-            "Federal Court",
-            "Federal Court of Appeals",
-            "Federal Immigration Court",
+            "Civil and Housing Court", "Community Court", "Lower Criminal Court",
+            "Criminal Summons Court", "Family Court", "Drug Treatment Court",
+            "Federal Court", "Federal Court of Appeals", "Federal Immigration Court",
             "Intermediate court of appeals (Appellate Division)",
             "Lower court of appeals (Appellate Term)",
-            "Mental Health Court",
-            "State Supreme Court",
-            "State Supreme Court "];
+            "Mental Health Court", "State Supreme Court", "State Supreme Court "];
+
+          for (type in types) {
+            var typeItem = L.DomUtil.create('div', 'type-item');
+                typeItem.innerHTML = '<input class="courts-type" value="' + types[type] + '" type="button">';
+              L.DomEvent.on(typeItem, 'click', this.toggleTypeInfo);
+              innerWrapper.appendChild(typeItem);
+          }
             
-
-
           return container;
         },
+        toggleTypeInfo: function (e) {
+          if (e.target.value) {
+            fadeLegendExceptTarget(e.target);
+            hideSublayers('courtsIcons', getTangramName(e.target.value));
+          }
+        },
         toggleOnClick: function (e) {
+          toggleLegend(e, 'courts');
           if (scene) {
             hideLayersExcept('courtsIcons');
-            document.getElementById("legal_toggle").style.background = '#5db323';
-            document.getElementById("legal_toggle").style.color = 'white';
+            document.getElementById("courts_toggle").style.background = '#5db323';
+            document.getElementById("courts_toggle").style.color = 'white';
           }
         }
       });
@@ -223,13 +233,39 @@
           var container = L.DomUtil.create('div', 'layer-control');
           container.innerHTML = '<input id="confinement_toggle" type="button" value="Confinement">'
           L.DomEvent.on(container, 'click', this.toggleOnClick);
+
+          // build legend for subtypes
+          L.DomUtil.addClass(container, "legend");
+          L.DomUtil.addClass(container, "confinement");
+
+          var innerWrapper = L.DomUtil.create('div', 'type-wrapper');
+          container.appendChild(innerWrapper);
+          
+          var types = [
+            "Confinement 1", "Confinement 2"
+          ]
+
+          for (type in types) {
+            var typeItem = L.DomUtil.create('div', 'type-item');
+                typeItem.innerHTML = '<input class="confinement-type" value="' + types[type] + '" type="button">';
+              L.DomEvent.on(typeItem, 'click', this.toggleTypeInfo);
+              innerWrapper.appendChild(typeItem);
+          }
+
           return container;
         },
+        toggleTypeInfo: function (e) {
+          if (e.target.value) {
+            fadeLegendExceptTarget(e.target);
+            hideSublayers('confinementIcons', getTangramName(e.target.value));
+          }
+        },
         toggleOnClick: function (e) {
+          toggleLegend(e, 'confinement');
           if (scene) {
             hideLayersExcept('confinementIcons');
-            document.getElementById("legal_toggle").style.background = '#5db323';
-            document.getElementById("legal_toggle").style.color = 'white';
+            document.getElementById("confinement_toggle").style.background = '#5db323';
+            document.getElementById("confinement_toggle").style.color = 'white';
           }
         }
       });
