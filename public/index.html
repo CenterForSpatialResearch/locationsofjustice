@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>CSR - Locations of Justice prototype - alpha 0.1 </title>
+    <title>CSR - Locations of Justice prototype - draft </title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
@@ -45,12 +45,18 @@
         <h3>About This Map</h3>
         <p>Where is “justice” located in New York City? Or more concretely, where can we locate — and what sites do we include in — the city’s “criminal justice system”? This map attempts to answer that question, drawing on publically-available information to chart the breadth and locations of the institutions and agencies involved. You can sort the points by function (for example, enforcement, confinement, or courts) and by the type of site (for example, jail, criminal court, or probation office). Click on a point to find out more about the site.</p>
         <p>This map is a collaborative project between Urban Omnibus and the Center for Spatial Research at Columbia Graduate School of Architecture, Planning and Preservation. It is a work in progress, and does not claim to be comprehensive or objective — like all maps, it has a point of view. But it does seek to be accurate; if you spot an error or think something else ought to be included, please be in touch <a href="mailto:schwob@archleague.org">here</a>.</p>
-        <h3>Intensity</h3>
-        <p>We’ve coded the sites on this map by relative intensity of their power within the city's criminal justice system.</p>
-        <p>DIRECT: At these sites, people are detained and confined against their will, and executive actors make decisions limiting the lives and mobility of thousands of people.</p>
-        <p>INDIRECT: Here, people’s lives are limited in less direct ways, such as through fines and surveillance, or through mandatory participation in various rehabilitation and diversion programs.</p>
-        <p>SUPPORT: These sites provide logistical, administrative, and infrastructural support to the primary systems of enforcement, adjudication, and confinement.</p>
       </div>
+
+    <div class="legend-tooltip-data" id="direct" >At these sites, people are detained and confined against their will, and executive actors make decisions limiting the lives and mobility of thousands of people.
+    </div>
+
+    <div class="legend-tooltip-data" id="indirect" style="display: none">Here, people’s lives are limited in less direct ways, such as through fines and surveillance, or through mandatory participation in various rehabilitation and diversion programs.
+    </div>
+    
+    <div class="legend-tooltip-data" id="support" style="display: none">These sites provide logistical, administrative, and infrastructural support to the primary systems of enforcement, adjudication, and confinement.
+    </div>
+
+
     </div>
 
     <script

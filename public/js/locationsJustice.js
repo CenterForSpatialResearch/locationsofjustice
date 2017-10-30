@@ -13,7 +13,7 @@ var map = L.Mapzen.map('justiceMap', {
 });
 
 function hideLayersExcept(layerToIgnore) {
-  if (scene) {
+  if (scene) { 
     for (i in scene.config.layers.justice_locations) {
       if ((i !== 'data') && (i !== layerToIgnore)) {
         if (scene.config.layers.justice_locations[i].visible == false) {
@@ -370,7 +370,7 @@ var SupportLayerControl = L.Control.extend({
     }
   }
 });
-
+/* removing this for now
 // All layers button ***************
 var AllLayersLayerControl = L.Control.extend({
   options: {
@@ -409,6 +409,24 @@ var AllLayersLayerControl = L.Control.extend({
     document.getElementById("alllayers_toggle").style.color = 'white';
   }
 });
+
+*/
+
+// Non interactive, static legend
+var StaticLegendControl = L.Control.extend({
+  options: {
+    position: 'topleft'
+  },
+  onAdd: function() {
+    var container = L.DomUtil.create('div', 'layer-control');
+    container.innerHTML = '<div class="legend static-legend">'  + 
+        '<div class="icon"><img src="/icons/Legend_5.svg"></div><a href="#" class="legend-tooltip" data-type="direct" alt="Direct category tooltip">DIRECT</a><br/>' +
+        '<div class="icon"><img src="/icons/Legend_3.svg"></div><a href="#" class="legend-tooltip" data-type="indirect" alt="Indirect category tooltip">INDIRECT</a><br/>' +
+        '<div class="icon"><img src="/icons/Legend_1.svg"></div><a href="#" class="legend-tooltip" data-type="support" alt="Support category tooltip">SUPPORT</a><br/>' + 
+      '</div>';
+      return container;
+    }
+  });
 
 
 var FullScreenToggle = L.Control.extend({
@@ -457,8 +475,14 @@ var alternativesToggleControl = new AlternativesLayerControl();
 map.addControl(alternativesToggleControl);
 var supportToggleControl = new SupportLayerControl();
 map.addControl(supportToggleControl);
-var allLayersToggleControl = new AllLayersLayerControl();
-map.addControl(allLayersToggleControl);
+var staticLegendControl = new StaticLegendControl();
+map.addControl(staticLegendControl);
+
+//var allLayersToggleControl = new AllLayersLayerControl();
+//map.addControl(allLayersToggleControl);
+
+
+
 var aboutMapControl= new AboutMapControl();
 map.addControl(aboutMapControl);
 var fullScreenToggleControl = new FullScreenToggle();
@@ -512,4 +536,27 @@ $(document).ready(function() {
     copyData = data;
     console.log('set copyData to ', copyData);
   });
+
+  // basic tooltips
+  $('a.legend-tooltip').hover(function() {
+    // hide all     
+
+    var types = ['direct', 'indirect', 'support'];
+    var typeToShow = $(this).attr('data-type');
+
+    for (type in types) {
+      if (types[type] == typeToShow) {
+        $('#' + typeToShow).show();
+      } else { 
+        $('#' + types[type]).hide(); 
+      }
+    }
+
+  }, function() { 
+      // hovering off 
+      $('#direct').hide();
+      $('#indirect').hide();
+      $('#support').hide();
+    }
+  );
 });

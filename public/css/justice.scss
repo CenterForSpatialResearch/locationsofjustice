@@ -5,29 +5,11 @@
     margin: auto;
 }
 
-#notes {
-    position: fixed;
-    background: blue;
-    color: white;
-    top: 10px;
-    right: 10px;
-    text-align: right;
-    z-index: 999;
-    a {
-        color: white;
-    }
-}
-
-.enforcement-legend {
-    font-size: 80%;
-}
-
 .type-wrapper {
     // style for subtypes
     display: none;
     background: white;
 }
-
 
 
 .type-item {
@@ -93,6 +75,59 @@
 .layer-control.legend {
     max-width: 200px;
 }
+
+.static-legend {
+    background: white;
+    padding: 5px 5px 10px 5px;
+    width: 90px;
+
+
+    a.legend-tooltip {
+        text-decoration: none;
+    }
+
+    .icon {
+        display: inline;
+        position: relative;
+        top: 5px;
+        margin-right: 5px;
+
+
+        img {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+}
+
+.legend-tooltip-data {
+    position: absolute;
+    left: 90px;
+    z-index: 9999;
+    width: 440px;
+    background: white;
+    padding: 7px;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+    
+}
+
+#direct {
+    top: 160px;
+    display: none;
+}
+
+#indirect {
+    top: 180px;
+    display: none;
+}
+
+#support {
+    top: 220px;
+    display: none;
+}
+
+
 
 .about-control {
     width: 50px;
