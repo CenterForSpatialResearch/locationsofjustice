@@ -78,6 +78,26 @@ function toggleLegend(ev, legendType) {
     }
 }
 
+function closeOpenMenusExcept(legendType) {
+    var types = ['legal', 'enforcement', 'courts', 'confinement', 'alternatives', 'support'];
+    var index = types.indexOf(legendType);
+    types.slice(index, 1);
+    for (type in types) {
+        console.log("hiding type-wrapper for type", types[type]);
+        $('.' + types[type] + ' .type-wrapper').hide();
+    }
+}
+function closeAllOpenMenus() {
+
+    $('.legal .type-wrapper').hide();
+    $('.enforcement .type-wrapper').hide();
+    $('.courts .type-wrapper').hide();
+    $('.confinement .type-wrapper').hide();
+    $('.alternatives .type-wrapper').hide();
+    $('.support .type-wrapper').hide();
+
+}
+
 function fadeLegendExcept(legendType) {
     // fade all others
     $('.layer-control.legend.leaflet-control').css('opacity', '0.5');

@@ -30,7 +30,10 @@ function hideLayersExcept(layerToIgnore) {
 }
 
 function hideSublayers(parentLayerName, sublayerToShow) {
+  console.log("hideSublayers with parent Layer", parentLayerName, 'sublayer to show', sublayerToShow);
   if (scene) {
+    // hide all other layers again
+    hideLayersExcept(parentLayerName);
     for (i in scene.config.layers.justice_locations) {
       if (i == parentLayerName) {
         for (j in scene.config.layers.justice_locations[parentLayerName]) {
@@ -116,7 +119,8 @@ var LegalLayerControl = L.Control.extend({
     var innerWrapper = L.DomUtil.create('div', 'type-wrapper');
     container.appendChild(innerWrapper);
     var types = [
-      "State Prosecutor", "Federal Prosecutor", "Public Appellate Representation", "Public Defender", "Public Family Court Representation", "Mental Hygiene Legal Services", "Attorney Conduct Grievance Committee"
+      "State Prosecutor", "Federal Prosecutor", "Public Appellate Representation", "Public Defender",
+      "Public Family Court Representation", "Mental Hygiene Legal Services", "Attorney Conduct Grievance Committee"
     ];
     for (type in types) {
       var typeItem = L.DomUtil.create('div', 'type-item');
@@ -127,6 +131,7 @@ var LegalLayerControl = L.Control.extend({
     return container;
   },
   toggleTypeInfo: function (e) {
+    console.log("legal toggleTypeInfo for event with target ", e.target.value);
     if (e.target.value) {
       fadeLegendExceptTarget(e.target);
       // to add later when we have copy for the types -> updateItemDetail('enforcement', e.target.value);
