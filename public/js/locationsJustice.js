@@ -13,6 +13,7 @@ var map = L.Mapzen.map('justiceMap', {
 });
 
 function hideLayersExcept(layerToIgnore) {
+  console.log("..... hiding all layers excpet", layerToIgnore);
   if (scene) { 
     for (i in scene.config.layers.justice_locations) {
       if ((i !== 'data') && (i !== layerToIgnore)) {
@@ -20,6 +21,8 @@ function hideLayersExcept(layerToIgnore) {
           scene.config.layers.justice_locations[i].visible = true;
         }
         else {
+
+          console.log("hiding visiblity of ", i);
           scene.config.layers.justice_locations[i].visible = false;
         }
       } else {
@@ -34,6 +37,7 @@ function hideSublayers(parentLayerName, sublayerToShow) {
   if (scene) {
     // hide all other layers again
     hideLayersExcept(parentLayerName);
+    console.log("hidden all layers except", parentLayerName);
     for (i in scene.config.layers.justice_locations) {
       if (i == parentLayerName) {
         for (j in scene.config.layers.justice_locations[parentLayerName]) {
@@ -55,6 +59,8 @@ function hideSublayers(parentLayerName, sublayerToShow) {
 }
 
 function getTangramName(subtypeName) {
+  console.log(" ++++++++ getting tangram name for ", subtypeName);
+
   switch(subtypeName) {
     // legal
     case "State Prosecutor": return 'StateProsecutor';
@@ -132,11 +138,28 @@ var LegalLayerControl = L.Control.extend({
   },
   toggleTypeInfo: function (e) {
     console.log("legal toggleTypeInfo for event with target ", e.target.value);
+
+
+
+
+
     if (e.target.value) {
+
+      
+
+
       fadeLegendExceptTarget(e.target);
-      // to add later when we have copy for the types -> updateItemDetail('enforcement', e.target.value);
+      
       hideSublayers('legalIcons', getTangramName(e.target.value));
+    
     }
+  
+  
+  
+  
+  
+  
+  
   },
   toggleOnClick: function (e) {
     toggleLegend(e, 'legal');

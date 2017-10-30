@@ -1425,168 +1425,168 @@ layers:
               size: global.iconSize
               collide: false
               interactive: true
-    highlightedIcons:
-      visible: false
-      filter: {HIGHLIGHTED: Y}
-      Enforcement:
-        visible: true
-        filter: {CATEGORY: Enforcement}
-        enforcement_1_icons:
-          filter:
-            RANK: 1
-          draw:
-            enforcementStyle_1:
-              size: global.iconSize
-              collide: false
-              interactive: true
-        enforcement_3_icons:
-          filter:
-            RANK: 3
-          draw:
-            enforcementStyle_3:
-              size: global.iconSize
-              collide: false
-              interactive: true
-        enforcement_5_icons:
-          filter:
-            RANK: 5
-          draw:
-            enforcementStyle_5:
-              size: global.iconSize
-              collide: false
-              interactive: true
-      Legal:
-        visible: true
-        filter: {CATEGORY: Legal}
-        legal_1_icons:
-          filter:
-            RANK: 1
-          draw:
-            legalStyle_1:
-              size: global.iconSize
-              collide: false
-              interactive: true
-        legal_3_icons:
-          filter:
-            RANK: 3
-          draw:
-            legalStyle_3:
-              size: global.iconSize
-              collide: false
-              interactive: true
-        legal_5_icons:
-          filter:
-            RANK: 5
-          draw:
-            legalStyle_5:
-              size: global.iconSize
-              collide: false
-              interactive: true
-      Courts:
-        visible: true
-        filter: {CATEGORY: Courts}
-        courts_1_icons:
-          filter:
-            RANK: 1
-          draw:
-            courtsStyle_1:
-              size: global.iconSize
-              collide: false
-              interactive: true
-        courts_3_icons:
-          filter:
-            RANK: 3
-          draw:
-            courtsStyle_3:
-              size: global.iconSize
-              collide: false
-              interactive: true
-        courts_5_icons:
-          filter:
-            RANK: 5
-          draw:
-            courtsStyle_5:
-              size: global.iconSize
-              collide: false
-              interactive: true
-      Alternatives:
-        visible: true
-        filter: {CATEGORY: Alternatives}
-        alternatives_1_icons:
-          filter:
-            RANK: 1
-          draw:
-            alternativesStyle_1:
-              size: global.iconSize
-              collide: false
-              interactive: true
-        alternatives_3_icons:
-          filter:
-            RANK: 3
-          draw:
-            alternativesStyle_3:
-              size: global.iconSize
-              collide: false
-              interactive: true
-        alternatives_5_icons:
-          filter:
-            RANK: 5
-          draw:
-            alternativesStyle_5:
-              size: global.iconSize
-              collide: false
-              interactive: true
-      Confinement:
-        visible: true
-        filter: {CATEGORY: Confinement}
-        confinement_1_icons:
-          filter:
-            RANK: 1
-          draw:
-            confinementStyle_1:
-              size: global.iconSize
-              collide: false
-              interactive: true
-        confinement_3_icons:
-          filter:
-            RANK: 3
-          draw:
-            confinementStyle_3:
-              size: global.iconSize
-              collide: false
-              interactive: true
-        confinement_5_icons:
-          filter:
-            RANK: 5
-          draw:
-            confinementStyle_5:
-              size: global.iconSize
-              collide: false
-              interactive: true
-      Support:
-        visible: true
-        filter: {CATEGORY: Support}
-        support_1_icons:
-          filter:
-            RANK: 1
-          draw:
-            supportStyle_1:
-              size: global.iconSize
-              collide: false
-              interactive: true
-        support_3_icons:
-          filter:
-            RANK: 3
-          draw:
-            supportStyle_3:
-              size: global.iconSize
-              collide: false
-              interactive: true
-        support_5_icons:
-          filter:
-            RANK: 5
-          draw:
-            supportStyle_5:
-              size: global.iconSize
-              collide: false
-              interactive: true
+    # highlightedIcons:
+    #   visible: false
+    #   filter: {HIGHLIGHTED: Y}
+    #   Enforcement:
+    #     visible: true
+    #     filter: {CATEGORY: Enforcement}
+    #     enforcement_1_icons:
+    #       filter:
+    #         RANK: 1
+    #       draw:
+    #         enforcementStyle_1:
+    #           size: global.iconSize
+    #           collide: false
+    #           interactive: true
+    #     enforcement_3_icons:
+    #       filter:
+    #         RANK: 3
+    #       draw:
+    #         enforcementStyle_3:
+    #           size: global.iconSize
+    #           collide: false
+    #           interactive: true
+    #     enforcement_5_icons:
+    #       filter:
+    #         RANK: 5
+    #       draw:
+    #         enforcementStyle_5:
+    #           size: global.iconSize
+    #           collide: false
+    #           interactive: true
+    #   Legal:
+    #     visible: true
+    #     filter: {CATEGORY: Legal}
+    #     legal_1_icons:
+    #       filter:
+    #         RANK: 1
+    #       draw:
+    #         legalStyle_1:
+    #           size: global.iconSize
+    #           collide: false
+    #           interactive: true
+    #     legal_3_icons:
+    #       filter:
+    #         RANK: 3
+    #       draw:
+    #         legalStyle_3:
+    #           size: global.iconSize
+    #           collide: false
+    #           interactive: true
+    #     legal_5_icons:
+    #       filter:
+    #         RANK: 5
+    #       draw:
+    #         legalStyle_5:
+    #           size: global.iconSize
+    #           collide: false
+    #           interactive: true
+    #   Courts:
+    #     visible: true
+    #     filter: {CATEGORY: Courts}
+    #     courts_1_icons:
+    #       filter:
+    #         RANK: 1
+    #       draw:
+    #         courtsStyle_1:
+    #           size: global.iconSize
+    #           collide: false
+    #           interactive: true
+    #     courts_3_icons:
+    #       filter:
+    #         RANK: 3
+    #       draw:
+    #         courtsStyle_3:
+    #           size: global.iconSize
+    #           collide: false
+    #           interactive: true
+    #     courts_5_icons:
+    #       filter:
+    #         RANK: 5
+    #       draw:
+    #         courtsStyle_5:
+    #           size: global.iconSize
+    #           collide: false
+    #           interactive: true
+    #   Alternatives:
+    #     visible: true
+    #     filter: {CATEGORY: Alternatives}
+    #     alternatives_1_icons:
+    #       filter:
+    #         RANK: 1
+    #       draw:
+    #         alternativesStyle_1:
+    #           size: global.iconSize
+    #           collide: false
+    #           interactive: true
+    #     alternatives_3_icons:
+    #       filter:
+    #         RANK: 3
+    #       draw:
+    #         alternativesStyle_3:
+    #           size: global.iconSize
+    #           collide: false
+    #           interactive: true
+    #     alternatives_5_icons:
+    #       filter:
+    #         RANK: 5
+    #       draw:
+    #         alternativesStyle_5:
+    #           size: global.iconSize
+    #           collide: false
+    #           interactive: true
+    #   Confinement:
+    #     visible: true
+    #     filter: {CATEGORY: Confinement}
+    #     confinement_1_icons:
+    #       filter:
+    #         RANK: 1
+    #       draw:
+    #         confinementStyle_1:
+    #           size: global.iconSize
+    #           collide: false
+    #           interactive: true
+    #     confinement_3_icons:
+    #       filter:
+    #         RANK: 3
+    #       draw:
+    #         confinementStyle_3:
+    #           size: global.iconSize
+    #           collide: false
+    #           interactive: true
+    #     confinement_5_icons:
+    #       filter:
+    #         RANK: 5
+    #       draw:
+    #         confinementStyle_5:
+    #           size: global.iconSize
+    #           collide: false
+    #           interactive: true
+    #   Support:
+    #     visible: true
+    #     filter: {CATEGORY: Support}
+    #     support_1_icons:
+    #       filter:
+    #         RANK: 1
+    #       draw:
+    #         supportStyle_1:
+    #           size: global.iconSize
+    #           collide: false
+    #           interactive: true
+    #     support_3_icons:
+    #       filter:
+    #         RANK: 3
+    #       draw:
+    #         supportStyle_3:
+    #           size: global.iconSize
+    #           collide: false
+    #           interactive: true
+    #     support_5_icons:
+    #       filter:
+    #         RANK: 5
+    #       draw:
+    #         supportStyle_5:
+    #           size: global.iconSize
+    #           collide: false
+    #           interactive: true
