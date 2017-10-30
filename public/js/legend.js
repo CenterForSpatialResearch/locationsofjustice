@@ -34,11 +34,8 @@ function buildLegend() {
 
             });
             console.dir(categories);
-
             console.dir(types);
         });
-
-
 }
 
 function fadeLegendExceptTarget(eventTarget) {
@@ -50,13 +47,25 @@ function fadeLegendExceptTarget(eventTarget) {
 }
 
 function buildElements(data) {
-
     console.log("building legend elements");
     console.log("got data", data);
+}
 
-       
+function hideAllMenus() {
 
+    console.log("hideAllMenus)");
+    // but not if clicking on subtype
 
+    
+
+    $('.legal .type-wrapper').hide();		
+    $('.enforcement .type-wrapper').hide();		
+    $('.courts .type-wrapper').hide();		
+    $('.confinement .type-wrapper').hide();		
+    $('.alternatives .type-wrapper').hide();		
+    $('.support .type-wrapper').hide();		
+    
+        
 }
 
 
@@ -65,8 +74,18 @@ function closeAbout() {
 }
 
 function toggleLegend(ev, legendType) {
-    console.log('toggleLegend', legendType);
+    console.log('toggleLegend', legendType, 'event was ', ev, ev.target);
+    
+    if (ev.target) {
+        var target = ev.target;
+        var targetId = $(target).attr('id');
+        if (targetId != undefined) {
+            hideAllMenus();
+        }
+    }
+    
     fadeLegendExcept(legendType);
+    
 
     // show legend or info about child		
     var item = $(ev.target);
@@ -88,7 +107,6 @@ function closeOpenMenusExcept(legendType) {
     }
 }
 function closeAllOpenMenus() {
-
     $('.legal .type-wrapper').hide();
     $('.enforcement .type-wrapper').hide();
     $('.courts .type-wrapper').hide();
