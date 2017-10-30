@@ -66,6 +66,7 @@ function closeAbout() {
 
 function toggleLegend(ev, legendType) {
     console.log('toggleLegend', legendType);
+    fadeLegendExcept(legendType);
 
     // show legend or info about child		
     var item = $(ev.target);
@@ -75,6 +76,13 @@ function toggleLegend(ev, legendType) {
     if (itemId == legendType + '_toggle') {
         if (legendType) $('.' + legendType + ' .type-wrapper').toggle(200);		
     }
+}
+
+function fadeLegendExcept(legendType) {
+    // fade all others
+    $('.layer-control.legend.leaflet-control').css('opacity', '0.5');
+    // show main
+    $('.layer-control.legend.' + legendType + '.leaflet-control').css('opacity', '1');
 }
 
 
