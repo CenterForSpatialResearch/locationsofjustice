@@ -12,14 +12,17 @@ var map = L.Mapzen.map('justiceMap', {
   },
 });
 
-
+// basic show-hide for now
 function toggleHighlighted() {
-  console.log("show highlighted");
-
+  if (scene.config.layers.justice_locations.highlightedIcons.visible) {
+    scene.config.layers.justice_locations.highlightedIcons.visible = false;
+  } else {
+    scene.config.layers.justice_locations.highlightedIcons.visible = true;
+  }
+  scene.updateConfig();
 }
 
-
-
+// show all layers
 function showAllLayers() {
     scene.config.layers.justice_locations.legalIcons.visible = true;
     scene.config.layers.justice_locations.enforcementIcons.visible = true;
@@ -28,22 +31,17 @@ function showAllLayers() {
     scene.config.layers.justice_locations.alternativesIcons.visible = true;
     scene.config.layers.justice_locations.supportIcons.visible = true;
     scene.updateConfig();
-    console.log("showAll layers hit, scene.configUpdate run so all should be on now");
 }
 
 function hideLayersExcept(layerToIgnore) {
-  console.log("hiding layers except function");
-
   if (scene) { 
-    // off 
+    // turn all off first
     scene.config.layers.justice_locations.legalIcons.visible = false;
     scene.config.layers.justice_locations.enforcementIcons.visible = false;
     scene.config.layers.justice_locations.courtsIcons.visible = false;
     scene.config.layers.justice_locations.confinementIcons.visible = false;
     scene.config.layers.justice_locations.alternativesIcons.visible = false;
     scene.config.layers.justice_locations.supportIcons.visible = false;
-    console.log("all layers set to false in scene, now checking which to turn back on", layerToIgnore);
-    //.config.layers.justice_locations.highlightedIcons.visible = false;
     
     switch (layerToIgnore) {
       case 'legalIcons':
@@ -92,8 +90,7 @@ function hideSublayers(parentLayerName, sublayerToShow) {
 }
 
 function getTangramName(subtypeName) {
-  //console.log(" ++++++++ getting tangram name for ", subtypeName);
-
+  
   switch(subtypeName) {
     // legal
     case "State Prosecutor": return 'StateProsecutor';
@@ -170,17 +167,8 @@ var LegalLayerControl = L.Control.extend({
     return container;
   },
   toggleTypeInfo: function (e) {
-    console.log("legal toggleTypeInfo for event with target ", e.target.value);
-
-
-
-
-
     if (e.target.value) {
-
-
       fadeLegendExceptTarget(e.target);
-      
       hideSublayers('legalIcons', getTangramName(e.target.value));
     
     }
@@ -453,8 +441,8 @@ var HighlightedControl = L.Control.extend({
   },
   toggleOnClick: function (e) {
     if (scene) {
-      
       toggleHighlighted();
+      closeAllOpenMenus();
 
     }
   }
@@ -576,15 +564,12 @@ function onMapHover(selection){
 
 // jquery
 $(document).ready(function() {
-  console.log("jquery ready");
-  // load texts via json
   var copyReady = false;
   copyData = null;
   $.getJSON('data/siteCopy.json', function(data) {
     copyReady = true;
-    console.log(data);
     copyData = data;
-    console.log('set copyData to ', copyData);
+    //console.log('set copyData to ', copyData);
   });
 
   // basic tooltips
