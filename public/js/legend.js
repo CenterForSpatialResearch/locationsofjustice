@@ -51,22 +51,21 @@ function buildElements(data) {
     console.log("got data", data);
 }
 
-function hideAllMenus() {
+function hideOtherMenus(legendType) {
+    console.log("close other menus except", legendType);
+    var types = [
+        "legal", "enforcement", "courts", "confinement", "alternatives", "support"
+    ];
 
-    console.log("hideAllMenus)");
-    // but not if clicking on subtype
-
-    
-
-    $('.legal .type-wrapper').hide();		
-    $('.enforcement .type-wrapper').hide();		
-    $('.courts .type-wrapper').hide();		
-    $('.confinement .type-wrapper').hide();		
-    $('.alternatives .type-wrapper').hide();		
-    $('.support .type-wrapper').hide();		
-    
+    for (type in types) {
+        if (types[type] !== legendType) {
+            $('.' + types[type] + ' .type-wrapper').hide();
+        }
+    }
         
 }
+
+
 
 
 function closeAbout() {
@@ -74,25 +73,15 @@ function closeAbout() {
 }
 
 function toggleLegend(ev, legendType) {
-    console.log('toggleLegend', legendType, 'event was ', ev, ev.target);
-    
-    if (ev.target) {
-        var target = ev.target;
-        var targetId = $(target).attr('id');
-        if (targetId != undefined) {
-            hideAllMenus();
-        }
-    }
     
     fadeLegendExcept(legendType);
     
-
     // show legend or info about child		
     var item = $(ev.target);
     var itemId = item.attr('id');
-    console.log("itemId", itemId);
     //
     if (itemId == legendType + '_toggle') {
+        hideOtherMenus(legendType);
         if (legendType) $('.' + legendType + ' .type-wrapper').toggle(200);		
     }
 }

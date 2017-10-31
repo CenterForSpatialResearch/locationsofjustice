@@ -13,48 +13,60 @@ var map = L.Mapzen.map('justiceMap', {
 });
 
 function hideLayersExcept(layerToIgnore) {
-  console.log("..... hiding all layers excpet", layerToIgnore);
   if (scene) { 
-    for (i in scene.config.layers.justice_locations) {
-      if ((i !== 'data') && (i !== layerToIgnore)) {
-        if (scene.config.layers.justice_locations[i].visible == false) {
-          scene.config.layers.justice_locations[i].visible = true;
-        }
-        else {
+    // off 
+    scene.config.layers.justice_locations.legalIcons.visible = false;
+    scene.config.layers.justice_locations.enforcementIcons.visible = false;
+    scene.config.layers.justice_locations.courtsIcons.visible = false;
+    scene.config.layers.justice_locations.confinementIcons.visible = false;
+    scene.config.layers.justice_locations.alternativesIcons.visible = false;
+    scene.config.layers.justice_locations.supportIcons.visible = false;
 
-          console.log("hiding visiblity of ", i);
-          scene.config.layers.justice_locations[i].visible = false;
-        }
-      } else {
+    
+    switch (layerToIgnore) {
+      case 'legalIcons':
+        scene.config.layers.justice_locations.legalIcons.visible = true;    
+        break;
+      case 'enforcementIcons':
+        scene.config.layers.justice_locations.enforcementIcons.visible = true;
+        break;
+      case 'courtsIcons':
+        scene.config.layers.justice_locations.courtsIcons.visible = true;
+        break;
+      case 'confinementIcons':
+        scene.config.layers.justice_locations.confinementIcons.visible = true;
+        break;
+      case 'alternativesIcons':
+        scene.config.layers.justice_locations.alternativesIcons.visible = true;
+        break;
+      case 'supportIcons':
+        scene.config.layers.justice_locations.supportIcons.visible = true;
+        break;        
       }
-    }
     scene.updateConfig();
   }
 }
 
 function hideSublayers(parentLayerName, sublayerToShow) {
-  console.log("hideSublayers with parent Layer", parentLayerName, 'sublayer to show', sublayerToShow);
   if (scene) {
     // hide all other layers again
     hideLayersExcept(parentLayerName);
-    console.log("hidden all layers except", parentLayerName);
+
     for (i in scene.config.layers.justice_locations) {
       if (i == parentLayerName) {
         for (j in scene.config.layers.justice_locations[parentLayerName]) {
           if ((j !== 'visible') && (j !== 'filter')) {
             if (j !== sublayerToShow) {
-              if (scene.config.layers.justice_locations[parentLayerName][j].visible == false){
-                scene.config.layers.justice_locations[parentLayerName][j].visible = true;
-              }
-              else{
-                scene.config.layers.justice_locations[parentLayerName][j].visible = false;
-              }
-            } else {
+              scene.config.layers.justice_locations[parentLayerName][j].visible = false;
+            } else{
+              scene.config.layers.justice_locations[parentLayerName][j].visible = true;
             }
           }
         }
       }
     }
+    
+    scene.updateConfig();
   }
 }
 
