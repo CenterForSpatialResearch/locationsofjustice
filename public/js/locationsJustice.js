@@ -18,8 +18,7 @@ var firstSubmenuClick = true;
 
 // basic show-hide for now
 function toggleHighlighted() {
-  console.log("toggling highlighted");
-  if (scene.config.layers.justice_locations.highlightedIcons.visible) {
+  if (scene.config.layers.justice_locations.highlightedIcons.visible == true) {
     //show all others and hide highlighted
     scene.config.layers.justice_locations.legalIcons.visible = true;
     scene.config.layers.justice_locations.enforcementIcons.visible = true;
@@ -53,7 +52,7 @@ function showAllLayers() {
       scene.config.layers.justice_locations.confinementIcons.visible = true;
       scene.config.layers.justice_locations.alternativesIcons.visible = true;
       scene.config.layers.justice_locations.supportIcons.visible = true;
-      scene.config.layers.justice_locations.highlightedIcons.visible = true;
+      scene.config.layers.justice_locations.highlightedIcons.visible = false;
       scene.updateConfig();
 
       // show all subcategories
