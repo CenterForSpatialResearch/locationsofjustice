@@ -54,7 +54,16 @@ function showAllLayers() {
       scene.config.layers.justice_locations.alternativesIcons.visible = true;
       scene.config.layers.justice_locations.supportIcons.visible = true;
       scene.config.layers.justice_locations.highlightedIcons.visible = true;
+      
       // show all subcategories
+      showAllSublayers('legalIcons');
+      showAllSublayers('enforcementIcons');
+      showAllSublayers('courtsIcons');
+      showAllSublayers('confinementIcons');
+      showAllSublayers('alternativesIcons');
+      showAllSublayers('supportIcons');
+      
+
       scene.updateConfig();
     }
 }
