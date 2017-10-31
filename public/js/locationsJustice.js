@@ -60,7 +60,6 @@ function showAllLayers() {
 }
 
 function hideLayersExcept(layerToIgnore) {
-  console.log("hideLayersExcept", layerToIgnore, 'category showing at start is', categoryShowing);
   if (scene) { 
     // turn all off first
     scene.config.layers.justice_locations.legalIcons.visible = false;
@@ -703,6 +702,11 @@ $(document).ready(function() {
 
     for (type in types) {
       if (types[type] == typeToShow) {
+
+        // calc the correct offset
+        var offsetOfMenu = $('.legend.static-legend').offset();
+        
+        $('#' + typeToShow).css('top', offsetOfMenu.top);
         $('#' + typeToShow).show();
       } else { 
         $('#' + types[type]).hide(); 

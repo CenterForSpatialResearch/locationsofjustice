@@ -108,9 +108,9 @@
 
 .legend-tooltip-data {
     position: absolute;
-    left: 90px;
+    left: 120px;
     z-index: 9999;
-    width: 440px;
+    width: 210px;
     background: white;
     padding: 7px;
     box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
@@ -148,15 +148,6 @@
     padding: 2px;
 
 }
-
-// .leaflet-container {
-//   font-family: 'Neue Haas Unica W01 Regular', monospace;
-// }
-// .leaflet-popup-content h1 {
-//   font-family: 'Neue Haas Unica W01 Bold', monospace;
-//   font-size: 1.35em;
-//   margin: 5px 0;
-// }
 
 #aboutPopup {
     font-family: 'Neue Haas Unica W01 Regular', monospace;

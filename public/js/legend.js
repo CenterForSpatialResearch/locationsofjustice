@@ -1,65 +1,5 @@
-function buildLegend() {
-    d3.request("data/locations.geojson")
-        .mimeType("application/json")
-        .response(function(xhr) { return JSON.parse(xhr.responseText); })
-        .get(function(data) {
-            /*
-            var types = [];
-            var categories = [];
-            data.features.forEach(function(d) {
-                var cat = d.properties.CATEGORY;
-                if (categories.indexOf(cat) < 0) {
-                    categories.push(cat);
-                    console.log("Added ", cat);
-                }
-
-                var type = d.properties.TYPE;
-                if (types.indexOf(type) < 0) {
-                    // 
-                    if (cat == "Support") types.push(type);
-                }
-
-            });
-            console.dir(categories);
-            console.dir(types);
-            */
-        });
-}
-
-function fadeLegendExceptTarget(eventTarget) {
-    // fade all
-    $('.type-item').css('opacity', '0.5');
-    // make sure parent is showing
-    eventTarget.parentElement.style.opacity = 1;
-    // show clicked on
-    //$(eventTarget).css('color', 'red');
-
-}
-
-function updateSubMenuStyle(parentLayerName) {
-    var cssSelector = parentLayerName.substring(0, parentLayerName.indexOf('Icons'));
-    $('.legend.' + cssSelector + ' .type-item').css('opacity', '1');
-}
-
-function hideOtherMenus(legendType) {
-    var types = [
-        "legal", "enforcement", "courts", "confinement", "alternatives", "support"
-    ];
-    for (type in types) {
-        if (types[type] !== legendType) {
-            $('.' + types[type] + ' .type-wrapper').hide();
-        }
-    }
-    // reset opacity
-    $('.layer-control').css('opacity', 1);
-    
-    /** TODO  move to locationsJustice.js file */
-    //hideLayersExcept(null);
-    //showAllLayers();
-}
-
+// toggle category legend and submenus
 function toggleLegend(ev, legendType) {
-    
     fadeLegendExcept(legendType);
     
     // show legend or info about child		
@@ -72,6 +12,32 @@ function toggleLegend(ev, legendType) {
     }
 }
 
+// fade all submenu items except for selected
+function fadeLegendExceptTarget(eventTarget) {
+    $('.type-item').css('opacity', '0.5');
+    // show parent
+    eventTarget.parentElement.style.opacity = 1;
+}
+
+// update submenu on double click on category
+function updateSubMenuStyle(parentLayerName) {
+    var cssSelector = parentLayerName.substring(0, parentLayerName.indexOf('Icons'));
+    $('.legend.' + cssSelector + ' .type-item').css('opacity', '1');
+}
+
+// hide all other menus
+function hideOtherMenus(legendType) {
+    var types = [
+        "legal", "enforcement", "courts", "confinement", "alternatives", "support"
+    ];
+    for (type in types) {
+        if (types[type] !== legendType) {
+            $('.' + types[type] + ' .type-wrapper').hide();
+        }
+    }
+}
+
+// close all other menus
 function closeOpenMenusExcept(legendType) {
     var types = ['legal', 'enforcement', 'courts', 'confinement', 'alternatives', 'support'];
     var index = types.indexOf(legendType);
@@ -94,9 +60,7 @@ function closeAllOpenMenus() {
 }
 
 function fadeLegendExcept(legendType) {
-    // fade all others
     $('.layer-control.legend.leaflet-control').css('opacity', '0.5');
-    // show main
     $('.layer-control.legend.' + legendType + '.leaflet-control').css('opacity', '1');
 }
 
@@ -104,3 +68,37 @@ function fadeLegendExcept(legendType) {
 function closeAbout() {
     document.querySelector("#aboutPopup").style.display = 'none';
 }
+
+
+/*
+
+not needed, this was useful to see what was in the geojson
+
+function buildLegend() {
+    d3.request("data/locations.geojson")
+        .mimeType("application/json")
+        .response(function(xhr) { return JSON.parse(xhr.responseText); })
+        .get(function(data) {
+            
+            var types = [];
+            var categories = [];
+            data.features.forEach(function(d) {
+                var cat = d.properties.CATEGORY;
+                if (categories.indexOf(cat) < 0) {
+                    categories.push(cat);
+                    console.log("Added ", cat);
+                }
+
+                var type = d.properties.TYPE;
+                if (types.indexOf(type) < 0) {
+                    // 
+                    if (cat == "Support") types.push(type);
+                }
+
+            });
+            console.dir(categories);
+            console.dir(types);
+            
+        });
+}
+*/
