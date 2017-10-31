@@ -18,10 +18,27 @@ var firstSubmenuClick = true;
 
 // basic show-hide for now
 function toggleHighlighted() {
+  console.log("toggling highlighted");
   if (scene.config.layers.justice_locations.highlightedIcons.visible) {
+    //show all others and hide highlighted
+    scene.config.layers.justice_locations.legalIcons.visible = true;
+    scene.config.layers.justice_locations.enforcementIcons.visible = true;
+    scene.config.layers.justice_locations.courtsIcons.visible = true;
+    scene.config.layers.justice_locations.confinementIcons.visible = true;
+    scene.config.layers.justice_locations.alternativesIcons.visible = true;
+    scene.config.layers.justice_locations.supportIcons.visible = true;
     scene.config.layers.justice_locations.highlightedIcons.visible = false;
+  
   } else {
+    // hide all else and show highlighted
+    scene.config.layers.justice_locations.legalIcons.visible = false;
+    scene.config.layers.justice_locations.enforcementIcons.visible = false;
+    scene.config.layers.justice_locations.courtsIcons.visible = false;
+    scene.config.layers.justice_locations.confinementIcons.visible = false;
+    scene.config.layers.justice_locations.alternativesIcons.visible = false;
+    scene.config.layers.justice_locations.supportIcons.visible = false;
     scene.config.layers.justice_locations.highlightedIcons.visible = true;
+
   }
   scene.updateConfig();
 }
@@ -36,6 +53,8 @@ function showAllLayers() {
       scene.config.layers.justice_locations.confinementIcons.visible = true;
       scene.config.layers.justice_locations.alternativesIcons.visible = true;
       scene.config.layers.justice_locations.supportIcons.visible = true;
+      scene.config.layers.justice_locations.highlightedIcons.visible = true;
+      // show all subcategories
       scene.updateConfig();
     }
 }
@@ -69,15 +88,11 @@ function hideLayersExcept(layerToIgnore) {
         break;
       case 'supportIcons':
         scene.config.layers.justice_locations.supportIcons.visible = true;
-        break;        
-      }
+        break;    
+    }
+    
     categoryShowing = layerToIgnore;
     scene.updateConfig();
-
-    // now if a submenu was showing
-    
-
-
   }
 }
 

@@ -73,8 +73,8 @@ function closeOpenMenusExcept(legendType) {
         //console.log("hiding type-wrapper for type", types[type]);
         $('.' + types[type] + ' .type-wrapper').hide();
     }
-    console.log("done closeOpenMenus except", legendType);
 }
+
 function closeAllOpenMenus() {
     $('.legal .type-wrapper').hide();
     $('.enforcement .type-wrapper').hide();
@@ -84,8 +84,6 @@ function closeAllOpenMenus() {
     $('.support .type-wrapper').hide();
     // reset opacity
     $('.layer-control').css('opacity', 1);
-    console.log("closed all open menus, reset opacity ");
-
 }
 
 function fadeLegendExcept(legendType) {
