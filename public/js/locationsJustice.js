@@ -54,18 +54,34 @@ function showAllLayers() {
       scene.config.layers.justice_locations.alternativesIcons.visible = true;
       scene.config.layers.justice_locations.supportIcons.visible = true;
       scene.config.layers.justice_locations.highlightedIcons.visible = true;
-      
-      // show all subcategories
-      showAllSublayers('legalIcons');
-      showAllSublayers('enforcementIcons');
-      showAllSublayers('courtsIcons');
-      showAllSublayers('confinementIcons');
-      showAllSublayers('alternativesIcons');
-      showAllSublayers('supportIcons');
-      
-
       scene.updateConfig();
+
+      // show all subcategories
+      showAllSubcategories();
+      
     }
+}
+
+function showAllSubcategories() {
+  console.log("checking subcategories");
+  if (scene) {
+
+    // lets just test with legal
+    var parentLayers = ['legalIcons', 'enforcementIcons'];
+    for (name in parentLayers) {
+      var layerName = parentLayers[name]; // ...
+      for (i in scene.config.layers.justice_locations) {
+        if (i == layerName) {
+          for (j in scene.config.layers.justice_locations[layerName]) {
+            if ((j !== 'visible') && (j !== 'filter')) {
+              scene.config.layers.justice_locations[layerName][j].visible = true;
+            }
+          }
+        }
+      }
+    }
+    scene.updateConfig();
+  }
 }
 
 function hideLayersExcept(layerToIgnore) {
