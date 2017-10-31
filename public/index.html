@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="https://mapzen.com/js/mapzen.css">
     <script src="https://mapzen.com/js/mapzen.min.js"></script>
     <link rel="stylesheet" href="css/leaflet.fullscreen.css">
-    <link rel="stylesheet" href="css/mapzenCustom.css">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="css/leaflet.zoomhome.css"/>
     <script src="js/leaflet.zoomhome.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,300i,400,400i,700" rel="stylesheet">
@@ -38,16 +37,18 @@
           }
     </style>
     <link rel="stylesheet" href="css/justice.css">
+    <link rel="stylesheet" href="css/mapzenCustom.css">
 </head>
 <body>
 
     <div id="justiceMap" style="width: 1024px; height: 576px;">
 
       <div id="aboutPopup" style="display: none">
-        <div class="aboutClose" onclick="closeAbout()">X</div>
-        <h3>About This Map</h3>
-        <p>To imagine a more just New York City, we must first make legible a more complete picture of the city’s criminal justice system as it presently exists. As a system, it resides sometimes visibly and sometimes stealthily. What sites do we include it? How pervasive is it? This map draws on publically-available information to chart the reach and locations of the institutions and agencies involved. You can sort the points by function (for example, enforcement, confinement, or courts) and by the type of site (for example, jail, criminal court, or probation office). Click on a point to find out more about the site.</p>
-        <p>This map is a collaborative project between Urban Omnibus and the Center for Spatial Research at Columbia Graduate School of Architecture, Planning and Preservation. It is a work in progress, and does not claim to be comprehensive or objective — like all maps, it has a point of view. But it does seek to be accurate; if you spot an error or think something else ought to be included, <a href="mailto:schwob@archleague.org">please be in touch</a>.</p>
+        <div class="aboutClose" onclick="closeAbout()">x</div>
+        <div class="aboutContent">
+          <h3>About This Map</h3>
+          <p>To imagine a more just New York City, we must first make legible a more complete picture of the city’s criminal justice system as it presently exists. As a system, it resides sometimes visibly and sometimes stealthily. What sites do we include it? How pervasive is it? This map draws on publically-available information to chart the reach and locations of the institutions and agencies involved. You can sort the points by function (for example, enforcement, confinement, or courts) and by the type of site (for example, jail, criminal court, or probation office). Click on a point to find out more about the site.<br><br>This map is a collaborative project between Urban Omnibus and the Center for Spatial Research at Columbia Graduate School of Architecture, Planning and Preservation. It is a work in progress, and does not claim to be comprehensive or objective — like all maps, it has a point of view. But it does seek to be accurate; if you spot an error or think something else ought to be included, <a href="mailto:schwob@archleague.org">please be in touch</a>.</p>
+        </div>
       </div>
 
     <div class="legend-tooltip-data" id="direct" >At these sites, people are detained and confined against their will, and executive actors make decisions limiting the lives and mobility of thousands of people.

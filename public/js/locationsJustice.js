@@ -622,9 +622,9 @@ var StaticLegendControl = L.Control.extend({
   onAdd: function() {
     var container = L.DomUtil.create('div', 'layer-control');
     container.innerHTML = '<div class="legend static-legend">'  +
-        '<div class="icon"><img src="icons/Legend_5.svg"></div><a href="#" class="legend-tooltip" data-type="direct" alt="Direct category tooltip">DIRECT</a><br/>' +
-        '<div class="icon"><img src="icons/Legend_3.svg"></div><a href="#" class="legend-tooltip" data-type="indirect" alt="Indirect category tooltip">INDIRECT</a><br/>' +
-        '<div class="icon"><img src="icons/Legend_1.svg"></div><a href="#" class="legend-tooltip" data-type="support" alt="Support category tooltip">SUPPORT</a><br/>' +
+        '<div class="icon"><img src="icons/Legend_5.svg"></div><a href="#" class="legend-tooltip" data-type="direct" alt="Direct category tooltip">Direct</a><br/>' +
+        '<div class="icon"><img src="icons/Legend_3.svg"></div><a href="#" class="legend-tooltip" data-type="indirect" alt="Indirect category tooltip">Indirect</a><br/>' +
+        '<div class="icon"><img src="icons/Legend_1.svg"></div><a href="#" class="legend-tooltip" data-type="support" alt="Support category tooltip">Support</a><br/>' +
       '</div>';
       return container;
     }
