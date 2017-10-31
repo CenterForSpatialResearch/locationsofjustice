@@ -17,7 +17,7 @@
     width: 100%;
     float: left;
     margin: 1px;
-    border-radius: 0px;
+    border-radius: 0;
 
     input {
         background: none;
@@ -75,6 +75,9 @@
 
 .layer-control.legend {
     max-width: 200px;
+    input {
+        border-radius: 0;
+    }
 }
 
 
