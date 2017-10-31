@@ -12,6 +12,14 @@ var map = L.Mapzen.map('justiceMap', {
   },
 });
 
+
+function toggleHighlighted() {
+  console.log("show highlighted");
+
+}
+
+
+
 function showAllLayers() {
     scene.config.layers.justice_locations.legalIcons.visible = true;
     scene.config.layers.justice_locations.enforcementIcons.visible = true;
@@ -432,6 +440,25 @@ var AllLayersControl = L.Control.extend({
   }
 });
 
+// highlighted toggle
+var HighlightedControl = L.Control.extend({
+  options: {
+    position: 'topleft'
+  },
+  onAdd: function() {
+    var container = L.DomUtil.create('div', 'layer-control');
+    container.innerHTML = '<input id="highlights_toggle" type="button" value="Highlighted">'
+    L.DomEvent.on(container, 'click', this.toggleOnClick);
+    return container;
+  },
+  toggleOnClick: function (e) {
+    if (scene) {
+      
+      toggleHighlighted();
+
+    }
+  }
+});
 
 // Non interactive, static legend
 var StaticLegendControl = L.Control.extend({
@@ -500,6 +527,8 @@ var staticLegendControl = new StaticLegendControl();
 map.addControl(staticLegendControl);
 var allLayersToggleControl = new AllLayersControl();
 map.addControl(allLayersToggleControl);
+var highlightedControl = new HighlightedControl();
+map.addControl(highlightedControl);
 
 
 
