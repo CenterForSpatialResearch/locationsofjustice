@@ -72,6 +72,13 @@ html, body {
 .leaflet-left {
   left: 5px;
 }
+.leaflet-control-fullscreen.leaflet-bar.leaflet-control {
+  margin-right: 0px;
+  margin-bottom: 0px;
+}
+.leaflet-bar {
+  border-radius: 0px;
+}
 #legal_toggle {
   background: #5db323
 }

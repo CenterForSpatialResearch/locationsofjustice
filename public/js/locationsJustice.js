@@ -1,8 +1,13 @@
 // Map settings
+var lat = 40.723;
+var lng = -73.945;
+var zoom = 11;
+
 var map = L.Mapzen.map('justiceMap', {
   apiKey: 'mapzen-h1njtmE',
-  center: [40.722570, -73.997099],
-  zoom: 12,
+  zoomControl: false,
+  center: [40.723, -73.945],
+  zoom: 11,
   minZoom: 7,
   maxZoom: 19,
   maxBounds: [[45, -80], [40, -70]],
@@ -11,6 +16,11 @@ var map = L.Mapzen.map('justiceMap', {
     scene: 'scene.yaml'
   },
 });
+
+var zoomHome = L.Control.zoomHome({
+  position: 'bottomright'
+});
+zoomHome.addTo(map);
 
 // adding menu state
 var categoryShowing = null;
@@ -27,7 +37,7 @@ function toggleHighlighted() {
     scene.config.layers.justice_locations.alternativesIcons.visible = true;
     scene.config.layers.justice_locations.supportIcons.visible = true;
     scene.config.layers.justice_locations.highlightedIcons.visible = false;
-  
+
   } else {
     // hide all else and show highlighted
     scene.config.layers.justice_locations.legalIcons.visible = false;
@@ -57,14 +67,14 @@ function showAllLayers() {
 
       // show all subcategories
       showAllSubcategories();
-      
+
     }
 }
 
 function showAllSubcategories() {
   if (scene) {
     var parentLayers = ['legalIcons', 'enforcementIcons', 'courtsIcons', 'confinementIcons', 'alternativesIcons', 'supportIcons'];
-    
+
     for (name in parentLayers) {
       var layerName = parentLayers[name]; // ...
       for (i in scene.config.layers.justice_locations) {
@@ -82,7 +92,7 @@ function showAllSubcategories() {
 }
 
 function hideLayersExcept(layerToIgnore) {
-  if (scene) { 
+  if (scene) {
     // turn all off first
     scene.config.layers.justice_locations.legalIcons.visible = false;
     scene.config.layers.justice_locations.enforcementIcons.visible = false;
@@ -91,10 +101,10 @@ function hideLayersExcept(layerToIgnore) {
     scene.config.layers.justice_locations.alternativesIcons.visible = false;
     scene.config.layers.justice_locations.supportIcons.visible = false;
     scene.config.layers.justice_locations.highlightedIcons.visible = false;
-    
+
     switch (layerToIgnore) {
       case 'legalIcons':
-        scene.config.layers.justice_locations.legalIcons.visible = true;    
+        scene.config.layers.justice_locations.legalIcons.visible = true;
         break;
       case 'enforcementIcons':
         scene.config.layers.justice_locations.enforcementIcons.visible = true;
@@ -110,9 +120,9 @@ function hideLayersExcept(layerToIgnore) {
         break;
       case 'supportIcons':
         scene.config.layers.justice_locations.supportIcons.visible = true;
-        break;    
+        break;
     }
-    
+
     categoryShowing = layerToIgnore;
     scene.updateConfig();
   }
@@ -123,7 +133,7 @@ function hideSublayers(parentLayerName, sublayerToShow) {
     // hide all other layers again
     hideLayersExcept(parentLayerName);
     var resetLayers = false;
-    
+
     for (i in scene.config.layers.justice_locations) {
       if (i == parentLayerName) {
         for (j in scene.config.layers.justice_locations[parentLayerName]) {
@@ -132,14 +142,14 @@ function hideSublayers(parentLayerName, sublayerToShow) {
 
               // hide all others
               scene.config.layers.justice_locations[parentLayerName][j].visible = false;
-            
+
             } else {
-              
+
               if (firstSubmenuClick) {
                 // ignore this logic on first click because by default the subcategory will be showing
                 firstSubmenuClick = false;
                 scene.config.layers.justice_locations[parentLayerName][j].visible = true;
-              
+
               } else {
                 var subcategoryStatus = scene.config.layers.justice_locations[parentLayerName][j].visible;
                 if (subcategoryStatus == true) {
@@ -183,11 +193,11 @@ function showAllSublayers(parentLayerName) {
 
 
 function getTangramName(subtypeName) {
-  
+
   switch(subtypeName) {
     // legal
     case "State Prosecutor": return 'StateProsecutor';
-    case "Federal Prosecutor": return 'FedralProsecutor';
+    case "Federal Prosecutor": return 'FederalProsecutor';
     case "Public Appellate Representation": return 'PublicAppellate';
     case "Public Defender": return 'PublicDefender';
     case "Public Family Court Representation": return 'PublicFamily';
@@ -248,8 +258,8 @@ var LegalLayerControl = L.Control.extend({
     var innerWrapper = L.DomUtil.create('div', 'type-wrapper');
     container.appendChild(innerWrapper);
     var types = [
-      "State Prosecutor", "Federal Prosecutor", "Public Appellate Representation", "Public Defender",
-      "Public Family Court Representation", "Mental Hygiene Legal Services", "Attorney Conduct Grievance Committee"
+      "Attorney Conduct Grievance Committee", "Federal Prosecutor", "Mental Hygiene Legal Services",
+      "Public Appellate Representation", "Public Defender", "Public Family Court Representation", "State Prosecutor"
     ];
     for (type in types) {
       var typeItem = L.DomUtil.create('div', 'type-item');
@@ -278,7 +288,7 @@ var LegalLayerControl = L.Control.extend({
             showAllSublayers('legalIcons');
           }
         }
-      } 
+      }
     }
   }
 });
@@ -298,9 +308,9 @@ var EnforcementLayerControl = L.Control.extend({
     var innerWrapper = L.DomUtil.create('div', 'type-wrapper');
     container.appendChild(innerWrapper);
     var types = [
-      "Tow Pound", "Logistics", "Offices & Posts", "Police Station", "Police Service Area Command",
-      "NYPD Division of School Safety", "Parks Police", "State Law Enforcement", "Federal Law Enforcement",
-      "Headquarters", "Parking", "Training"
+      "Federal Law Enforcement", "Headquarters", "Logistics", "NYPD Division of School Safety",
+      "Offices & Posts", "Parking", "Parks Police", "Police Service Area Command",
+      "Police Station", "State Law Enforcement", "Training", "Tow Pound"
     ];
     for (type in types) {
       var typeItem = L.DomUtil.create('div', 'type-item');
@@ -329,11 +339,10 @@ var EnforcementLayerControl = L.Control.extend({
             showAllSublayers('enforcementIcons');
           }
         }
-      } 
+      }
     }
   }
 });
-
 
 // Courts button *****************
 var CourtsLayerControl = L.Control.extend({
@@ -385,11 +394,10 @@ var CourtsLayerControl = L.Control.extend({
             showAllSublayers('courtsIcons');
           }
         }
-      } 
+      }
     }
   }
 });
-
 
 // Confinement button **********
 var ConfinementLayerControl = L.Control.extend({
@@ -439,12 +447,10 @@ var ConfinementLayerControl = L.Control.extend({
             showAllSublayers('confinementIcons');
           }
         }
-      } 
+      }
     }
   }
 });
-
-
 
 // Alternatives button ****************
 var AlternativesLayerControl = L.Control.extend({
@@ -461,11 +467,8 @@ var AlternativesLayerControl = L.Control.extend({
     var innerWrapper = L.DomUtil.create('div', 'type-wrapper');
     container.appendChild(innerWrapper);
     var types = [
-      "Parole Office",
-      "Federal Probation Office",
-      "Juvenile Probation",
-      "Neighborhood Opportuity Network (NeON)",
-      "Probation Office"
+      "Federal Probation Office", "Juvenile Probation", "Neighborhood Opportuity Network (NeON)",
+      "Parole Office", "Probation Office"
     ]
     for (type in types) {
       var typeItem = L.DomUtil.create('div', 'type-item');
@@ -494,11 +497,10 @@ var AlternativesLayerControl = L.Control.extend({
             showAllSublayers('alternativesIcons');
           }
         }
-      } 
+      }
     }
   }
 });
-
 
 // Support button ***************
 var SupportLayerControl = L.Control.extend({
@@ -546,7 +548,7 @@ var SupportLayerControl = L.Control.extend({
             showAllSublayers('supportIcons');
           }
         }
-      } 
+      }
     }
   }
 });
@@ -591,44 +593,14 @@ var HighlightedControl = L.Control.extend({
   }
 });
 
-// Non interactive, static legend
-var StaticLegendControl = L.Control.extend({
+// About button **********
+var AboutMapControl = L.Control.extend({
   options: {
     position: 'topleft'
   },
   onAdd: function() {
     var container = L.DomUtil.create('div', 'layer-control');
-    container.innerHTML = '<div class="legend static-legend">'  + 
-        '<div class="icon"><img src="icons/Legend_5.svg"></div><a href="#" class="legend-tooltip" data-type="direct" alt="Direct category tooltip">DIRECT</a><br/>' +
-        '<div class="icon"><img src="icons/Legend_3.svg"></div><a href="#" class="legend-tooltip" data-type="indirect" alt="Indirect category tooltip">INDIRECT</a><br/>' +
-        '<div class="icon"><img src="icons/Legend_1.svg"></div><a href="#" class="legend-tooltip" data-type="support" alt="Support category tooltip">SUPPORT</a><br/>' + 
-      '</div>';
-      return container;
-    }
-  });
-
-
-var FullScreenToggle = L.Control.extend({
-  options: {
-    position: 'bottomleft'
-  },
-  onAdd: function() {
-    var container = L.DomUtil.create('div', 'layer-control');
-    container.innerHTML = '<div class="leaflet-control-fullscreen leaflet-bar leaflet-control"><a class="leaflet-control-fullscreen-button leaflet-bar-part" href="#" title="View Fullscreen" style="outline: none;"></a></div>';
-    L.DomEvent.on(container, 'click', this.toggleOnClick);
-    return container;
-  },
-  toggleOnClick: function(e) { map.toggleFullscreen(); }
-});
-
-// About button **********
-var AboutMapControl = L.Control.extend({
-  options: {
-    position: 'bottomleft'
-  },
-  onAdd: function() {
-    var container = L.DomUtil.create('div', 'about-control');
-    container.innerHTML = 'About this Map'
+    container.innerHTML = '<input id="highlights_toggle" type="button" value="About This Map">'
     L.DomEvent.on(container, 'click', this.toggleOnClick);
     return container;
   },
@@ -640,6 +612,36 @@ var AboutMapControl = L.Control.extend({
       document.querySelector("#aboutPopup").style.display = 'none';
     }
   }
+});
+
+// Non interactive, static legend
+var StaticLegendControl = L.Control.extend({
+  options: {
+    position: 'topleft'
+  },
+  onAdd: function() {
+    var container = L.DomUtil.create('div', 'layer-control');
+    container.innerHTML = '<div class="legend static-legend">'  +
+        '<div class="icon"><img src="icons/Legend_5.svg"></div><a href="#" class="legend-tooltip" data-type="direct" alt="Direct category tooltip">DIRECT</a><br/>' +
+        '<div class="icon"><img src="icons/Legend_3.svg"></div><a href="#" class="legend-tooltip" data-type="indirect" alt="Indirect category tooltip">INDIRECT</a><br/>' +
+        '<div class="icon"><img src="icons/Legend_1.svg"></div><a href="#" class="legend-tooltip" data-type="support" alt="Support category tooltip">SUPPORT</a><br/>' +
+      '</div>';
+      return container;
+    }
+  });
+
+
+var FullScreenToggle = L.Control.extend({
+  options: {
+    position: 'bottomright'
+  },
+  onAdd: function() {
+    var container = L.DomUtil.create('div', 'layer-control');
+    container.innerHTML = '<div class="leaflet-control-fullscreen leaflet-bar leaflet-control"><a class="leaflet-control-fullscreen-button leaflet-bar-part" href="#" title="View Fullscreen" style="outline: none;"></a></div>';
+    L.DomEvent.on(container, 'click', this.toggleOnClick);
+    return container;
+  },
+  toggleOnClick: function(e) { map.toggleFullscreen(); }
 });
 
 var legalToggleControl = new LegalLayerControl();
@@ -654,18 +656,15 @@ var alternativesToggleControl = new AlternativesLayerControl();
 map.addControl(alternativesToggleControl);
 var supportToggleControl = new SupportLayerControl();
 map.addControl(supportToggleControl);
-var staticLegendControl = new StaticLegendControl();
-map.addControl(staticLegendControl);
 var allLayersToggleControl = new AllLayersControl();
 map.addControl(allLayersToggleControl);
 var highlightedControl = new HighlightedControl();
 map.addControl(highlightedControl);
-
-
-
-
 var aboutMapControl= new AboutMapControl();
 map.addControl(aboutMapControl);
+var staticLegendControl = new StaticLegendControl();
+map.addControl(staticLegendControl);
+
 var fullScreenToggleControl = new FullScreenToggle();
 map.addControl(fullScreenToggleControl);
 
@@ -717,7 +716,7 @@ $(document).ready(function() {
 
   // basic tooltips
   $('a.legend-tooltip').hover(function() {
-    // hide all     
+    // hide all
 
     var types = ['direct', 'indirect', 'support'];
     var typeToShow = $(this).attr('data-type');
@@ -727,16 +726,16 @@ $(document).ready(function() {
 
         // calc the correct offset
         var offsetOfMenu = $('.legend.static-legend').offset();
-        
+
         $('#' + typeToShow).css('top', offsetOfMenu.top);
         $('#' + typeToShow).show();
-      } else { 
-        $('#' + types[type]).hide(); 
+      } else {
+        $('#' + types[type]).hide();
       }
     }
 
-  }, function() { 
-      // hovering off 
+  }, function() {
+      // hovering off
       $('#direct').hide();
       $('#indirect').hide();
       $('#support').hide();

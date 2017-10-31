@@ -713,7 +713,7 @@ layers:
               interactive: true
       FederalProsecutor:
         visible: true
-        filter: {SUBMENU: Fedral Prosecutor}
+        filter: {SUBMENU: Federal Prosecutor}
         legal_1_icons:
           filter:
             RANK: 1
