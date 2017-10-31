@@ -21,7 +21,7 @@ function hideLayersExcept(layerToIgnore) {
     scene.config.layers.justice_locations.confinementIcons.visible = false;
     scene.config.layers.justice_locations.alternativesIcons.visible = false;
     scene.config.layers.justice_locations.supportIcons.visible = false;
-
+    //scene.config.layers.justice_locations.highlightedIcons.visible = false;
     
     switch (layerToIgnore) {
       case 'legalIcons':
@@ -65,13 +65,12 @@ function hideSublayers(parentLayerName, sublayerToShow) {
         }
       }
     }
-    
     scene.updateConfig();
   }
 }
 
 function getTangramName(subtypeName) {
-  console.log(" ++++++++ getting tangram name for ", subtypeName);
+  //console.log(" ++++++++ getting tangram name for ", subtypeName);
 
   switch(subtypeName) {
     // legal
@@ -156,8 +155,6 @@ var LegalLayerControl = L.Control.extend({
 
 
     if (e.target.value) {
-
-      
 
 
       fadeLegendExceptTarget(e.target);
