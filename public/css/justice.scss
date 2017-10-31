@@ -18,6 +18,7 @@
     float: left;
     margin: 1px;
     border-radius: 0px;
+
     input {
         background: none;
         color: white;
@@ -76,6 +77,7 @@
     max-width: 200px;
 }
 
+
 .static-legend {
     background: white;
     padding: 5px 5px 10px 5px;
@@ -129,6 +131,11 @@
 
 
 
+#all_toggle {
+    color:#555;
+}
+
+
 .about-control {
     width: 50px;
     color: #666;
@@ -156,9 +163,9 @@
     width: 50%;
     max-height: 80%;
     margin: auto;
-    padding: 10px;
+    padding: 40px;
     background-color: white;
-    /* text-align: center; */
+    font-size: 120%;
     top: 0;
     bottom: 0;
     left: 0;

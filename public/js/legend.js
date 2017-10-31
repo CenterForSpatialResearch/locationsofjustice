@@ -62,11 +62,13 @@ function hideOtherMenus(legendType) {
             $('.' + types[type] + ' .type-wrapper').hide();
         }
     }
-        
+    
+    /** TODO  move to locationsJustice.js file */
+    hideLayersExcept(null);
+    showAllLayers();
+
+
 }
-
-
-
 
 function closeAbout() {
     document.querySelector("#aboutPopup").style.display = 'none';
@@ -102,7 +104,8 @@ function closeAllOpenMenus() {
     $('.confinement .type-wrapper').hide();
     $('.alternatives .type-wrapper').hide();
     $('.support .type-wrapper').hide();
-
+    // reset opacity
+    $('.layer-control').css('opacity', 1);
 }
 
 function fadeLegendExcept(legendType) {

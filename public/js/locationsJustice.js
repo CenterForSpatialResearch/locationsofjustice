@@ -12,7 +12,20 @@ var map = L.Mapzen.map('justiceMap', {
   },
 });
 
+function showAllLayers() {
+    scene.config.layers.justice_locations.legalIcons.visible = true;
+    scene.config.layers.justice_locations.enforcementIcons.visible = true;
+    scene.config.layers.justice_locations.courtsIcons.visible = true;
+    scene.config.layers.justice_locations.confinementIcons.visible = true;
+    scene.config.layers.justice_locations.alternativesIcons.visible = true;
+    scene.config.layers.justice_locations.supportIcons.visible = true;
+    scene.updateConfig();
+    console.log("showAll layers hit, scene.configUpdate run so all should be on now");
+}
+
 function hideLayersExcept(layerToIgnore) {
+  console.log("hiding layers except function");
+
   if (scene) { 
     // off 
     scene.config.layers.justice_locations.legalIcons.visible = false;
@@ -21,7 +34,8 @@ function hideLayersExcept(layerToIgnore) {
     scene.config.layers.justice_locations.confinementIcons.visible = false;
     scene.config.layers.justice_locations.alternativesIcons.visible = false;
     scene.config.layers.justice_locations.supportIcons.visible = false;
-    //scene.config.layers.justice_locations.highlightedIcons.visible = false;
+    console.log("all layers set to false in scene, now checking which to turn back on", layerToIgnore);
+    //.config.layers.justice_locations.highlightedIcons.visible = false;
     
     switch (layerToIgnore) {
       case 'legalIcons':
@@ -162,10 +176,6 @@ var LegalLayerControl = L.Control.extend({
       hideSublayers('legalIcons', getTangramName(e.target.value));
     
     }
-  
-  
-  
-  
   
   
   
@@ -402,47 +412,26 @@ var SupportLayerControl = L.Control.extend({
     }
   }
 });
-/* removing this for now
+
+
 // All layers button ***************
-var AllLayersLayerControl = L.Control.extend({
+var AllLayersControl = L.Control.extend({
   options: {
     position: 'topleft'
   },
   onAdd: function() {
     var container = L.DomUtil.create('div', 'layer-control');
-    container.innerHTML = '<input id="allLayers_toggle" type="button" value="All Layers">'
+    container.innerHTML = '<input id="all_toggle" type="button" value="All Layers">'
     L.DomEvent.on(container, 'click', this.toggleOnClick);
     return container;
   },
   toggleOnClick: function (e) {
-    if (scene) {
-      for (i in scene.config.layers.justice_locations) {
-        if (i !== 'data') {
-          if (scene.config.layers.justice_locations[i].visible == false) {
-            scene.config.layers.justice_locations[i].visible = true;
-          }
-          else {
-          }
-        } else {
-        }
-        for (j in scene.config.layers.justice_locations[i]) {
-          if ((j !== 'visible') && (j !== 'filter')) {
-            if (scene.config.layers.justice_locations[i][j].visible == false){
-              scene.config.layers.justice_locations[i][j].visible = true;
-            }
-            else{
-            }
-          }
-        }
-      }
-    }
-    scene.updateConfig();
-    document.getElementById("alllayers_toggle").style.background = '#5db323';
-    document.getElementById("alllayers_toggle").style.color = 'white';
+    // reset menu and show all
+    closeAllOpenMenus();
+    if (scene) showAllLayers();
   }
 });
 
-*/
 
 // Non interactive, static legend
 var StaticLegendControl = L.Control.extend({
@@ -509,9 +498,9 @@ var supportToggleControl = new SupportLayerControl();
 map.addControl(supportToggleControl);
 var staticLegendControl = new StaticLegendControl();
 map.addControl(staticLegendControl);
+var allLayersToggleControl = new AllLayersControl();
+map.addControl(allLayersToggleControl);
 
-//var allLayersToggleControl = new AllLayersLayerControl();
-//map.addControl(allLayersToggleControl);
 
 
 
