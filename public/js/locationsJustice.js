@@ -12,6 +12,10 @@ var map = L.Mapzen.map('justiceMap', {
   },
 });
 
+// adding menu state
+var categoryShowing = null;
+var firstSubmenuClick = true;
+
 // basic show-hide for now
 function toggleHighlighted() {
   if (scene.config.layers.justice_locations.highlightedIcons.visible) {
@@ -24,13 +28,16 @@ function toggleHighlighted() {
 
 // show all layers
 function showAllLayers() {
-    scene.config.layers.justice_locations.legalIcons.visible = true;
-    scene.config.layers.justice_locations.enforcementIcons.visible = true;
-    scene.config.layers.justice_locations.courtsIcons.visible = true;
-    scene.config.layers.justice_locations.confinementIcons.visible = true;
-    scene.config.layers.justice_locations.alternativesIcons.visible = true;
-    scene.config.layers.justice_locations.supportIcons.visible = true;
-    scene.updateConfig();
+    if (scene) {
+      categoryShowing = null;
+      scene.config.layers.justice_locations.legalIcons.visible = true;
+      scene.config.layers.justice_locations.enforcementIcons.visible = true;
+      scene.config.layers.justice_locations.courtsIcons.visible = true;
+      scene.config.layers.justice_locations.confinementIcons.visible = true;
+      scene.config.layers.justice_locations.alternativesIcons.visible = true;
+      scene.config.layers.justice_locations.supportIcons.visible = true;
+      scene.updateConfig();
+    }
 }
 
 function hideLayersExcept(layerToIgnore) {
@@ -63,6 +70,7 @@ function hideLayersExcept(layerToIgnore) {
         scene.config.layers.justice_locations.supportIcons.visible = true;
         break;        
       }
+    categoryShowing = layerToIgnore;
     scene.updateConfig();
   }
 }
@@ -71,16 +79,56 @@ function hideSublayers(parentLayerName, sublayerToShow) {
   if (scene) {
     // hide all other layers again
     hideLayersExcept(parentLayerName);
-
+    var resetLayers = false;
+    
     for (i in scene.config.layers.justice_locations) {
       if (i == parentLayerName) {
         for (j in scene.config.layers.justice_locations[parentLayerName]) {
           if ((j !== 'visible') && (j !== 'filter')) {
             if (j !== sublayerToShow) {
+
+              // hide all others
               scene.config.layers.justice_locations[parentLayerName][j].visible = false;
-            } else{
-              scene.config.layers.justice_locations[parentLayerName][j].visible = true;
+            
+            } else {
+              
+              if (firstSubmenuClick) {
+                // ignore this logic on first click because by default the subcategory will be showing
+                firstSubmenuClick = false;
+                scene.config.layers.justice_locations[parentLayerName][j].visible = true;
+              
+              } else {
+                var subcategoryStatus = scene.config.layers.justice_locations[parentLayerName][j].visible;
+                if (subcategoryStatus == true) {
+                  // reset to parent category
+                  resetLayers = true;
+                } else {
+                  scene.config.layers.justice_locations[parentLayerName][j].visible = true;
+                }
+              }
             }
+          }
+        }
+      }
+    }
+    scene.updateConfig();
+
+    if (resetLayers == true) {
+      showAllSublayers(parentLayerName);
+    }
+  }
+}
+
+function showAllSublayers(parentLayerName) {
+  firstSubmenuClick = true;
+  if (scene) {
+    // hide all other layers again
+    hideLayersExcept(parentLayerName);
+    for (i in scene.config.layers.justice_locations) {
+      if (i == parentLayerName) {
+        for (j in scene.config.layers.justice_locations[parentLayerName]) {
+          if ((j !== 'visible') && (j !== 'filter')) {
+            scene.config.layers.justice_locations[parentLayerName][j].visible = true;
           }
         }
       }
@@ -88,6 +136,7 @@ function hideSublayers(parentLayerName, sublayerToShow) {
     scene.updateConfig();
   }
 }
+
 
 function getTangramName(subtypeName) {
   
