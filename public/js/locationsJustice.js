@@ -69,6 +69,7 @@ function hideLayersExcept(layerToIgnore) {
     scene.config.layers.justice_locations.confinementIcons.visible = false;
     scene.config.layers.justice_locations.alternativesIcons.visible = false;
     scene.config.layers.justice_locations.supportIcons.visible = false;
+    scene.config.layers.justice_locations.highlightedIcons.visible = false;
     
     switch (layerToIgnore) {
       case 'legalIcons':
@@ -145,6 +146,7 @@ function showAllSublayers(parentLayerName) {
   if (scene) {
     // hide all other layers again
     hideLayersExcept(parentLayerName);
+    updateSubMenuStyle(parentLayerName);
     for (i in scene.config.layers.justice_locations) {
       if (i == parentLayerName) {
         for (j in scene.config.layers.justice_locations[parentLayerName]) {

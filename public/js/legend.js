@@ -27,12 +27,19 @@ function buildLegend() {
 }
 
 function fadeLegendExceptTarget(eventTarget) {
+    // fade all
     $('.type-item').css('opacity', '0.5');
+    // make sure parent is showing
     eventTarget.parentElement.style.opacity = 1;
+    // show clicked on
+    //$(eventTarget).css('color', 'red');
 
 }
 
-function buildElements(data) {}
+function updateSubMenuStyle(parentLayerName) {
+    var cssSelector = parentLayerName.substring(0, parentLayerName.indexOf('Icons'));
+    $('.legend.' + cssSelector + ' .type-item').css('opacity', '1');
+}
 
 function hideOtherMenus(legendType) {
     var types = [
