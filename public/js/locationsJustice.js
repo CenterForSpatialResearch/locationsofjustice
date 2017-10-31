@@ -41,6 +41,7 @@ function showAllLayers() {
 }
 
 function hideLayersExcept(layerToIgnore) {
+  console.log("hideLayersExcept", layerToIgnore, 'category showing at start is', categoryShowing);
   if (scene) { 
     // turn all off first
     scene.config.layers.justice_locations.legalIcons.visible = false;
@@ -72,6 +73,11 @@ function hideLayersExcept(layerToIgnore) {
       }
     categoryShowing = layerToIgnore;
     scene.updateConfig();
+
+    // now if a submenu was showing
+    
+
+
   }
 }
 
@@ -219,18 +225,22 @@ var LegalLayerControl = L.Control.extend({
     if (e.target.value) {
       fadeLegendExceptTarget(e.target);
       hideSublayers('legalIcons', getTangramName(e.target.value));
-    
     }
-  
-  
-  
   },
   toggleOnClick: function (e) {
     toggleLegend(e, 'legal');
     if (scene) {
       hideLayersExcept('legalIcons');
-      document.getElementById("legal_toggle").style.background = '#5db323';
-      document.getElementById("legal_toggle").style.color = 'white';
+      var toggle = document.getElementById("legal_toggle");
+      toggle.style.background = '#5db323';
+      toggle.style.color = 'white';
+      if (e.target.value == 'Legal') {
+        if (toggle.parentElement.children[1] !== undefined) {
+          if (toggle.parentElement.children[1].style.display !== 'none') {
+            showAllSublayers('legalIcons');
+          }
+        }
+      } 
     }
   }
 });
@@ -242,7 +252,7 @@ var EnforcementLayerControl = L.Control.extend({
   },
   onAdd: function() {
     var container = L.DomUtil.create('div', 'layer-control');
-    container.innerHTML = '<div id="enforcement"><input id="enforcement_toggle" type="button" value="Enforcement"></div>'
+    container.innerHTML = '<input id="enforcement_toggle" type="button" value="Enforcement">'
     L.DomEvent.on(container, 'click', this.toggleOnClick);
     // build legend for subtypes
     L.DomUtil.addClass(container, "legend");
@@ -272,11 +282,20 @@ var EnforcementLayerControl = L.Control.extend({
     toggleLegend(e, 'enforcement');
     if (scene) {
       hideLayersExcept('enforcementIcons');
-      document.getElementById("legal_toggle").style.background = '#5db323';
-      document.getElementById("legal_toggle").style.color = 'white';
+      var toggle = document.getElementById("enforcement_toggle");
+      toggle.style.background = '#4169ad';
+      toggle.style.color = 'white';
+      if (e.target.value == 'Enforcement') {
+        if (toggle.parentElement.children[1] !== undefined) {
+          if (toggle.parentElement.children[1].style.display !== 'none') {
+            showAllSublayers('enforcementIcons');
+          }
+        }
+      } 
     }
   }
 });
+
 
 // Courts button *****************
 var CourtsLayerControl = L.Control.extend({
@@ -319,11 +338,20 @@ var CourtsLayerControl = L.Control.extend({
     toggleLegend(e, 'courts');
     if (scene) {
       hideLayersExcept('courtsIcons');
-      document.getElementById("courts_toggle").style.background = '#a53295';
-      document.getElementById("courts_toggle").style.color = 'white';
+      var toggle = document.getElementById("courts_toggle");
+      toggle.style.background = '#a53295';
+      toggle.style.color = 'white';
+      if (e.target.value == 'Courts') {
+        if (toggle.parentElement.children[1] !== undefined) {
+          if (toggle.parentElement.children[1].style.display !== 'none') {
+            showAllSublayers('courtsIcons');
+          }
+        }
+      } 
     }
   }
 });
+
 
 // Confinement button **********
 var ConfinementLayerControl = L.Control.extend({
@@ -364,11 +392,21 @@ var ConfinementLayerControl = L.Control.extend({
     toggleLegend(e, 'confinement');
     if (scene) {
       hideLayersExcept('confinementIcons');
-      document.getElementById("confinement_toggle").style.background = '#ca2016';
-      document.getElementById("confinement_toggle").style.color = 'white';
+      var toggle = document.getElementById("confinement_toggle");
+      toggle.style.background = '#ca2016';
+      toggle.style.color = 'white';
+      if (e.target.value == 'Confinement') {
+        if (toggle.parentElement.children[1] !== undefined) {
+          if (toggle.parentElement.children[1].style.display !== 'none') {
+            showAllSublayers('confinementIcons');
+          }
+        }
+      } 
     }
   }
 });
+
+
 
 // Alternatives button ****************
 var AlternativesLayerControl = L.Control.extend({
@@ -409,11 +447,20 @@ var AlternativesLayerControl = L.Control.extend({
     toggleLegend(e, 'alternatives');
     if (scene) {
       hideLayersExcept('alternativesIcons');
-      document.getElementById("alternatives_toggle").style.background = '#7bcbc2';
-      document.getElementById("alternatives_toggle").style.color = 'white';
+      var toggle = document.getElementById("alternatives_toggle");
+      toggle.style.background = '#7bcbc2';
+      toggle.style.color = 'white';
+      if (e.target.value == 'Alternatives') {
+        if (toggle.parentElement.children[1] !== undefined) {
+          if (toggle.parentElement.children[1].style.display !== 'none') {
+            showAllSublayers('alternativesIcons');
+          }
+        }
+      } 
     }
   }
 });
+
 
 // Support button ***************
 var SupportLayerControl = L.Control.extend({
@@ -452,11 +499,20 @@ var SupportLayerControl = L.Control.extend({
     toggleLegend(e, 'support');
     if (scene) {
       hideLayersExcept('supportIcons');
-      document.getElementById("support_toggle").style.background = '#fecf01';
-      document.getElementById("support_toggle").style.color = 'white';
+      var toggle = document.getElementById("support_toggle");
+      toggle.style.background = '#fecf01';
+      toggle.style.color = 'white';
+      if (e.target.value == 'Support') {
+        if (toggle.parentElement.children[1] !== undefined) {
+          if (toggle.parentElement.children[1].style.display !== 'none') {
+            showAllSublayers('supportIcons');
+          }
+        }
+      } 
     }
   }
 });
+
 
 
 // All layers button ***************
