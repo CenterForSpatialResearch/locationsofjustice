@@ -63,11 +63,9 @@ function showAllLayers() {
 }
 
 function showAllSubcategories() {
-  console.log("checking subcategories");
   if (scene) {
-
-    // lets just test with legal
-    var parentLayers = ['legalIcons', 'enforcementIcons'];
+    var parentLayers = ['legalIcons', 'enforcementIcons', 'courtsIcons', 'confinementIcons', 'alternativesIcons', 'supportIcons'];
+    
     for (name in parentLayers) {
       var layerName = parentLayers[name]; // ...
       for (i in scene.config.layers.justice_locations) {
