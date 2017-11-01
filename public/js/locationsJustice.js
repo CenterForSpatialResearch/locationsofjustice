@@ -257,10 +257,12 @@ var LegalLayerControl = L.Control.extend({
     L.DomUtil.addClass(container, "legal");
     var innerWrapper = L.DomUtil.create('div', 'type-wrapper');
     container.appendChild(innerWrapper);
+
     var types = [
-      "Attorney Conduct Grievance Committee", "Federal Prosecutor", "Mental Hygiene Legal Services",
-      "Public Appellate Representation", "Public Defender", "Public Family Court Representation", "State Prosecutor"
+      "State Prosecutor", "Federal Prosecutor", "Public Defender", "Public Family Court Representation", 
+      "Public Appellate Representation",  "Mental Hygiene Legal Services", "Attorney Conduct Grievance Committee"
     ];
+    
     for (type in types) {
       var typeItem = L.DomUtil.create('div', 'type-item');
       typeItem.innerHTML = '<input class="legal-type" value="' + types[type] + '" type="button">';
@@ -307,10 +309,12 @@ var EnforcementLayerControl = L.Control.extend({
     L.DomUtil.addClass(container, "enforcement");
     var innerWrapper = L.DomUtil.create('div', 'type-wrapper');
     container.appendChild(innerWrapper);
+
     var types = [
-      "Federal Law Enforcement", "Headquarters", "Logistics", "NYPD Division of School Safety",
-      "Offices & Posts", "Parking", "Parks Police", "Police Service Area Command",
-      "Police Station", "State Law Enforcement", "Training", "Tow Pound"
+      "Police Station", "Police Service Area Command", "Parks Police", 
+      "NYPD Division of School Safety", "State Law Enforcement",
+      "Federal Law Enforcement", "Headquarters", "Offices & Posts",
+      "Training", "Logistics", "Parking", "Tow Pound"
     ];
     for (type in types) {
       var typeItem = L.DomUtil.create('div', 'type-item');
@@ -358,14 +362,15 @@ var CourtsLayerControl = L.Control.extend({
     L.DomUtil.addClass(container, "courts");
     var innerWrapper = L.DomUtil.create('div', 'type-wrapper');
     container.appendChild(innerWrapper);
+
     var types = [
-      "Alternative Court",
-      "Appeals Court",
+      "Criminal Court",
       "Civil & Criminal Court",
       "Civil Court",
-      "Criminal Court",
       "Family Court",
-      "Immigration Court"
+      "Immigration Court",
+      "Appeals Court",
+      "Alternative Court"
     ];
     for (type in types) {
       var typeItem = L.DomUtil.create('div', 'type-item');
@@ -414,12 +419,13 @@ var ConfinementLayerControl = L.Control.extend({
     var innerWrapper = L.DomUtil.create('div', 'type-wrapper');
     container.appendChild(innerWrapper);
     var types = [
+      "Pretrial & Misdemeanor",
       "Felony",
-      "Immigration Detention",
       "Juvenile",
       "Medical & Psychiatric",
-      "Pretrial & Misdemeanor"
+      "Immigration Detention"
     ]
+
     for (type in types) {
       var typeItem = L.DomUtil.create('div', 'type-item');
       typeItem.innerHTML = '<input class="confinement-type" value="' + types[type] + '" type="button">';
@@ -467,8 +473,8 @@ var AlternativesLayerControl = L.Control.extend({
     var innerWrapper = L.DomUtil.create('div', 'type-wrapper');
     container.appendChild(innerWrapper);
     var types = [
-      "Federal Probation Office", "Juvenile Probation", "Neighborhood Opportuity Network (NeON)",
-      "Parole Office", "Probation Office"
+      "Parole Office", "Probation Office",
+      "Federal Probation Office", "Juvenile Probation", "Neighborhood Opportuity Network (NeON)"
     ]
     for (type in types) {
       var typeItem = L.DomUtil.create('div', 'type-item');
@@ -644,12 +650,12 @@ var FullScreenToggle = L.Control.extend({
   toggleOnClick: function(e) { map.toggleFullscreen(); }
 });
 
-var legalToggleControl = new LegalLayerControl();
-map.addControl(legalToggleControl);
 var enforcementToggleControl = new EnforcementLayerControl();
 map.addControl(enforcementToggleControl);
 var courtsToggleControl = new CourtsLayerControl();
 map.addControl(courtsToggleControl);
+var legalToggleControl = new LegalLayerControl();
+map.addControl(legalToggleControl);
 var confinementToggleControl = new ConfinementLayerControl();
 map.addControl(confinementToggleControl);
 var alternativesToggleControl = new AlternativesLayerControl();
