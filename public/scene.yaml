@@ -6,7 +6,7 @@ sources:
     tile_size: 512
   justiceLocations:
     type: GeoJSON
-    url: data/locations.geojson
+    url: data/updatedLocations.geojson
 
 styles:
   dots:
