@@ -11,11 +11,17 @@ var map = L.Mapzen.map('justiceMap', {
   minZoom: 7,
   maxZoom: 19,
   maxBounds: [[45, -80], [40, -70]],
-  attribution: '© <a href="http://c4sr.columbia.edu/">Center for Spatial Research</a> Columbia University, <a href="http://archleague.org/">Architectural League</a>, <a href="https://www.mapzen.com/rights">Mapzen</a>, <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>, and <a href="https://www.mapzen.com/rights/#services-and-data-sources">others</a>',
+  attribution: '© <a href="http://c4sr.columbia.edu/">Center for Spatial Research</a> Columbia University, <a href="http://archleague.org/">Architectural League</a>, <a href="https://www.mapzen.com/rights">Mapzen</a>, <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>, <a href="https://www.mapbox.com/about/maps/">Mapbox</a>, and <a href="https://www.mapzen.com/rights/#services-and-data-sources">others</a>',
   tangramOptions: {
-    scene: 'scene.yaml'
+    scene: 'sceneMapboxTiles.yaml'
   },
 });
+
+// mapboxgl.accessToken = 'pk.eyJ1IjoiamZzMjExOCIsImEiOiJlMUQzd2YwIn0.WLb3PYDt2z-XttOLFcQlVQ';
+// var map = new mapboxgl.Map({
+//     container: 'justiceMap',
+//     style: 'mapbox://styles/mapbox/streets-v9'
+// });
 
 var zoomHome = L.Control.zoomHome({
   position: 'bottomright'
@@ -259,10 +265,10 @@ var LegalLayerControl = L.Control.extend({
     container.appendChild(innerWrapper);
 
     var types = [
-      "State Prosecutor", "Federal Prosecutor", "Public Defender", "Public Family Court Representation", 
+      "State Prosecutor", "Federal Prosecutor", "Public Defender", "Public Family Court Representation",
       "Public Appellate Representation",  "Mental Hygiene Legal Services", "Attorney Conduct Grievance Committee"
     ];
-    
+
     for (type in types) {
       var typeItem = L.DomUtil.create('div', 'type-item');
       typeItem.innerHTML = '<input class="legal-type" value="' + types[type] + '" type="button">';
@@ -311,7 +317,7 @@ var EnforcementLayerControl = L.Control.extend({
     container.appendChild(innerWrapper);
 
     var types = [
-      "Police Station", "Police Service Area Command", "Parks Police", 
+      "Police Station", "Police Service Area Command", "Parks Police",
       "NYPD Division of School Safety", "State Law Enforcement",
       "Federal Law Enforcement", "Headquarters", "Offices & Posts",
       "Training", "Logistics", "Parking", "Tow Pound"
