@@ -1,7 +1,7 @@
 sources:
   mapzen:
     type: MVT
-    url: https://a.tiles.mapbox.com/v4/mapbox.mapbox-streets-v7/{z}/{x}/{y}.mvt?access_token=pk.eyJ1IjoiamZzMjExOCIsImEiOiJlMUQzd2YwIn0.WLb3PYDt2z-XttOLFcQlVQ
+    url: https://a.tiles.mapbox.com/v4/mapbox.mapbox-streets-v7/{z}/{x}/{y}.mvt?access_token=pk.eyJ1IjoidXJiYW5vbW5pYnVzIiwiYSI6ImNqZDF0MmV0ODJ3Y2IyeG5zdWFydnl1bngifQ.Dqu7GBL_X3CQJSqGsG7cpA
     max_zoom: 16
     tile_size: 512
   justiceLocations:
