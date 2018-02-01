@@ -18,75 +18,75 @@ styles:
   legalStyle_1:
     base: points
     blend_order: 1
-    texture: icons/Legal_1.svg
+    texture: icons/Legal_1.png
   legalStyle_3:
     base: points
     blend_order: 1
-    texture: icons/Legal_3.svg
+    texture: icons/Legal_3.png
   legalStyle_5:
     base: points
     blend_order: 1
-    texture: icons/Legal_5.svg
+    texture: icons/Legal_5.png
   enforcementStyle_1:
     base: points
     blend_order: 1
-    texture: icons/Enforcement_1.svg
+    texture: icons/Enforcement_1.png
   enforcementStyle_3:
     base: points
     blend_order: 1
-    texture: icons/Enforcement_3.svg
+    texture: icons/Enforcement_3.png
   enforcementStyle_5:
     base: points
     blend_order: 1
-    texture: icons/Enforcement_5.svg
+    texture: icons/Enforcement_5.png
   courtsStyle_1:
     base: points
     blend_order: 1
-    texture: icons/Courts_1.svg
+    texture: icons/Courts_1.png
   courtsStyle_3:
     base: points
     blend_order: 1
-    texture: icons/Courts_3.svg
+    texture: icons/Courts_3.png
   courtsStyle_5:
     base: points
     blend_order: 1
-    texture: icons/Courts_5.svg
+    texture: icons/Courts_5.png
   alternativesStyle_1:
     base: points
     blend_order: 1
-    texture: icons/Alternatives_1.svg
+    texture: icons/Alternatives_1.png
   alternativesStyle_3:
     base: points
     blend_order: 1
-    texture: icons/Alternatives_3.svg
+    texture: icons/Alternatives_3.png
   alternativesStyle_5:
     base: points
     blend_order: 1
-    texture: icons/Alternatives_5.svg
+    texture: icons/Alternatives_5.png
   confinementStyle_1:
     base: points
     blend_order: 1
-    texture: icons/Confinement_1.svg
+    texture: icons/Confinement_1.png
   confinementStyle_3:
     base: points
     blend_order: 1
-    texture: icons/Confinement_3.svg
+    texture: icons/Confinement_3.png
   confinementStyle_5:
     base: points
     blend_order: 1
-    texture: icons/Confinement_5.svg
+    texture: icons/Confinement_5.png
   supportStyle_1:
     base: points
     blend_order: 1
-    texture: icons/Infrastructure_1.svg
+    texture: icons/Infrastructure_1.png
   supportStyle_3:
     base: points
     blend_order: 1
-    texture: icons/Infrastructure_3.svg
+    texture: icons/Infrastructure_3.png
   supportStyle_5:
     base: points
     blend_order: 1
-    texture: icons/Infrastructure_5.svg
+    texture: icons/Infrastructure_5.png
 
 global:
   earthOrder: 0
