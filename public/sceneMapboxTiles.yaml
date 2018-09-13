@@ -6,7 +6,7 @@ sources:
     tile_size: 512
   justiceLocations:
     type: GeoJSON
-    url: data/updatedLocations.geojson
+    url: data/updatedLocations_180913.geojson
 
 styles:
   dots:
@@ -1028,6 +1028,87 @@ layers:
     alternativesIcons:
       visible: true
       filter: {CATEGORY: Alternatives}
+      AlternativesReferralPoint:
+        visible: true
+        filter: {SUBMENU: Alternatives Referral Point}
+        alternatives_1_icons:
+          filter:
+            RANK: 1
+          draw:
+            alternativesStyle_1:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        alternatives_3_icons:
+          filter:
+            RANK: 3
+          draw:
+            alternativesStyle_3:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        alternatives_5_icons:
+          filter:
+            RANK: 5
+          draw:
+            alternativesStyle_5:
+              size: global.iconSize
+              collide: false
+              interactive: true
+      AlternativesServiceProvider:
+        visible: true
+        filter: {SUBMENU: Alternatives Service Provider}
+        alternatives_1_icons:
+          filter:
+            RANK: 1
+          draw:
+            alternativesStyle_1:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        alternatives_3_icons:
+          filter:
+            RANK: 3
+          draw:
+            alternativesStyle_3:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        alternatives_5_icons:
+          filter:
+            RANK: 5
+          draw:
+            alternativesStyle_5:
+              size: global.iconSize
+              collide: false
+              interactive: true
+      ReentryServicesProvider:
+        visible: true
+        filter: {SUBMENU: Reentry Services Provider}
+        alternatives_1_icons:
+          filter:
+            RANK: 1
+          draw:
+            alternativesStyle_1:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        alternatives_3_icons:
+          filter:
+            RANK: 3
+          draw:
+            alternativesStyle_3:
+              size: global.iconSize
+              collide: false
+              interactive: true
+        alternatives_5_icons:
+          filter:
+            RANK: 5
+          draw:
+            alternativesStyle_5:
+              size: global.iconSize
+              collide: false
+              interactive: true
       FederalProbation:
         visible: true
         filter: {SUBMENU: Federal Probation Office}
@@ -1111,7 +1192,7 @@ layers:
               interactive: true
       ParoleOffice:
         visible: true
-        filter: {SUBMENU: Parole office}
+        filter: {SUBMENU: Parole Office}
         alternatives_1_icons:
           filter:
             RANK: 1

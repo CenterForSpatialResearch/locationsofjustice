@@ -231,11 +231,14 @@ function getTangramName(subtypeName) {
     case "Family Court": return 'FamilyCourt';
     case "Immigration Court": return 'Immigration';
     // Alternatives
-    case "Federal Probation Office": return 'FederalProbation';
+    case "Alternatives Referral Point": return 'AlternativesReferralPoint';
+    case "Alternatives Service Provider": return 'AlternativesServiceProvider';
+    // case "Federal Probation Office": return 'FederalProbation';
     case "Juvenile Probation": return 'JuvenileProbation';
     case "Neighborhood Opportuity Network (NeON)": return 'Neon';
     case "Parole Office": return 'ParoleOffice';
     case "Probation Office": return 'ProbationOffice';
+    case "Reentry Services Provider": return 'ReentryServicesProvider';
     // Confinement
     case "Felony": return 'Felony';
     case "Immigration Detention": return 'ImmigrationDetention';
@@ -479,8 +482,8 @@ var AlternativesLayerControl = L.Control.extend({
     var innerWrapper = L.DomUtil.create('div', 'type-wrapper');
     container.appendChild(innerWrapper);
     var types = [
-      "Parole Office", "Probation Office",
-      "Federal Probation Office", "Juvenile Probation", "Neighborhood Opportuity Network (NeON)"
+      "Parole Office", "Probation Office", "Juvenile Probation", "Neighborhood Opportuity Network (NeON)", "Alternatives Referral Point",
+      "Alternatives Service Provider", "Reentry Services Provider",
     ]
     for (type in types) {
       var typeItem = L.DomUtil.create('div', 'type-item');
